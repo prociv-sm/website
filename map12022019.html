@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>GPS_logfile</title>
+		<base target="_top"></base>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
+		<meta name="geo.position" content="45.48427; 9.05519" />
+		<meta name="ICBM" content="45.48427, 9.05519" />
+	</head>
+	<body style="margin:0px;">
+		<script type="text/javascript">
+			google_api_key = 'AIzaSyDK0MmVA3FhDmK6tYyyXuHvuMa8JlHiS9c'; // Your project's Google Maps API key goes here (https://code.google.com/apis/console)
+			language_code = '';
+			document.writeln('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&amp;libraries=geometry&amp;language='+(self.language_code?self.language_code:'')+'&amp;key='+(self.google_api_key?self.google_api_key:'')+'"><'+'/script>');
+			
+			thunderforest_api_key = ''; // To display OpenStreetMap tiles from ThunderForest, you need a key (http://www.thunderforest.com/docs/apikeys/)
+		</script>
+		
+		<!--
+			If you want to transplant this map into another Web page, by far the best method is to
+			simply include it in a IFRAME tag (see http://www.gpsvisualizer.com/faq.html#google_html).
+			But, if you must paste the code into another page, be sure to include all of these parts:
+			   1. The "div" tags that contain the map and its widgets, below
+			   2. Three sections of JavaScript code:
+			      a. The Google code (maps.google.com or googleapis.com) code, above
+			      b. "gv_options" and the code that calls a .js file on maps.gpsvisualizer.com
+			      c. The "GV_Map" function, which contains all the geographic info for the map
+		-->
+		<div style="margin-left:0px; margin-right:0px; margin-top:0px; margin-bottom:0px;">
+			<div id="gmap_div" style="width:700px; height:700px; margin:0px; margin-right:12px; background-color:#f0f0f0; float:left; overflow:hidden;">
+				<p style="text-align:center; font:10px Arial;">This map was created using <a target="_blank" href="http://www.gpsvisualizer.com/">GPS Visualizer</a>'s do-it-yourself geographic utilities.<br /><br />Please wait while the map data loads...</p>
+			</div>
+				
+			<div id="gv_infobox" class="gv_infobox" style="font:11px Arial; border:solid #666666 1px; background-color:#ffffff; padding:4px; overflow:auto; display:none; max-width:400px;">
+				<!-- Although GPS Visualizer didn't create an legend/info box with your map, you can use this space for something else if you'd like; enable it by setting gv_options.infobox_options.enabled to true -->
+			</div>
+
+
+			<div id="gv_tracklist" class="gv_tracklist" style="font:11px Arial; line-height:11px; background-color:#ffffff; overflow:auto; display:none;"><!-- --></div>
+
+			<div id="gv_marker_list" class="gv_marker_list" style="background-color:#ffffff; overflow:auto; display:none;"><!-- --></div>
+
+			<div id="gv_clear_margins" style="height:0px; clear:both;"><!-- clear the "float" --></div>
+		</div>
+
+		
+		<!-- begin GPS Visualizer setup script (must come after maps.google.com code) -->
+		<script type="text/javascript">
+			/* Global variables used by the GPS Visualizer functions (20190213065242): */
+			gv_options = {};
+			
+			// basic map parameters:
+			gv_options.center = [45.48427,9.05519];  // [latitude,longitude] - be sure to keep the square brackets
+			gv_options.zoom = 14;  // higher number means closer view; can also be 'auto' for automatic zoom/center based on map elements
+			gv_options.map_type = 'GV_OSM';  // popular map_type choices are 'GV_STREET', 'GV_SATELLITE', 'GV_HYBRID', 'GV_TERRAIN', 'GV_OSM', 'GV_TOPO_US', 'GV_TOPO_WORLD' (http://www.gpsvisualizer.com/misc/google_map_types.html)
+			gv_options.map_opacity = 1.00;  // number from 0 to 1
+			gv_options.full_screen = true;  // true|false: should the map fill the entire page (or frame)?
+			gv_options.width = 700;  // width of the map, in pixels
+			gv_options.height = 700;  // height of the map, in pixels
+			
+			gv_options.map_div = 'gmap_div';  // the name of the HTML "div" tag containing the map itself; usually 'gmap_div'
+			gv_options.doubleclick_zoom = true;  // true|false: zoom in when mouse is double-clicked?
+			gv_options.doubleclick_center = true;  // true|false: re-center the map on the point that was double-clicked?
+			gv_options.scroll_zoom = true; // true|false; or 'reverse' for down=in and up=out
+			gv_options.page_scrolling = true; // true|false; does the map relenquish control of the scroll wheel when embedded in scrollable pages?
+			gv_options.autozoom_adjustment = 0;
+			gv_options.centering_options = { 'open_info_window':true, 'partial_match':true, 'center_key':'center', 'default_zoom':null } // URL-based centering (e.g., ?center=name_of_marker&zoom=14)
+			gv_options.street_view = false; // true|false: allow Google Street View on the map
+			gv_options.tilt = false; // true|false: allow Google to show 45-degree tilted aerial imagery?
+			gv_options.animated_zoom = false; // true|false: may or may not work properly
+			gv_options.disable_google_pois = false;  // true|false: if you disable clickable POIs, you also lose the labels on parks, airports, etc.
+			
+			// widgets on the map:
+			gv_options.zoom_control = 'large'; // 'large'|'small'|'none'
+			gv_options.recenter_button = true; // true|false: is there a 'click to recenter' option in the zoom control?
+			gv_options.scale_control = true; // true|false
+			gv_options.map_opacity_control = 'utilities';  // 'map'|'utilities'|'both'|false: where does the opacity control appear?
+			gv_options.map_type_control = {};  // widget to change the background map
+			  gv_options.map_type_control.placement = 'both'; // 'map'|'utilities'|'both'|false: where does the map type control appear?
+			  gv_options.map_type_control.filter = false;  // true|false: when map loads, are irrelevant maps ignored?
+			  gv_options.map_type_control.excluded = [];  // comma-separated list of quoted map IDs that will never show in the list ('included' also works)
+			gv_options.center_coordinates = true;  // true|false: show a "center coordinates" box and crosshair?
+			gv_options.measurement_tools = true;  // true|false: does it appear on the map itself?
+			gv_options.measurement_options = { visible:false, distance_color:'', area_color:'' };
+			gv_options.crosshair_hidden = true;  // true|false: hide the crosshair initially?
+			gv_options.mouse_coordinates = false;  // true|false: show a "mouse coordinates" box?
+			gv_options.utilities_menu = { 'maptype':true, 'opacity':true, 'measure':true, 'export':true };
+			gv_options.allow_export = false;  // true|false
+			
+			gv_options.infobox_options = {}; // options for a floating info box (id="gv_infobox"), which can contain anything
+			  gv_options.infobox_options.enabled = true;  // true|false: enable or disable the info box altogether
+			  gv_options.infobox_options.position = ['LEFT_TOP',52,6];  // [Google anchor name, relative x, relative y]
+			  gv_options.infobox_options.draggable = true;  // true|false: can it be moved around the screen?
+			  gv_options.infobox_options.collapsible = true;  // true|false: can it be collapsed by double-clicking its top bar?
+			// track-related options:
+			gv_options.track_tooltips = false; // true|false: should the name of a track appear on the map when you mouse over the track itself?
+			gv_options.tracklist_options = {}; // options for a floating list of the tracks visible on the map
+			  gv_options.tracklist_options.enabled = true;  // true|false: enable or disable the tracklist altogether
+			  gv_options.tracklist_options.position = ['RIGHT_TOP',4,32];  // [Google anchor name, relative x, relative y]
+			  gv_options.tracklist_options.min_width = 100; // minimum width of the tracklist, in pixels
+			  gv_options.tracklist_options.max_width = 180; // maximum width of the tracklist, in pixels
+			  gv_options.tracklist_options.min_height = 0; // minimum height of the tracklist, in pixels; if the list is longer, scrollbars will appear
+			  gv_options.tracklist_options.max_height = 310; // maximum height of the tracklist, in pixels; if the list is longer, scrollbars will appear
+			  gv_options.tracklist_options.desc = true;  // true|false: should tracks' descriptions be shown in the list
+			  gv_options.tracklist_options.toggle = false;  // true|false: should clicking on a track's name turn it on or off?
+			  gv_options.tracklist_options.checkboxes = true;  // true|false: should there be a separate icon/checkbox for toggling visibility?
+			  gv_options.tracklist_options.zoom_links = true;  // true|false: should each item include a small icon that will zoom to that track?
+			  gv_options.tracklist_options.highlighting = true;  // true|false: should the track be highlighted when you mouse over the name in the list?
+			  gv_options.tracklist_options.tooltips = false;  // true|false: should the name of the track appear on the map when you mouse over the name in the list?
+			  gv_options.tracklist_options.draggable = true;  // true|false: can it be moved around the screen?
+			  gv_options.tracklist_options.collapsible = true;  // true|false: can it be collapsed by double-clicking its top bar?
+			  gv_options.tracklist_options.header = 'Tracks:'; // HTML code; be sure to put backslashes in front of any single quotes, and don't include any line breaks
+			  gv_options.tracklist_options.footer = ''; // HTML code
+
+			// marker-related options:
+			gv_options.default_marker = { color:'red',icon:'googlemini',scale:1 }; // icon can be a URL, but be sure to also include size:[w,h] and optionally anchor:[x,y]
+			gv_options.vector_markers = false; // are the icons on the map in embedded SVG format?
+			gv_options.marker_tooltips = true; // do the names of the markers show up when you mouse-over them?
+			gv_options.marker_shadows = true; // true|false: do the standard markers have "shadows" behind them?
+			gv_options.marker_link_target = '_blank'; // the name of the window or frame into which markers' URLs will load
+			gv_options.info_window_width = 300;  // in pixels, the width of the markers' pop-up info "bubbles" (can be overridden by 'window_width' in individual markers)
+			gv_options.thumbnail_width = 0;  // in pixels, the width of the markers' thumbnails (can be overridden by 'thumbnail_width' in individual markers)
+			gv_options.photo_size = [0,0];  // in pixels, the size of the photos in info windows (can be overridden by 'photo_width' or 'photo_size' in individual markers)
+			gv_options.hide_labels = false;  // true|false: hide labels when map first loads?
+			gv_options.labels_behind_markers = false; // true|false: are the labels behind other markers (true) or in front of them (false)?
+			gv_options.label_offset = [0,0];  // [x,y]: shift all markers' labels (positive numbers are right and down)
+			gv_options.label_centered = false;  // true|false: center labels with respect to their markers?  (label_left is also a valid option.)
+			gv_options.driving_directions = false;  // put a small "driving directions" form in each marker's pop-up window? (override with dd:true or dd:false in a marker's options)
+			gv_options.garmin_icon_set = 'gpsmap'; // 'gpsmap' are the small 16x16 icons; change it to '24x24' for larger icons
+			gv_options.marker_list_options = {};  // options for a dynamically-created list of markers
+			  gv_options.marker_list_options.enabled = false;  // true|false: enable or disable the marker list altogether
+			  gv_options.marker_list_options.floating = true;  // is the list a floating box inside the map itself?
+			  gv_options.marker_list_options.position = ['RIGHT_BOTTOM',6,38];  // floating list only: position within map
+			  gv_options.marker_list_options.min_width = 160; // minimum width, in pixels, of the floating list
+			  gv_options.marker_list_options.max_width = 160;  // maximum width
+			  gv_options.marker_list_options.min_height = 0;  // minimum height, in pixels, of the floating list
+			  gv_options.marker_list_options.max_height = 310;  // maximum height
+			  gv_options.marker_list_options.draggable = true;  // true|false, floating list only: can it be moved around the screen?
+			  gv_options.marker_list_options.collapsible = true;  // true|false, floating list only: can it be collapsed by double-clicking its top bar?
+			  gv_options.marker_list_options.include_tickmarks = false;  // true|false: are distance/time tickmarks included in the list?
+			  gv_options.marker_list_options.include_trackpoints = false;  // true|false: are "trackpoint" markers included in the list?
+			  gv_options.marker_list_options.dividers = false;  // true|false: will a thin line be drawn between each item in the list?
+			  gv_options.marker_list_options.desc = false;  // true|false: will the markers' descriptions be shown below their names in the list?
+			  gv_options.marker_list_options.icons = true;  // true|false: should the markers' icons appear to the left of their names in the list?
+			  gv_options.marker_list_options.thumbnails = false;  // true|false: should markers' thumbnails be shown in the list?
+			  gv_options.marker_list_options.folders_collapsed = false;  // true|false: do folders in the list start out in a collapsed state?
+			  gv_options.marker_list_options.folders_hidden = false;  // true|false: do folders in the list start out in a hidden state?
+			  gv_options.marker_list_options.collapsed_folders = []; // an array of folder names
+			  gv_options.marker_list_options.hidden_folders = []; // an array of folder names
+			  gv_options.marker_list_options.count_folder_items = false;  // true|false: list the number of items in each folder?
+			  gv_options.marker_list_options.wrap_names = true;  // true|false: should marker's names be allowed to wrap onto more than one line?
+			  gv_options.marker_list_options.unnamed = '[unnamed]';  // what 'name' should be assigned to  unnamed markers in the list?
+			  gv_options.marker_list_options.colors = false;  // true|false: should the names/descs of the points in the list be colorized the same as their markers?
+			  gv_options.marker_list_options.default_color = '';  // default HTML color code for the names/descs in the list
+			  gv_options.marker_list_options.limit = 0;  // how many markers to show in the list; 0 for no limit
+			  gv_options.marker_list_options.center = false;  // true|false: does the map center upon a marker when you click its name in the list?
+			  gv_options.marker_list_options.zoom = false;  // true|false: does the map zoom to a certain level when you click on a marker's name in the list?
+			  gv_options.marker_list_options.zoom_level = 16;  // if 'zoom' is true, what level should the map zoom to?
+			  gv_options.marker_list_options.info_window = true;  // true|false: do info windows pop up when the markers' names are clicked in the list?
+			  gv_options.marker_list_options.url_links = false;  // true|false: do the names in the list become instant links to the markers' URLs?
+			  gv_options.marker_list_options.toggle = false;  // true|false: does a marker disappear if you click on its name in the list?
+			  gv_options.marker_list_options.help_tooltips = false;  // true|false: do "tooltips" appear on marker names that tell you what happens when you click?
+			  gv_options.marker_list_options.id = 'gv_marker_list';  // id of a DIV tag that holds the list
+			  gv_options.marker_list_options.header = ''; // HTML code; be sure to put backslashes in front of any single quotes, and don't include any line breaks
+			  gv_options.marker_list_options.footer = ''; // HTML code
+			gv_options.marker_filter_options = {};  // options for removing waypoints that are out of the current view
+			  gv_options.marker_filter_options.enabled = false;  // true|false: should out-of-range markers be removed?
+			  gv_options.marker_filter_options.movement_threshold = 8;  // in pixels, how far the map has to move to trigger filtering
+			  gv_options.marker_filter_options.limit = 0;  // maximum number of markers to display on the map; 0 for no limit
+			  gv_options.marker_filter_options.update_list = true;  // true|false: should the marker list be updated with only the filtered markers?
+			  gv_options.marker_filter_options.sort_list_by_distance = false;  // true|false: should the marker list be sorted by distance from the center of the map?
+			  gv_options.marker_filter_options.min_zoom = 0;  // below this zoom level, don't show any markers at all
+			  gv_options.marker_filter_options.zoom_message = '';  // message to put in the marker list if the map is below the min_zoom threshold
+			gv_options.synthesize_fields = {}; // for example: {label:'{name}'} would cause all markers' names to become visible labels
+				
+
+			
+			// Load GPS Visualizer's Google Maps functions (this must be loaded AFTER gv_options are set):
+			if (window.location.toString().indexOf('https://') == 0) { // secure pages require secure scripts
+				document.writeln('<script src="https://gpsvisualizer.com/google_maps/functions3.js" type="text/javascript"><'+'/script>');
+			} else {
+				document.writeln('<script src="http://maps.gpsvisualizer.com/google_maps/functions3.js" type="text/javascript"><'+'/script>');
+			}
+			
+		</script>
+		<style type="text/css">
+			/* Put any custom style definitions here (e.g., .gv_marker_info_window, .gv_marker_info_window_name, .gv_marker_list_item, .gv_tooltip, .gv_label, etc.) */
+			#gmap_div .gv_marker_info_window {
+				font-size:11px !important;
+			}
+			#gmap_div .gv_label {
+				opacity:0.90; filter:alpha(opacity=90);
+				color:white; background-color:#333333; border:1px solid black; padding:1px;
+				font:9px Verdana !important;
+				font-weight:normal !important;
+			}
+			
+		</style>
+		
+		<!-- end GPSV setup script and styles; begin map-drawing script (they must be separate) -->
+		<script type="text/javascript">
+			function GV_Map() {
+			  
+				GV_Setup_Map();
+				
+				// Track #1
+				t = 1; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211214405'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'blue'; trk[t].info.width = 1.5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'blue'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.49468,9.04323],[45.49468,9.04324],[45.49469,9.04325],[45.4947,9.04325],[45.4947,9.04325] ] });
+				GV_Draw_Track(t);
+				
+				// Track #2
+				t = 2; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211214447'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'yellow'; trk[t].info.width = 1.5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'yellow'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.4947,9.04324] ] });
+				GV_Draw_Track(t);
+				
+				// Track #3
+				t = 3; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211214506'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'orange'; trk[t].info.width = 1.5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'orange'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.49469,9.04321],[45.49468,9.04321],[45.49468,9.04322],[45.49468,9.04323],[45.49468,9.04325],[45.49468,9.04327],[45.49469,9.04328],[45.49469,9.04327],[45.49469,9.04328],[45.49469,9.04327],[45.49469,9.04328],[45.49469,9.04329],[45.4947,9.04329],[45.49471,9.0433],[45.49472,9.04332],[45.49473,9.04334],[45.49474,9.04337],[45.49475,9.0434],[45.49476,9.04342],[45.49477,9.04344],[45.49478,9.04347],[45.49479,9.04349],[45.4948,9.04351],[45.4948,9.04354],[45.49481,9.04357],[45.49482,9.0436],[45.49483,9.04363] ] });
+				GV_Draw_Track(t);
+				
+				// Track #4
+				t = 4; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211214655'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'navy'; trk[t].info.width = 3.5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'navy'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.49489,9.04357],[45.49489,9.04358],[45.49487,9.04361],[45.49486,9.04364],[45.49486,9.04366],[45.49484,9.04364],[45.49483,9.04364],[45.49482,9.04364] ] });
+				GV_Draw_Track(t);
+				
+				// Track #5
+				t = 5; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211214719'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'blue'; trk[t].info.width = 3.5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'blue'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.49485,9.04365],[45.49483,9.04365],[45.49482,9.04364] ] });
+				GV_Draw_Track(t);
+				
+				// Track #6
+				t = 6; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211215603'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'yellow'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'yellow'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48565,9.05392],[45.48565,9.05394],[45.48566,9.05396],[45.48566,9.05398],[45.48566,9.05401],[45.48568,9.05405],[45.48569,9.05408],[45.4857,9.05412],[45.48571,9.05415],[45.48571,9.05418],[45.48572,9.0542],[45.48573,9.05423],[45.48573,9.05427],[45.48574,9.05432],[45.48574,9.05435],[45.48575,9.05437],[45.48576,9.0544],[45.48576,9.05442],[45.48577,9.05445],[45.48576,9.05448] ] });
+				GV_Draw_Track(t);
+				
+				// Track #7
+				t = 7; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211215721'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'orange'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'orange'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48576,9.05456],[45.48575,9.05455],[45.48575,9.05454],[45.48574,9.05451],[45.48573,9.05447],[45.48572,9.05444],[45.48572,9.05442],[45.48574,9.05438],[45.48576,9.05435],[45.48575,9.05433],[45.48574,9.05429],[45.48572,9.05426],[45.4857,9.05422],[45.48568,9.05419],[45.48567,9.05416],[45.48567,9.05413],[45.48568,9.0541],[45.48568,9.05407],[45.48568,9.05404],[45.48568,9.05401] ] });
+				GV_Draw_Track(t);
+				
+				// Track #8
+				t = 8; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211220159'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'navy'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'navy'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48469,9.05517],[45.48468,9.05517],[45.48466,9.05518],[45.48465,9.05518],[45.48463,9.05519],[45.48461,9.0552],[45.4846,9.0552],[45.48459,9.05521],[45.48457,9.05522],[45.48456,9.05522],[45.48454,9.05522],[45.48453,9.05522] ] });
+				GV_Draw_Track(t);
+				
+				// Track #9
+				t = 9; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211220235'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'aqua'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'aqua'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48454,9.05521],[45.48453,9.05521],[45.48452,9.05519],[45.4845,9.05516],[45.4845,9.05512],[45.48448,9.05508],[45.48447,9.05504],[45.48446,9.05499],[45.48445,9.05495],[45.48444,9.05491] ] });
+				GV_Draw_Track(t);
+				
+				// Track #10
+				t = 10; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211220416'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'blue'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'blue'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48422,9.05499],[45.48421,9.05499],[45.48421,9.055],[45.48423,9.05499],[45.48427,9.05497],[45.48429,9.05495],[45.48432,9.05495],[45.48434,9.05494],[45.48436,9.05494],[45.48437,9.05494],[45.48438,9.05493],[45.4844,9.05492],[45.48441,9.05491] ] });
+				GV_Draw_Track(t);
+				
+				// Track #11
+				t = 11; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211220455'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'yellow'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'yellow'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48441,9.0549],[45.48442,9.05488] ] });
+				GV_Draw_Track(t);
+				
+				// Track #12
+				t = 12; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211220532'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'orange'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'orange'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.48441,9.05484],[45.48441,9.05481],[45.4844,9.05479],[45.4844,9.05476],[45.48439,9.05473],[45.48438,9.05469],[45.48437,9.05466],[45.48437,9.05462],[45.48436,9.05457],[45.48436,9.05454],[45.48435,9.0545],[45.48435,9.05447],[45.48434,9.05443],[45.48434,9.0544],[45.48434,9.05436] ] });
+				GV_Draw_Track(t);
+				
+				// Track #13
+				t = 13; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221400'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'navy'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'navy'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47398,9.06682],[45.47398,9.06683],[45.47397,9.06684],[45.47396,9.06685],[45.47396,9.06687],[45.47395,9.0669],[45.47395,9.06693],[45.47395,9.06696],[45.47396,9.06699],[45.47396,9.06702],[45.47396,9.06704] ] });
+				GV_Draw_Track(t);
+				
+				// Track #14
+				t = 14; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221430'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'aqua'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'aqua'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47398,9.06706],[45.47399,9.06706],[45.474,9.06705],[45.47401,9.06705],[45.47402,9.06705],[45.47403,9.06703] ] });
+				GV_Draw_Track(t);
+				
+				// Track #15
+				t = 15; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221450'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'blue'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'blue'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47403,9.06703],[45.47403,9.06702],[45.47403,9.06701],[45.47403,9.06699],[45.47402,9.06697],[45.47401,9.06695],[45.474,9.06692],[45.47399,9.06689],[45.47398,9.06687],[45.47397,9.06687],[45.47396,9.06686],[45.47395,9.06685],[45.47393,9.06684],[45.47392,9.06684],[45.47391,9.06684],[45.47389,9.06685],[45.47387,9.06684],[45.47385,9.06686],[45.47383,9.06687],[45.47381,9.06689],[45.47378,9.06691],[45.47377,9.06693],[45.47377,9.06694],[45.47377,9.06696],[45.47377,9.06699],[45.47378,9.06701],[45.47379,9.06704],[45.47379,9.06706],[45.4738,9.06707],[45.4738,9.0671],[45.47381,9.06712],[45.47382,9.06714],[45.47383,9.06716],[45.47384,9.06717],[45.47386,9.06717],[45.47388,9.06717],[45.47389,9.06715],[45.47391,9.06713],[45.47391,9.06711],[45.47391,9.06709],[45.47391,9.06706],[45.4739,9.06703],[45.4739,9.067],[45.47389,9.06697],[45.47389,9.06693],[45.47387,9.06691],[45.47386,9.06689],[45.47384,9.06689],[45.47382,9.06689],[45.47381,9.06691],[45.47379,9.06695],[45.4738,9.06699],[45.47381,9.06702] ] });
+				GV_Draw_Track(t);
+				
+				// Track #16
+				t = 16; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221657'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'yellow'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'yellow'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47381,9.06705],[45.4738,9.06706],[45.47379,9.06706],[45.47377,9.06707],[45.47375,9.06708],[45.47374,9.06708],[45.47372,9.06707],[45.47371,9.06705],[45.4737,9.06704],[45.47369,9.06703] ] });
+				GV_Draw_Track(t);
+				
+				// Track #17
+				t = 17; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221718'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'orange'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'orange'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47368,9.06703],[45.47366,9.06703] ] });
+				GV_Draw_Track(t);
+				
+				// Track #18
+				t = 18; trk[t] = {info:[],segments:[]};
+				trk[t].info.name = '20190211221817'; trk[t].info.desc = ''; trk[t].info.clickable = true;
+				trk[t].info.color = 'navy'; trk[t].info.width = 5; trk[t].info.opacity = 0.9; trk[t].info.hidden = false; trk[t].info.z_index = null;
+				trk[t].info.outline_color = 'black'; trk[t].info.outline_width = 0; trk[t].info.fill_color = 'navy'; trk[t].info.fill_opacity = 0;
+				trk[t].segments.push({ points:[ [45.47363,9.06701],[45.47363,9.06701] ] });
+				GV_Draw_Track(t);
+				
+				t = 1; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 2; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 3; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 4; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 5; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 6; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 7; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 8; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 9; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 10; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 11; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 12; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 13; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 14; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 15; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 16; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 17; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				t = 18; GV_Add_Track_to_Tracklist({bullet:'- ',name:trk[t].info.name,desc:trk[t].info.desc,color:trk[t].info.color,number:t});
+				
+				
+				GV_Draw_Marker({lat:45.4947000,lon:9.0432300,name:'20190211214405',desc:'Start time 2019-02-11 20:43:23',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4946800,lon:9.0432300,name:'20190211214405',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4946800,lon:9.0432300,name:'20190211214405',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432500,name:'20190211214405',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432500,name:'20190211214405',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4947200,lon:9.0432500,name:'20190211214405',desc:'Stop time 2019-02-11 20:43:49</BR>Distance=0 km</BR>Solid material=7 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4947200,lon:9.0432400,name:'20190211214447',desc:'Start time 2019-02-11 20:44:05',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4947000,lon:9.0432400,name:'20190211214447',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4947200,lon:9.0432400,name:'20190211214447',desc:'Stop time 2019-02-11 20:44:08</BR>Distance=0 km</BR>Solid material=1 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4947100,lon:9.0432100,name:'20190211214506',desc:'Start time 2019-02-11 20:44:24',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432100,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946800,lon:9.0432100,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946800,lon:9.0432700,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432800,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432700,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432800,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432700,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4946900,lon:9.0432900,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947000,lon:9.0432900,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947000,lon:9.0432900,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947100,lon:9.0433000,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947200,lon:9.0433200,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947300,lon:9.0433400,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947400,lon:9.0433700,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947500,lon:9.0434000,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947600,lon:9.0434200,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947700,lon:9.0434400,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4947900,lon:9.0434900,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948000,lon:9.0435100,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948000,lon:9.0435400,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948100,lon:9.0435700,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948200,lon:9.0436000,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948300,lon:9.0436300,name:'20190211214506',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4948500,lon:9.0436500,name:'20190211214506',desc:'Stop time 2019-02-11 20:45:27</BR>Distance=0 km</BR>Solid material=24 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4949100,lon:9.0435700,name:'20190211214655',desc:'Start time 2019-02-11 20:46:14',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4948900,lon:9.0435700,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948900,lon:9.0435700,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948700,lon:9.0436100,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948600,lon:9.0436400,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948600,lon:9.0436600,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948400,lon:9.0436400,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948300,lon:9.0436400,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948200,lon:9.0436400,name:'20190211214655',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4948400,lon:9.0436400,name:'20190211214655',desc:'Stop time 2019-02-11 20:46:31</BR>Distance=0 km</BR>Solid material=6 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4948400,lon:9.0436500,name:'20190211214716',desc:'Start time 2019-02-11 20:46:35',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4948500,lon:9.0436500,name:'20190211214716',desc:'Stop time 2019-02-11 20:46:36</BR>Distance=0 km</BR>Solid material=0 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4948500,lon:9.0436500,name:'20190211214719',desc:'Start time 2019-02-11 20:46:37',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4948500,lon:9.0436500,name:'20190211214719',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4948200,lon:9.0436400,name:'20190211214719',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4948400,lon:9.0436400,name:'20190211214719',desc:'Stop time 2019-02-11 20:46:42</BR>Distance=0 km</BR>Solid material=2 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4856700,lon:9.0539100,name:'20190211215603',desc:'Start time 2019-02-11 20:55:22',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4856500,lon:9.0539200,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856500,lon:9.0539400,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856600,lon:9.0539600,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856600,lon:9.0539800,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856600,lon:9.0540100,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0540500,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4856900,lon:9.0540800,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857000,lon:9.0541200,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857100,lon:9.0541500,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857100,lon:9.0541800,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857200,lon:9.0542000,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857300,lon:9.0542300,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857300,lon:9.0542700,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857400,lon:9.0543200,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857600,lon:9.0544000,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857600,lon:9.0544200,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857700,lon:9.0544500,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857600,lon:9.0544800,name:'20190211215603',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4857800,lon:9.0544800,name:'20190211215603',desc:'Stop time 2019-02-11 20:56:01</BR>Distance=0.1 km</BR>Solid material=15 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4857800,lon:9.0545600,name:'20190211215721',desc:'Start time 2019-02-11 20:56:39',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4857600,lon:9.0545600,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857500,lon:9.0545500,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857500,lon:9.0545400,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857400,lon:9.0545100,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857300,lon:9.0544700,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857200,lon:9.0544400,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857200,lon:9.0544200,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857400,lon:9.0543800,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857600,lon:9.0543500,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857500,lon:9.0543300,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857400,lon:9.0542900,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857000,lon:9.0542200,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0541900,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856700,lon:9.0541600,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856700,lon:9.0541300,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0541000,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0540700,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0540400,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4856800,lon:9.0540100,name:'20190211215721',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4857000,lon:9.0539900,name:'20190211215721',desc:'Stop time 2019-02-11 20:57:22</BR>Distance=0 km</BR>Solid material=18 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4847100,lon:9.0551700,name:'20190211220159',desc:'Start time 2019-02-11 21:01:18',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4846900,lon:9.0551700,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846900,lon:9.0551700,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846900,lon:9.0551700,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846800,lon:9.0551700,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846600,lon:9.0551800,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846500,lon:9.0551800,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846300,lon:9.0551900,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846100,lon:9.0552000,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4846000,lon:9.0552000,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4845900,lon:9.0552100,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4845700,lon:9.0552200,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4845400,lon:9.0552200,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4845300,lon:9.0552200,name:'20190211220159',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4845500,lon:9.0552200,name:'20190211220159',desc:'Stop time 2019-02-11 21:01:45</BR>Distance=0 km</BR>Solid material=11 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4845600,lon:9.0552200,name:'20190211220235',desc:'Start time 2019-02-11 21:01:53',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4845400,lon:9.0552100,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4845200,lon:9.0551900,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4845000,lon:9.0551600,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4845000,lon:9.0551200,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4844800,lon:9.0550800,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4844700,lon:9.0550400,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4844600,lon:9.0549900,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4844500,lon:9.0549500,name:'20190211220235',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4844600,lon:9.0549100,name:'20190211220235',desc:'Stop time 2019-02-11 21:02:13</BR>Distance=0.1 km</BR>Solid material=8 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4842600,lon:9.0549800,name:'20190211220416',desc:'Start time 2019-02-11 21:03:34',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4842200,lon:9.0549900,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842100,lon:9.0549900,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842100,lon:9.0550000,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842100,lon:9.0550000,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842300,lon:9.0549900,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842700,lon:9.0549700,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4842900,lon:9.0549500,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4843200,lon:9.0549500,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4843400,lon:9.0549400,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4843600,lon:9.0549400,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4843800,lon:9.0549300,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4844000,lon:9.0549200,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4844100,lon:9.0549100,name:'20190211220416',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4844300,lon:9.0549000,name:'20190211220416',desc:'Stop time 2019-02-11 21:04:03</BR>Distance=0 km</BR>Solid material=11 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4844300,lon:9.0549100,name:'20190211220455',desc:'Start time 2019-02-11 21:04:13',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4844100,lon:9.0549000,name:'20190211220455',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4844200,lon:9.0548800,name:'20190211220455',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4844400,lon:9.0548800,name:'20190211220455',desc:'Stop time 2019-02-11 21:04:18</BR>Distance=0 km</BR>Solid material=2 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4844300,lon:9.0548400,name:'20190211220532',desc:'Start time 2019-02-11 21:04:51',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4844100,lon:9.0548400,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4844100,lon:9.0548400,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4844000,lon:9.0547900,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4844000,lon:9.0547600,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843900,lon:9.0547300,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843800,lon:9.0546900,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843700,lon:9.0546600,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843700,lon:9.0546200,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843600,lon:9.0545700,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843600,lon:9.0545400,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843500,lon:9.0545000,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843500,lon:9.0544700,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843400,lon:9.0544300,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843400,lon:9.0544000,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843400,lon:9.0543600,name:'20190211220532',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4843500,lon:9.0543400,name:'20190211220532',desc:'Stop time 2019-02-11 21:05:22</BR>Distance=0 km</BR>Solid material=13 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4740000,lon:9.0668200,name:'20190211221400',desc:'Start time 2019-02-11 21:13:18',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4739800,lon:9.0668200,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739800,lon:9.0668200,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739700,lon:9.0668400,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739600,lon:9.0668500,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739600,lon:9.0668700,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739500,lon:9.0669000,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739500,lon:9.0669300,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739500,lon:9.0669600,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739600,lon:9.0670200,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4739600,lon:9.0670400,name:'20190211221400',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4740000,lon:9.0670600,name:'20190211221400',desc:'Stop time 2019-02-11 21:13:43</BR>Distance=0 km</BR>Solid material=10 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4740000,lon:9.0670600,name:'20190211221430',desc:'Start time 2019-02-11 21:13:48',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4739800,lon:9.0670600,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4739800,lon:9.0670600,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4739900,lon:9.0670600,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4740000,lon:9.0670500,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4740100,lon:9.0670500,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4740200,lon:9.0670500,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4740300,lon:9.0670300,name:'20190211221430',desc:'Manual mode or Stopped',color:'aqua',icon:''});
+				GV_Draw_Marker({lat:45.4740500,lon:9.0670300,name:'20190211221430',desc:'Stop time 2019-02-11 21:14:01</BR>Distance=0 km</BR>Solid material=5 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4740500,lon:9.0670300,name:'20190211221450',desc:'Start time 2019-02-11 21:14:08',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4740300,lon:9.0670300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4740200,lon:9.0669700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4740100,lon:9.0669500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4740000,lon:9.0669200,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739900,lon:9.0668900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739800,lon:9.0668700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739600,lon:9.0668600,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739500,lon:9.0668500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739500,lon:9.0668500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739300,lon:9.0668400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739200,lon:9.0668400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739100,lon:9.0668400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738900,lon:9.0668500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738700,lon:9.0668400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738500,lon:9.0668600,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738300,lon:9.0668700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738100,lon:9.0668900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737800,lon:9.0669100,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737700,lon:9.0669300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737700,lon:9.0669300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737700,lon:9.0669400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737700,lon:9.0669600,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737800,lon:9.0670100,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737900,lon:9.0670400,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737900,lon:9.0670600,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738000,lon:9.0670700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738000,lon:9.0671000,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738100,lon:9.0671200,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738400,lon:9.0671700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738600,lon:9.0671700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738800,lon:9.0671700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738900,lon:9.0671500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739100,lon:9.0671300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739100,lon:9.0671100,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739100,lon:9.0670900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739100,lon:9.0670600,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739000,lon:9.0670300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4739000,lon:9.0670000,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738900,lon:9.0669700,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738900,lon:9.0669300,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738700,lon:9.0669100,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738600,lon:9.0668900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738400,lon:9.0668900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738200,lon:9.0668900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738100,lon:9.0669100,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4737900,lon:9.0669500,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738000,lon:9.0669900,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738100,lon:9.0670200,name:'20190211221450',desc:'Manual mode or Stopped',color:'blue',icon:''});
+				GV_Draw_Marker({lat:45.4738300,lon:9.0670200,name:'20190211221450',desc:'Stop time 2019-02-11 21:16:00</BR>Distance=0.1 km</BR>Solid material=46 kg</BR>Liquid=0liter</BR>Driving time=0h:2min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4738400,lon:9.0670400,name:'20190211221657',desc:'Start time 2019-02-11 21:16:16',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4738100,lon:9.0670500,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4738000,lon:9.0670600,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737900,lon:9.0670600,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737700,lon:9.0670700,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737500,lon:9.0670800,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737400,lon:9.0670800,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737200,lon:9.0670700,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737000,lon:9.0670400,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4736900,lon:9.0670300,name:'20190211221657',desc:'Manual mode or Stopped',color:'yellow',icon:''});
+				GV_Draw_Marker({lat:45.4737100,lon:9.0670300,name:'20190211221657',desc:'Stop time 2019-02-11 21:16:36</BR>Distance=0 km</BR>Solid material=8 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4737100,lon:9.0670300,name:'20190211221718',desc:'Start time 2019-02-11 21:16:36',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4736800,lon:9.0670300,name:'20190211221718',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4736600,lon:9.0670300,name:'20190211221718',desc:'Manual mode or Stopped',color:'orange',icon:''});
+				GV_Draw_Marker({lat:45.4736700,lon:9.0670300,name:'20190211221718',desc:'Stop time 2019-02-11 21:16:41</BR>Distance=0 km</BR>Solid material=2 kg</BR>Liquid=0liter</BR>Driving time=0h:1min',color:'red',icon:''});
+				GV_Draw_Marker({lat:45.4736500,lon:9.0670100,name:'20190211221817',desc:'Start time 2019-02-11 21:17:36',color:'green',icon:''});
+				GV_Draw_Marker({lat:45.4736300,lon:9.0670100,name:'20190211221817',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4736300,lon:9.0670100,name:'20190211221817',desc:'Manual mode or Stopped',color:'navy',icon:''});
+				GV_Draw_Marker({lat:45.4736500,lon:9.0670100,name:'20190211221817',desc:'Stop time 2019-02-11 21:17:43</BR>Distance=0 km</BR>Solid material=3 kg</BR>Liquid=0liter</BR>Driving time=0h:0min',color:'red',icon:''});
+				
+				GV_Finish_Map();
+					
+			  
+			}
+			GV_Map(); // execute the above code
+			// http://www.gpsvisualizer.com/map_input?form=google
+		</script>
+		
+		
+		
+	</body>
+
+</html>
