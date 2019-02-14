@@ -1,116 +1,13 @@
-/*!
- * Start Bootstrap - One Page Wonder v5.0.1 (https://startbootstrap.com/template-overviews/one-page-wonder)
- * Copyright 2013-2018 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
- */
-
-body {
-    font-family: "Titillium Web", Helvetica, Arial, sans-serif !important;
-    line-height: 1.428571429;
-    color: #333333;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Titillium Web", Helvetica, Arial, sans-serif !important;
-    font-weight: 800 !important;
-}
-
-.btn-xl {
-    text-transform: uppercase;
-    padding: 1.5rem 3rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-}
-
-.bg-black {
-    background-color: #000000 !important;
-}
-
-.rounded-pill {
-    border-radius: 5rem;
-}
-
-.navbar-custom {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.navbar-custom .navbar-brand {
-    text-transform: uppercase;
-    font-size: 1rem;
-    letter-spacing: 0.1rem;
-    font-weight: 700;
-}
-
-.navbar-custom .navbar-nav .nav-item .nav-link {
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.1rem;
-}
-
-header.masthead {
+html {
     position: relative;
-    overflow: hidden;
-    padding-top: calc(7rem + 72px);
-    padding-bottom: 7rem;
-    background: -webkit-gradient(linear, left bottom, left top, from(#ff6a00), to(#ee0979));
-    background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: scroll;
-    background-size: cover;
-}
+    min-height: 100%;
+  }
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+  }
 
-.bg-primary {
-    background-color: #ee0979 !important;
-}
-
-.btn-primary {
-    background-color: #ee0979;
-    border-color: #ee0979;
-}
-
-.btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-    background-color: #bd0760 !important;
-    border-color: #bd0760 !important;
-}
-
-.btn-primary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
-}
-
-.btn-secondary {
-    background-color: #ff6a00;
-    border-color: #ff6a00;
-}
-
-.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
-    background-color: #cc5500 !important;
-    border-color: #cc5500 !important;
-}
-
-.btn-secondary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
-}
-
-@media (max-width: 575px) {
-    .no-mobile {
-        display: none;
-    }
-}
-
-@media (min-width: 576px) {
-    .mobile{
-        display: none;
-    }
-}
+  body > .container {
+    padding: 60px 15px 0;
+  }
+  
