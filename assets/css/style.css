@@ -1,13 +1,43 @@
-html {
-    position: relative;
-    min-height: 100%;
-  }
-  body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
-  }
+main{
+  padding-bottom: 5%;
+}
 
-  body > .container {
-    padding: 60px 15px 0;
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body>.container {
+  padding-top: 3%;
+}
+
+.padder {
+  padding-top: 3%;
+}
+
+.minitext{
+  font-size: 50%;
+}
+
+#instafeed {
+  max-width: 1080px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+#instafeed a {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 50%;
+  background: white;
+}
+@media only screen and (min-width: 580px) {
+  #instafeed a {
+    width: 25%;
   }
-  
+}
+#instafeed a img {
+  display: block;
+  width: 100%;
+}
