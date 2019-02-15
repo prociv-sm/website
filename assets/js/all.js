@@ -7,7 +7,7 @@ var userFeed = new Instafeed({
     template: '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a>',
     sortBy: 'most-recent',
     limit: 8,
-    links: false
+    links: true
 });
 userFeed.run();
 

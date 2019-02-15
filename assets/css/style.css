@@ -3,7 +3,7 @@ main{
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 body>.container {
@@ -48,4 +48,17 @@ img{
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
   background-attachment:fixed;
+}
+
+.navbar{
+  color: #fff;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.site-title {
+  color: #a32525 !important;
+  font-size: 1.778em;
+  font-weight: 700;
+  line-height: 1.2em;
+  letter-spacing: -0.5pt;
 }
