@@ -4,21 +4,27 @@
       <v-flex xs12>
         <h3 class="display-1 text-uppercase">Mezzi Operativi</h3>
       </v-flex>
-      <v-flex v-for="(vehicle, i) in vehicles" :key="i" xs6>
-        <vehicle-card :vehicle="vehicle" />
-      </v-flex>
+      <template v-if="!showVehicle">
+        <v-flex v-for="(vehicle, i) in vehicles" :key="i" xs6>
+          <vehicle-card :vehicle="vehicle" />
+        </v-flex>
+      </template>
+      <template v-else>
+        <h1>ciao</h1>
+      </template>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import VehicleCard from "../components/VehicleCard";
+import vehicleList from "@/vehicles";
 export default {
   head: {
     title: "Mezzi Operativi",
     meta: [
       // Open Graph
-      { name: "og:title", content: this.head.title },
+      { name: "og:title", content: "this.head.title " },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://nuxtjs.org" },
@@ -30,32 +36,8 @@ export default {
   },
   data() {
     return {
-      vehicles: [
-        {
-          name: "Mitsubishi",
-          description: "",
-          keyInformation: {
-            year: "2000",
-            bodyType: "Pick Up",
-            mileage: "118,590 Km",
-            transmission: "Manual",
-            fuelType: "Diesel"
-          },
-          runningCost: {
-            euro: "Euro 2"
-          },
-          performance: {
-            enginePower: "113 hp",
-            engineSize: "2477 cc"
-          },
-          vehicleDescription: {
-            seats: 5,
-            colour: "white",
-            fuelCapacity: "75 litres"
-          },
-          image: "mitsubishi.jpg"
-        }
-      ]
+      showVehicle: false,
+      vehicles: vehicleList.vehicle
     };
   }
 };
