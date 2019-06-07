@@ -1,13 +1,14 @@
 <template>
-  <v-app dark>
-    <v-toolbar>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>Protezione Civile Settimo Mil.se</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Link One</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">
+      You are using an <strong>outdated</strong> browser. Please
+      <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+      your experience and security.
+    </p>
+  <![endif]-->
+
+  <v-app>
+    <NavMenu />
     <v-content>
       <v-container>
         <nuxt />
@@ -17,17 +18,24 @@
 </template>
 
 <script>
+import NavMenu from "~/layouts/shared/navbar.vue";
 export default {
-  data() {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js"
-    };
+  components: {
+    NavMenu
+  },
+  head: {
+    titleTemplate: "%s - Nuxt.js",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial scale=1" },
+      { hid: "description", name: "description", content: "Meta description" }
+    ]
   }
 };
 </script>
+
+<style>
+main {
+  background: #c0c0c0;
+}
+</style>
