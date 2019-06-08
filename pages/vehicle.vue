@@ -2,7 +2,7 @@
   <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs12>
-        <h3 class="display-1 text-uppercase">Mezzi Operativi</h3>
+        <h2 class="display-1 text-uppercase">Mezzi Operativi</h2>
       </v-flex>
       <template v-if="!showVehicle">
         <v-flex v-for="(vehicle, i) in vehicles" :key="i" xs6>
@@ -18,7 +18,7 @@
 
 <script>
 import VehicleCard from "../components/VehicleCard";
-import vehicleList from "@/vehicles";
+import vehicleList from "@/data/vehicles";
 export default {
   head: {
     title: "Mezzi Operativi",

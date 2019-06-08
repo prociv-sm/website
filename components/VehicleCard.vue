@@ -3,7 +3,9 @@
     <v-img height="200px" :src="getImgUrl(vehicle.image)"> </v-img>
     <v-card-title primary-title>
       <div>
-        <div class="headline">{{ vehicle.name }}</div>
+        <div class="headline">
+          {{ vehicle.name }} <small>{{ vehicle.model }}</small>
+        </div>
       </div>
     </v-card-title>
     <v-card-actions>
@@ -11,10 +13,9 @@
         flat
         nuxt
         :to="'/vehicles/' + vehicle.name.toLowerCase()"
-        color="orange"
+        color="primary"
         >Informazioni
       </v-btn>
-      <v-btn flat color="orange">Explore</v-btn>
     </v-card-actions>
   </v-card>
 </template>

@@ -24,7 +24,7 @@ export default {
     NavMenu
   },
   head: {
-    titleTemplate: "%s - Nuxt.js",
+    titleTemplate: "%s - ProCiv Settimo M.se",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial scale=1" },

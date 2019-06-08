@@ -1,7 +1,7 @@
 <template>
-  <v-toolbar>
+  <v-toolbar dark color="#033162">
     <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title nuxt to="/">
+    <v-toolbar-title class="white--text" nuxt to="/">
       <nuxt-link class="navbar-item" to="/" title="Vai alla pagina principale">
         {{ title }}
       </nuxt-link>
@@ -22,6 +22,16 @@ export default {
       title: "Protezione Civile Settimo Mil.se",
       navigation: [
         {
+          title: "Attività",
+          link: "/activity",
+          desc: "Le attività del dipartimento"
+        },
+        {
+          title: "Scopo",
+          link: "/purpose",
+          desc: "Cosa fa la protezione civile in italia"
+        },
+        {
           title: "Parco mezzi",
           link: "/vehicle",
           desc: "I nostri mezzi"
@@ -30,11 +40,6 @@ export default {
           title: "Attrezzatura",
           link: "/tools",
           desc: "La nostra mezzi"
-        },
-        {
-          title: "I volontari",
-          link: "/volunteers",
-          desc: "I volontari e cosa fanno"
         },
         {
           title: "Contatti",
