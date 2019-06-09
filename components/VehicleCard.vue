@@ -1,6 +1,7 @@
 <template>
   <v-card>
-    <v-img height="200px" :src="getImgUrl(vehicle.image)"> </v-img>
+    <v-img height="200px" aspect-ratio="16/9" :src="getImgUrl(vehicle.image)">
+    </v-img>
     <v-card-title primary-title>
       <div>
         <div class="headline">
@@ -39,3 +40,9 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-image__image {
+  background-position: inherit;
+}
+</style>

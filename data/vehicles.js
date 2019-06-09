@@ -10,7 +10,19 @@ export default {
       name: "Land Rover",
       model: "Defender",
       description: "",
-      image: "vehicles/mitsubishi.jpg"
+      image: "vehicles/land.jpg"
+    },
+    {
+      name: "Iveco",
+      model: "Daily 4x4",
+      description: "",
+      image: "vehicles/iveco.jpg"
+    },
+    {
+      name: "Fiat",
+      model: "Ducato",
+      description: "",
+      image: "vehicles/iveco.jpg"
     }
   ]
 };

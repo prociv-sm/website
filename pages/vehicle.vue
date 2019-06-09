@@ -5,7 +5,7 @@
         <h2 class="display-1 text-uppercase">Mezzi Operativi</h2>
       </v-flex>
       <template v-if="!showVehicle">
-        <v-flex v-for="(vehicle, i) in vehicles" :key="i" xs6>
+        <v-flex v-for="(vehicle, i) in vehicles" :key="i" xm6>
           <vehicle-card :vehicle="vehicle" />
         </v-flex>
       </template>
