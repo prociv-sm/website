@@ -1,16 +1,15 @@
 <template>
-  <v-container grid-list-md>
+  <v-container v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs12>
         <h2 class="display-1 text-uppercase">Mezzi Operativi</h2>
       </v-flex>
+    </v-layout>
+    <v-layout row wrap>
       <template v-if="!showVehicle">
-        <v-flex v-for="(vehicle, i) in vehicles" :key="i" xm6>
+        <v-flex v-for="(vehicle, i) in vehicles" :key="i" sm12 mb6 lg6>
           <vehicle-card :vehicle="vehicle" />
         </v-flex>
-      </template>
-      <template v-else>
-        <h1>ciao</h1>
       </template>
     </v-layout>
   </v-container>

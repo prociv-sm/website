@@ -1,25 +1,29 @@
 export default {
   vehicle: [
     {
-      name: "Mitsubishi",
+      code: "mitsubishi",
+      title: "Mitsubishi",
       model: "L200",
       description: "",
       image: "vehicles/mitsubishi.jpg"
     },
     {
-      name: "Land Rover",
+      code: "land",
+      title: "Land Rover",
       model: "Defender",
       description: "",
       image: "vehicles/land.jpg"
     },
     {
-      name: "Iveco",
+      code: "iveco",
+      title: "Iveco",
       model: "Daily 4x4",
       description: "",
       image: "vehicles/iveco.jpg"
     },
     {
-      name: "Fiat",
+      code: "ducato",
+      title: "Fiat",
       model: "Ducato",
       description: "",
       image: "vehicles/iveco.jpg"

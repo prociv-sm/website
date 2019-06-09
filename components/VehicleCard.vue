@@ -5,16 +5,12 @@
     <v-card-title primary-title>
       <div>
         <div class="headline">
-          {{ vehicle.name }} <small>{{ vehicle.model }}</small>
+          {{ vehicle.title }} <small>{{ vehicle.model }}</small>
         </div>
       </div>
     </v-card-title>
     <v-card-actions>
-      <v-btn
-        flat
-        nuxt
-        :to="'/vehicles/' + vehicle.name.toLowerCase()"
-        color="primary"
+      <v-btn flat nuxt :to="'/vehicles/' + vehicle.code" color="primary"
         >Informazioni
       </v-btn>
     </v-card-actions>
