@@ -15,28 +15,35 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/sitemap": "^1.2.0",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.4.0",
     "express": "^4.16.4",
+    "nuxt": "^2.4.0",
+    "qonfucius-nuxt-fontawesome": "^1.0.1",
     "vuetify": "^1.5.5",
-    "vuetify-loader": "^1.2.1",
-    "@nuxtjs/axios": "^5.3.6"
+    "vuetify-loader": "^1.2.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9",
+    "@fortawesome/fontawesome-free": "^5.8.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-brands-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/vue-fontawesome": "^0.1.6",
     "@nuxtjs/eslint-config": "^0.0.1",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-vue": "^5.2.2",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
-    "jest": "^24.1.0",
     "vue-jest": "^3.0.3"
   },
   "engines": {

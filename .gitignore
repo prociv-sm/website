@@ -1,4 +1,10 @@
+# Idea folder
 .idea/*
+# Build & dep folder
 .nuxt/*
 dist/*
 node_modules/*
+coverage/*
+# Sw file
+static/sw.js
+sitemap.xml
