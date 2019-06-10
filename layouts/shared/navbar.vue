@@ -21,7 +21,9 @@
       <v-spacer></v-spacer>
       <template v-for="(nav, i) in navigation">
         <v-toolbar-items :key="i" class="hidden-sm-and-down" :title="nav.desc">
-          <v-btn flat nuxt :to="nav.link">{{ nav.title }}</v-btn>
+          <v-btn :disabled="nav.disabled" flat nuxt :to="nav.link">
+            {{ nav.title }}
+          </v-btn>
         </v-toolbar-items>
       </template>
     </v-toolbar>
@@ -57,29 +59,40 @@ export default {
       drawer: null,
       navigation: [
         {
+          title: "Home",
+          link: "/",
+          desc: "",
+          disabled: false
+        },
+        {
           title: "Attività",
           link: "/activity",
-          desc: "Le attività del dipartimento"
+          desc: "Le attività del dipartimento",
+          disabled: true
         },
         {
           title: "Scopo",
           link: "/purpose",
-          desc: "Cosa fa la protezione civile in italia"
+          desc: "Cosa fa la protezione civile in italia",
+          disabled: false
         },
         {
           title: "Parco mezzi",
           link: "/vehicle",
-          desc: "I nostri mezzi"
+          desc: "I nostri mezzi",
+          disabled: false
         },
         {
           title: "Attrezzatura",
           link: "/tools",
-          desc: "La nostra mezzi"
+          desc: "La nostra mezzi",
+          disabled: true
         },
         {
           title: "Contatti",
           link: "/contact",
-          desc: "Contattaci!"
+          desc: "Contattaci!",
+          disabled: true
         }
       ]
     };

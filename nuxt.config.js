@@ -44,8 +44,19 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    "@nuxtjs/sitemap",
+    "qonfucius-nuxt-fontawesome"
   ],
+  fontAwesome: {
+    // Doc: https://github.com/Qonfucius/nuxt-fontawesome
+    packs: [
+      {
+        package: "@fortawesome/free-brands-svg-icons",
+        icons: ["faGithub", "faFontAwesome"]
+      }
+    ]
+  },
   /*
    ** Axios module configuration
    */

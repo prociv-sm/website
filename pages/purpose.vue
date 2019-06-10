@@ -120,10 +120,17 @@ export default {
     title: "Lo scopo del dipartimento",
     meta: [
       // Open Graph
-      { name: "og:title", content: "this.head.title " },
-      { name: "og:description", content: "" },
+      { name: "og:title", content: "Lo scopo del dipartimento" },
+      {
+        name: "og:description",
+        content:
+          "Il soccorso alla popolazione in emergenza è l’attività che identifica la funzione principale della protezione civile, anche se negli anni le competenze del sistema si sono estese allo sviluppo della conoscenza dei rischi e alle azioni per evitare o ridurre al minimo i danni delle calamità."
+      },
       { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://nuxtjs.org" },
+      {
+        name: "og:url",
+        content: "https://protezionecivile-settimomilanese.it/"
+      },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   }
