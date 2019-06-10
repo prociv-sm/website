@@ -7,3 +7,4 @@ node_modules/*
 coverage/*
 # Sw file
 static/sw.js
+sitemap.xml

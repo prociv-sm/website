@@ -38,7 +38,6 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: ["@/plugins/vuetify"],
-
   /*
    ** Nuxt.js modules
    */
@@ -48,12 +47,69 @@ module.exports = {
     "@nuxtjs/sitemap",
     "qonfucius-nuxt-fontawesome"
   ],
+
+  /*
+   ** Fontawesome modules
+   */
   fontAwesome: {
     // Doc: https://github.com/Qonfucius/nuxt-fontawesome
     packs: [
       {
         package: "@fortawesome/free-brands-svg-icons",
         icons: ["faGithub", "faFontAwesome"]
+      }
+    ]
+  },
+
+  /*
+   ** Sitemaps modules
+   */
+  sitemap: {
+    // Doc: https://github.com/nuxt-community/sitemap-module
+    hostname: "https://protezionecivile-settimomilanese.it/",
+    gzip: true,
+    routes: [
+      {
+        url: "/",
+        changefreq: "weekly",
+        priority: 1.0,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/activity",
+        changefreq: "monthly",
+        priority: 0.5,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/contact",
+        changefreq: "monthly",
+        priority: 0.3,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/purpose",
+        changefreq: "monthly",
+        priority: 0.3,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/tools",
+        changefreq: "monthly",
+        priority: 0.3,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/vehicle",
+        changefreq: "monthly",
+        priority: 0.3,
+        lastmodISO: "2019-06-10"
+      },
+      {
+        url: "/vehicle/mitsubishi",
+        changefreq: "monthly",
+        priority: 0.3,
+        lastmodISO: "2019-06-10"
       }
     ]
   },
