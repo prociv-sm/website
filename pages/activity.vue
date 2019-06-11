@@ -6,10 +6,38 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <template>
+      <template v-if="!showMode">
         <v-flex v-for="(activity, i) in activityList" :key="i" sm12 mb12 lg12>
-          <activity-card :activity="activity" />
+          <v-card>
+            <v-img
+              height="130px"
+              aspect-ratio="16/9"
+              src="https://comune.settimomilanese.mi.it/wp-content/uploads/2018/02/comune1-300x225.jpg"
+            >
+            </v-img>
+            <v-card-title primary-title>
+              <div>
+                <div class="headline">
+                  {{ activity.title }}
+                </div>
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              <v-btn round small color="primary" @click="changeView()"
+                >Dettagli</v-btn
+              >
+              <chips-bar
+                :author="activity.author"
+                :event-date="activity.eventDate"
+                :event-time="activity.eventTime"
+              >
+              </chips-bar>
+            </v-card-actions>
+          </v-card>
         </v-flex>
+      </template>
+      <template v-else>
+        dettagli
       </template>
     </v-layout>
   </v-container>
@@ -17,7 +45,7 @@
 
 <script>
 import activityList from "@/data/activity";
-import ActivityCard from "../components/ActivityCard";
+import ChipsBar from "../components/ChipsBar";
 export default {
   head: {
     title: "Attività",
@@ -31,12 +59,18 @@ export default {
     ]
   },
   components: {
-    ActivityCard
+    ChipsBar
   },
   data() {
     return {
+      showMode: false,
       activityList: activityList.activity
     };
+  },
+  methods: {
+    changeView() {
+      return (this.showMode = false);
+    }
   }
 };
 </script>
