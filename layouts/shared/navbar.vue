@@ -11,7 +11,11 @@
           to="/"
           title="Vai alla pagina principale"
         >
+          <span class="hidden-md-and-up white--text">
+            ProCiv Settimo Milanese
+          </span>
           <v-img
+            class="hidden-sm-and-down"
             style="height:52px;width:52px;"
             :src="require('~/assets/img/index.jpg')"
             alt="logo"
@@ -68,7 +72,7 @@ export default {
           title: "Attività",
           link: "/activity",
           desc: "Le attività del dipartimento",
-          disabled: true
+          disabled: false
         },
         {
           title: "Scopo",
