@@ -5,7 +5,6 @@
         <v-alert type="info" value="true">
           Questo sito è attualmente in sviluppo, le informazioni riportate
           potrebbero non essere corrette!
-          <fa-icon class="mr-1" :icon="['fab', 'font-awesome']" />
         </v-alert>
       </v-flex>
       <v-flex xs12>
@@ -14,6 +13,7 @@
             <div>
               <div class="headline">
                 Le attività della Protezione Civile sul territorio
+                <fa-icon class="mr-1" :icon="['fab', 'font-awesome']" />
               </div>
               <span>
                 Attualmente il sito è in sviluppo, torna in seguito per vedere

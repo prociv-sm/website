@@ -17,6 +17,7 @@ module.exports = {
     'vue/html-end-tags': 'off',
     'vue/html-indent': 'off',
     'vue/html-quotes': 'off',
+    'vue/no-v-html': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/mustache-interpolation-spacing': 'off',
     'vue/no-multi-spaces': 'off',
