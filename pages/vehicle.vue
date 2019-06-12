@@ -1,5 +1,5 @@
 <template>
-  <v-container v-container grid-list-md>
+  <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs12>
         <h2 class="display-1 text-uppercase">Mezzi Operativi</h2>
@@ -17,7 +17,7 @@
 
 <script>
 import VehicleCard from "../components/VehicleCard";
-import vehicleList from "@/data/vehicles";
+import axios from "axios";
 export default {
   head: {
     title: "Mezzi Operativi",
@@ -36,8 +36,18 @@ export default {
   data() {
     return {
       showVehicle: false,
-      vehicles: vehicleList.vehicle
+      vehicles: []
     };
+  },
+  async mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      axios
+        .get("https://smprocivapp.firebaseio.com/vehicles.json")
+        .then(response => (this.vehicles = response.data));
+    }
   }
 };
 </script>

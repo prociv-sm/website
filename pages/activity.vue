@@ -7,7 +7,7 @@
     </v-layout>
     <v-layout row wrap>
       <template v-if="!showMode">
-        <v-flex v-for="(activity, i) in activityList" :key="i" sm12 mb12 lg12>
+        <v-flex v-for="(activity, i) in activities" :key="i" sm12 mb12 lg12>
           <v-card>
             <v-img
               height="130px"
@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import activityList from "@/data/activity";
 import ChipsBar from "../components/ChipsBar";
+import axios from "axios";
 export default {
   head: {
     title: "Attività",
@@ -64,12 +64,21 @@ export default {
   data() {
     return {
       showMode: false,
-      activityList: activityList.activity
+      activities: []
     };
+  },
+  async mounted() {
+    this.fetchData();
   },
   methods: {
     changeView() {
       return (this.showMode = false);
+    },
+    async fetchData() {
+      // https://smprocivapp.firebaseio.com/activities/0.json
+      axios
+        .get("https://smprocivapp.firebaseio.com/activities.json")
+        .then(response => (this.activities = response.data));
     }
   }
 };

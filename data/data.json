@@ -1,0 +1,79 @@
+{
+  "vehicles": [
+    {
+      "name": "Mitsubishi",
+      "description": "",
+      "keyInformation": {
+        "year": "2000",
+        "bodyType": "Pick Up",
+        "mileage": "118,590 Km",
+        "transmission": "Manual",
+        "fuelType": "Diesel"
+      },
+      "runningCost": {
+        "euro": "Euro 2"
+      },
+      "performance": {
+        "enginePower": "113 hp",
+        "engineSize": "2477 cc"
+      },
+      "vehicleDescription": {
+        "seats": 5,
+        "colour": "white",
+        "fuelCapacity": "75 litres"
+      },
+      "image": "vehicles/mitsubishi.jpg"
+    },
+    {
+      "name": "Land Rover Defender",
+      "description": "",
+      "keyInformation": {
+        "year": "2000",
+        "bodyType": "Pick Up",
+        "mileage": "118,590 Km",
+        "transmission": "Manual",
+        "fuelType": "Diesel"
+      },
+      "runningCost": {
+        "euro": "Euro 2"
+      },
+      "performance": {
+        "enginePower": "113 hp",
+        "engineSize": "2477 cc"
+      },
+      "vehicleDescription": {
+        "seats": 5,
+        "colour": "white",
+        "fuelCapacity": "75 litres"
+      },
+      "image": "vehicles/land.jpg"
+    },
+    {
+      "code": "iveco",
+      "title": "Iveco",
+      "model": "Daily 4x4",
+      "description": "",
+      "image": "vehicles/iveco.jpg"
+    },
+    {
+      "code": "ducato",
+      "title": "Fiat",
+      "model": "Ducato",
+      "description": "",
+      "image": "vehicles/iveco.jpg"
+    }
+  ],
+  "activities": [
+    {
+      "title": "Incontro con gli aspiranti volontari",
+      "description":
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris",
+      "eventDate": "10/06/2019",
+      "eventTime": "21:00",
+      "image": "vehicles/mitsubishi.jpg",
+      "author": "Andrea",
+      "text":
+      "L'incontro, presso la sala del Consiglio Comunale, con chi ha manifestato l'interesse alla Protezione Civile si terrà lunedì 10/06/2019 alle ore 20:45. Nell'incontro si parlerà del territorio e delle sue criticità e delle attività del dipartimento sul territorio."
+    }
+  ]
+}
