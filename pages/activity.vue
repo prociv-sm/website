@@ -6,7 +6,8 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <template v-if="!showMode">
+      <loader v-if="loading"></loader>
+      <template v-else-if="!showMode & !loading">
         <v-flex v-for="(activity, i) in activities" :key="i" sm12 mb12 lg12>
           <v-card>
             <v-img
@@ -45,6 +46,7 @@
 
 <script>
 import ChipsBar from "../components/ChipsBar";
+import Loader from "../components/Loader";
 import axios from "axios";
 export default {
   head: {
@@ -59,12 +61,14 @@ export default {
     ]
   },
   components: {
-    ChipsBar
+    ChipsBar,
+    Loader
   },
   data() {
     return {
       showMode: false,
-      activities: []
+      activities: [],
+      loading: true
     };
   },
   async mounted() {
@@ -78,7 +82,10 @@ export default {
       // https://smprocivapp.firebaseio.com/activities/0.json
       axios
         .get("https://smprocivapp.firebaseio.com/activities.json")
-        .then(response => (this.activities = response.data));
+        .then(response => {
+          this.activities = response.data;
+          this.loading = false;
+        });
     }
   }
 };

@@ -6,7 +6,8 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <template v-if="!showVehicle">
+      <loader v-if="loading"></loader>
+      <template v-if="!showVehicle & !loading">
         <v-flex v-for="(vehicle, i) in vehicles" :key="i" sm12 mb6 lg6>
           <vehicle-card :vehicle="vehicle" />
         </v-flex>
@@ -17,6 +18,7 @@
 
 <script>
 import VehicleCard from "../components/VehicleCard";
+import Loader from "../components/Loader";
 import axios from "axios";
 export default {
   head: {
@@ -31,12 +33,14 @@ export default {
     ]
   },
   components: {
-    VehicleCard
+    VehicleCard,
+    Loader
   },
   data() {
     return {
       showVehicle: false,
-      vehicles: []
+      vehicles: [],
+      loading: true
     };
   },
   async mounted() {
@@ -46,7 +50,10 @@ export default {
     async fetchData() {
       axios
         .get("https://smprocivapp.firebaseio.com/vehicles.json")
-        .then(response => (this.vehicles = response.data));
+        .then(response => {
+          this.vehicles = response.data;
+          this.loading = false;
+        });
     }
   }
 };
