@@ -79,9 +79,8 @@ export default {
       return (this.showMode = false);
     },
     async fetchData() {
-      // https://smprocivapp.firebaseio.com/activities/0.json
       axios
-        .get("https://smprocivapp.firebaseio.com/activities.json")
+        .get(this.$axios.defaults.baseURL + "/activities.json")
         .then(response => {
           this.activities = response.data;
           this.loading = false;

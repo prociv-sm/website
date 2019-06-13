@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar clipped-left dark color="#033162">
+    <v-toolbar clipped-left dark color="primary">
       <v-toolbar-side-icon
         class="hidden-md-and-up"
         @click.stop="drawer = !drawer"

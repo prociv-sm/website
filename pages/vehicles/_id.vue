@@ -106,7 +106,8 @@ export default {
     async fetchData() {
       axios
         .get(
-          "https://smprocivapp.firebaseio.com/vehicles/" +
+          this.$axios.defaults.baseURL +
+            "/vehicles/" +
             this.$route.params.id +
             ".json"
         )

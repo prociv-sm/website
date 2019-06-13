@@ -49,7 +49,7 @@ export default {
   methods: {
     async fetchData() {
       axios
-        .get("https://smprocivapp.firebaseio.com/vehicles.json")
+        .get(this.$axios.defaults.baseURL + "/vehicles.json")
         .then(response => {
           this.vehicles = response.data;
           this.loading = false;

@@ -118,7 +118,7 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    baseURL: "https://smprocivapp.firebaseio.com/vehicles.json"
+    baseURL: "https://smprocivapp.firebaseio.com"
   },
 
   /*
