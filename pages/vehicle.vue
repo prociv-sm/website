@@ -9,7 +9,7 @@
       <loader v-if="loading"></loader>
       <template v-if="!showVehicle & !loading">
         <v-flex v-for="(vehicle, i) in vehicles" :key="i" sm12 mb6 lg6>
-          <vehicle-card :vehicle="vehicle" />
+          <vehicle-card :index="i" :vehicle="vehicle" />
         </v-flex>
       </template>
     </v-layout>

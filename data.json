@@ -1,7 +1,8 @@
 {
   "vehicles": [
     {
-      "name": "Mitsubishi",
+      "title": "Mitsubishi",
+      "model": "L200",
       "description": "",
       "keyInformation": {
         "year": "2000",
@@ -25,7 +26,8 @@
       "image": "vehicles/mitsubishi.jpg"
     },
     {
-      "name": "Land Rover Defender",
+      "name": "Land Rover",
+      "model": "Defender",
       "description": "",
       "keyInformation": {
         "year": "2000",
@@ -49,14 +51,12 @@
       "image": "vehicles/land.jpg"
     },
     {
-      "code": "iveco",
       "title": "Iveco",
       "model": "Daily 4x4",
       "description": "",
       "image": "vehicles/iveco.jpg"
     },
     {
-      "code": "ducato",
       "title": "Fiat",
       "model": "Ducato",
       "description": "",

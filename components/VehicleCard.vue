@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card nuxt :to="'/vehicles/' + index">
     <v-img height="200px" aspect-ratio="16/9" :src="getImgUrl(vehicle.image)">
     </v-img>
     <v-card-title primary-title>
@@ -22,6 +22,10 @@ export default {
   props: {
     vehicle: {
       type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
       required: true
     }
   },
