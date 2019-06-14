@@ -1,5 +1,9 @@
 <template>
-  <v-card>
+  <v-card
+    nuxt
+    :to="'/vehicles/' + index"
+    title="Clicca per informazioni aggiuntive"
+  >
     <v-img height="200px" aspect-ratio="16/9" :src="getImgUrl(vehicle.image)">
     </v-img>
     <v-card-title primary-title>
@@ -9,11 +13,11 @@
         </div>
       </div>
     </v-card-title>
-    <v-card-actions>
+    <!--<v-card-actions>
       <v-btn flat nuxt :to="'/vehicles/' + vehicle.code" color="primary"
         >Informazioni
       </v-btn>
-    </v-card-actions>
+    </v-card-actions>-->
   </v-card>
 </template>
 
@@ -22,6 +26,10 @@ export default {
   props: {
     vehicle: {
       type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
       required: true
     }
   },

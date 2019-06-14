@@ -1,14 +1,15 @@
 <template>
-  <v-container v-container grid-list-md>
+  <v-container grid-list-md>
     <v-layout row wrap>
       <v-flex xs12>
         <h2 class="display-1 text-uppercase">Mezzi Operativi</h2>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <template v-if="!showVehicle">
+      <loader v-if="loading"></loader>
+      <template v-if="!showVehicle & !loading">
         <v-flex v-for="(vehicle, i) in vehicles" :key="i" sm12 mb6 lg6>
-          <vehicle-card :vehicle="vehicle" />
+          <vehicle-card :index="i" :vehicle="vehicle" />
         </v-flex>
       </template>
     </v-layout>
@@ -17,7 +18,8 @@
 
 <script>
 import VehicleCard from "../components/VehicleCard";
-import vehicleList from "@/data/vehicles";
+import Loader from "../components/Loader";
+import axios from "axios";
 export default {
   head: {
     title: "Mezzi Operativi",
@@ -31,13 +33,28 @@ export default {
     ]
   },
   components: {
-    VehicleCard
+    VehicleCard,
+    Loader
   },
   data() {
     return {
       showVehicle: false,
-      vehicles: vehicleList.vehicle
+      vehicles: [],
+      loading: true
     };
+  },
+  async mounted() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      axios
+        .get(this.$axios.defaults.baseURL + "/vehicles.json")
+        .then(response => {
+          this.vehicles = response.data;
+          this.loading = false;
+        });
+    }
   }
 };
 </script>

@@ -6,8 +6,9 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <template v-if="!showMode">
-        <v-flex v-for="(activity, i) in activityList" :key="i" sm12 mb12 lg12>
+      <loader v-if="loading"></loader>
+      <template v-else-if="!showMode & !loading">
+        <v-flex v-for="(activity, i) in activities" :key="i" sm12 mb12 lg12>
           <v-card>
             <v-img
               height="130px"
@@ -44,8 +45,9 @@
 </template>
 
 <script>
-import activityList from "@/data/activity";
 import ChipsBar from "../components/ChipsBar";
+import Loader from "../components/Loader";
+import axios from "axios";
 export default {
   head: {
     title: "Attività",
@@ -59,17 +61,30 @@ export default {
     ]
   },
   components: {
-    ChipsBar
+    ChipsBar,
+    Loader
   },
   data() {
     return {
       showMode: false,
-      activityList: activityList.activity
+      activities: [],
+      loading: true
     };
+  },
+  async mounted() {
+    this.fetchData();
   },
   methods: {
     changeView() {
       return (this.showMode = false);
+    },
+    async fetchData() {
+      axios
+        .get(this.$axios.defaults.baseURL + "/activities.json")
+        .then(response => {
+          this.activities = response.data;
+          this.loading = false;
+        });
     }
   }
 };
