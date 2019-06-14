@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import VehicleCard from "../components/VehicleCard";
+import VehicleCard from "../components/vehicles/VehicleCard";
 import Loader from "../components/Loader";
 import axios from "axios";
 export default {
@@ -40,7 +40,26 @@ export default {
     return {
       showVehicle: false,
       vehicles: [],
-      loading: true
+      loading: true,
+      labels: {
+        keyInformation: {
+          bodyType: "Tipo di veicolo",
+          fuelType: "Tipo di carburante",
+          mileage: "Chilometraggio",
+          transmission: "Trasmissione",
+          year: "Anno di immatricolazione",
+          euro: "Classe ambientale del mezzo"
+        },
+        performance: {
+          enginePower: "",
+          engineSize: ""
+        },
+        vehicleDescription: {
+          colour: "Colore",
+          fuelCapacity: "Capacità di carburante",
+          seats: "Posti a sedere"
+        }
+      }
     };
   },
   async mounted() {

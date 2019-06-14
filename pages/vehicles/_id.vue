@@ -16,98 +16,13 @@
                 </v-carousel>
               </v-flex>
               <v-flex sm12 md8 lg8>
-                <v-list-tile>
-                  <v-list-tile-content>
-                    <v-list-tile-title class="subheading">
-                      Distanza percorsa
-                    </v-list-tile-title>
-                    <v-list-tile-sub-title class="body-2 text--gray">
-                      4535345 Km
-                    </v-list-tile-sub-title>
-                  </v-list-tile-content>
-                </v-list-tile>
-                <v-divider></v-divider>
+                <h4 class="title">KeyInformation</h4>
+                <vehicle-info-list
+                  :vehicle-info="vehicle.keyInformation"
+                  vehicle-info-props="keyInformation"
+                ></vehicle-info-list>
               </v-flex>
             </v-layout>
-            <!--<v-layout row wrap>
-              <v-flex sm12 md4 lg4>
-                <v-card>
-                  <v-img
-                    aspect-ratio="1.7"
-                    :src="getImgUrl(vehicle.image)"
-                  ></v-img>
-                </v-card>
-              </v-flex>
-              <v-flex sm12 md8 lg8>
-                <v-card>
-                  <v-card-title v-if="vehicle.keyInformation" primary-title>
-                    <div>
-                      <div class="headline">Informazioni chiave</div>
-                      <ul>
-                        <li>
-                          <strong>Anno:</strong>
-                          {{ vehicle.keyInformation.year }}
-                        </li>
-                        <li>
-                          <strong>Trasmissione:</strong>
-                          {{ vehicle.keyInformation.transmission }}
-                        </li>
-                        <li>
-                          <strong>Chilometraggio:</strong>
-                          {{ vehicle.keyInformation.mileage }}
-                        </li>
-                        <li>
-                          <strong>Tipo di carburante:</strong>
-                          {{ vehicle.keyInformation.fuelType }}
-                        </li>
-                        <li>
-                          <strong>Tipologia di veicolo:</strong>
-                          {{ vehicle.keyInformation.bodyType }}
-                        </li>
-                      </ul>
-                    </div>
-                  </v-card-title>
-                  <v-card-title v-if="vehicle.performance" primary-title>
-                    <div>
-                      <div class="headline">Performance</div>
-                      <ul>
-                        <li>
-                          <strong>Potenza del motore:</strong>
-                          {{ vehicle.performance.enginePower }}
-                        </li>
-                        <li>
-                          <strong>Cavalli:</strong>
-                          {{ vehicle.performance.engineSize }}
-                        </li>
-                        <li>
-                          <strong>Euro:</strong>
-                          {{ vehicle.runningCost.euro }}
-                        </li>
-                      </ul>
-                    </div>
-                  </v-card-title>
-                  <v-card-title v-if="vehicle.vehicleDescription" primary-title>
-                    <div>
-                      <div class="headline">Descrizione</div>
-                      <ul>
-                        <li>
-                          <strong>Colore:</strong>
-                          {{ vehicle.vehicleDescription.colour }}
-                        </li>
-                        <li>
-                          <strong>Capacità abitacolo:</strong>
-                          {{ vehicle.vehicleDescription.seats }}
-                        </li>
-                        <li>
-                          <strong>Capacità:</strong>
-                          {{ vehicle.vehicleDescription.fuelCapacity }}
-                        </li>
-                      </ul>
-                    </div>
-                  </v-card-title>
-                </v-card>
-              </v-flex>
-            </v-layout>-->
           </v-card>
         </v-flex>
       </template>
@@ -117,6 +32,7 @@
 
 <script>
 import Loader from "../../components/Loader";
+import VehicleInfoList from "../../components/vehicles/VehicleInfoList";
 import axios from "axios";
 export default {
   head: {
@@ -131,7 +47,8 @@ export default {
     ]
   },
   components: {
-    Loader
+    Loader,
+    VehicleInfoList
   },
   data() {
     return {

@@ -9,9 +9,7 @@
         "bodyType": "Pick Up",
         "mileage": "118,590 Km",
         "transmission": "Manual",
-        "fuelType": "Diesel"
-      },
-      "runningCost": {
+        "fuelType": "Diesel",
         "euro": "Euro 2"
       },
       "performance": {
@@ -34,9 +32,7 @@
         "bodyType": "Pick Up",
         "mileage": "118,590 Km",
         "transmission": "Manual",
-        "fuelType": "Diesel"
-      },
-      "runningCost": {
+        "fuelType": "Diesel",
         "euro": "Euro 2"
       },
       "performance": {
