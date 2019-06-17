@@ -1,6 +1,15 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
+      <v-toolbar style="background-color: transparent; box-shadow: none;">
+        <v-toolbar-title>Home</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <!--<v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>-->
+      </v-toolbar>
+    </v-layout>
+    <v-layout row wrap>
       <v-flex xs12 md12 lg12>
         <v-alert type="info" value="true">
           Questo sito è attualmente in sviluppo, le informazioni riportate
@@ -13,7 +22,6 @@
             <div>
               <div class="headline">
                 Le attività della Protezione Civile sul territorio
-                <fa-icon class="mr-1" :icon="['fab', 'font-awesome']" />
               </div>
               <span>
                 Attualmente il sito è in sviluppo, torna in seguito per vedere
