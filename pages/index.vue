@@ -16,21 +16,6 @@
           potrebbero non essere corrette!
         </v-alert>
       </v-flex>
-      <v-flex xs12>
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <div class="headline">
-                Le attività della Protezione Civile sul territorio
-              </div>
-              <span>
-                Attualmente il sito è in sviluppo, torna in seguito per vedere
-                le modifiche!
-              </span>
-            </div>
-          </v-card-title>
-        </v-card>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -44,7 +29,10 @@ export default {
       { name: "og:title", content: "this.head.title " },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://nuxtjs.org" },
+      {
+        name: "og:url",
+        content: "https://protezionecivile-settimomilanese.it"
+      },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   }

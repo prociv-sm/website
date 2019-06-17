@@ -60,7 +60,10 @@ export default {
       { name: "og:title", content: "this.head.title " },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://nuxtjs.org" },
+      {
+        name: "og:url",
+        content: "https://protezionecivile-settimomilanese.it/vehicles"
+      },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   },
