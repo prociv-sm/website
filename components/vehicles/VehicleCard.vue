@@ -36,9 +36,9 @@ export default {
   methods: {
     getImgUrl(name) {
       if (!name) {
-        return require("~/assets/img/mitsubishi.jpg");
+        return require("~/assets/img/activity.jpg");
       } else {
-        return require("~/assets/img/" + name);
+        return require("~/assets/img/vehicles/" + name);
       }
     }
   }

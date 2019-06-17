@@ -3,15 +3,14 @@
     {
       "title": "Mitsubishi",
       "model": "L200",
+      "bodyType": "car",
       "description": "",
       "keyInformation": {
         "year": "2000",
         "bodyType": "Pick Up",
         "mileage": "118,590 Km",
         "transmission": "Manual",
-        "fuelType": "Diesel"
-      },
-      "runningCost": {
+        "fuelType": "Diesel",
         "euro": "Euro 2"
       },
       "performance": {
@@ -23,20 +22,19 @@
         "colour": "white",
         "fuelCapacity": "75 litres"
       },
-      "image": "vehicles/mitsubishi.jpg"
+      "image": "mitsu/mitsubishi3.jpg"
     },
     {
-      "name": "Land Rover",
+      "title": "Land Rover",
       "model": "Defender",
+      "bodyType": "car",
       "description": "",
       "keyInformation": {
         "year": "2000",
         "bodyType": "Pick Up",
         "mileage": "118,590 Km",
         "transmission": "Manual",
-        "fuelType": "Diesel"
-      },
-      "runningCost": {
+        "fuelType": "Diesel",
         "euro": "Euro 2"
       },
       "performance": {
@@ -48,19 +46,21 @@
         "colour": "white",
         "fuelCapacity": "75 litres"
       },
-      "image": "vehicles/land.jpg"
+      "image": "land/land2.jpg"
     },
     {
       "title": "Iveco",
+      "bodyType": "truck",
       "model": "Daily 4x4",
       "description": "",
-      "image": "vehicles/iveco.jpg"
+      "image": "iveco/iveco2.jpg"
     },
     {
       "title": "Fiat",
       "model": "Ducato",
       "description": "",
-      "image": "vehicles/iveco.jpg"
+      "bodyType": "truck",
+      "image": "ducato/ducato.jpg"
     }
   ],
   "activities": [
