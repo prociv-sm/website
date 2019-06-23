@@ -13,7 +13,7 @@
       <loader v-if="loading"></loader>
       <template v-else-if="!loading">
         <v-flex v-for="(activity, i) in activities" :key="i" sm12 mb12 lg12>
-          <activity-card :activity="activity"></activity-card>
+          <activity-card :activity="activity" :index="i"></activity-card>
         </v-flex>
       </template>
     </v-layout>
@@ -23,7 +23,7 @@
 <script>
 import Loader from "../components/Loader";
 import axios from "axios";
-import ActivityCard from "../components/ActivityCard";
+import ActivityCard from "../components/activity/ActivityCard";
 export default {
   head: {
     title: "Attività",
@@ -58,7 +58,9 @@ export default {
   methods: {
     async fetchData() {
       axios
-        .get(this.$axios.defaults.baseURL + "/activities.json")
+        .get(
+          this.$axios.defaults.baseURL + '/activities.json?orderBy="eventDate"'
+        )
         .then(response => {
           this.activities = response.data;
           this.loading = false;
