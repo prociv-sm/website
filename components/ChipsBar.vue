@@ -39,3 +39,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-chip {
+  border-radius: 0;
+  background-color: #f0ecec !important;
+}
+</style>
