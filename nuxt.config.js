@@ -55,6 +55,10 @@ module.exports = {
     // Doc: https://github.com/Qonfucius/nuxt-fontawesome
     packs: [
       {
+        package: "@fortawesome/free-brands-svg-icons",
+        icons: ["faFacebookSquare", "faInstagram"]
+      },
+      {
         package: "@fortawesome/free-solid-svg-icons",
         icons: ["faCalendar", "faClock", "faUser", "faBroadcastTower"]
       }
