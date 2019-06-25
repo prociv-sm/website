@@ -8,7 +8,7 @@
       </div>
     </v-card-title>
     <v-card-actions>
-      <v-btn flat color="info" @click="show = !show">Explore</v-btn>
+      <v-btn flat color="primary" @click="show = !show">Dettagli</v-btn>
       <v-spacer></v-spacer>
       <chips-bar
         :author="activity.author"
