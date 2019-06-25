@@ -56,7 +56,7 @@ module.exports = {
     packs: [
       {
         package: "@fortawesome/free-solid-svg-icons",
-        icons: ["faCalendar", "faClock", "faUser"]
+        icons: ["faCalendar", "faClock", "faUser", "faBroadcastTower"]
       }
     ]
   },

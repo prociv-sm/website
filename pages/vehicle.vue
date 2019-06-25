@@ -60,7 +60,10 @@ export default {
       { name: "og:title", content: "this.head.title " },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://nuxtjs.org" },
+      {
+        name: "og:url",
+        content: "https://protezionecivile-settimomilanese.it/vehicles"
+      },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   },
@@ -73,26 +76,7 @@ export default {
       selectedFilter: "all",
       showVehicle: false,
       vehicles: [],
-      loading: true,
-      labels: {
-        keyInformation: {
-          bodyType: "Tipo di veicolo",
-          fuelType: "Tipo di carburante",
-          mileage: "Chilometraggio",
-          transmission: "Trasmissione",
-          year: "Anno di immatricolazione",
-          euro: "Classe ambientale del mezzo"
-        },
-        performance: {
-          enginePower: "",
-          engineSize: ""
-        },
-        vehicleDescription: {
-          colour: "Colore",
-          fuelCapacity: "Capacità di carburante",
-          seats: "Posti a sedere"
-        }
-      }
+      loading: true
     };
   },
   async mounted() {

@@ -129,7 +129,7 @@ export default {
       { name: "og:type", content: "website" },
       {
         name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it/"
+        content: "https://protezionecivile-settimomilanese.it/purpose"
       },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]

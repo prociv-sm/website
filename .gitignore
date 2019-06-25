@@ -8,3 +8,6 @@ coverage/*
 # Sw file
 static/sw.js
 sitemap.xml
+assets/img/.DS_Store
+assets/.DS_Store
+assets/img/vehicles/.DS_Store

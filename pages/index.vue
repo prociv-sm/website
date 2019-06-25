@@ -1,33 +1,34 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
+      <v-toolbar style="background-color: transparent; box-shadow: none;">
+        <v-toolbar-title>Benvenuto!</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <!--<v-btn icon>
+        <v-icon>search</v-icon>
+      </v-btn>-->
+      </v-toolbar>
+    </v-layout>
+    <v-layout row wrap>
       <v-flex xs12 md12 lg12>
         <v-alert type="info" value="true">
           Questo sito è attualmente in sviluppo, le informazioni riportate
           potrebbero non essere corrette!
         </v-alert>
       </v-flex>
-      <v-flex xs12>
-        <v-card>
-          <v-card-title primary-title>
-            <div>
-              <div class="headline">
-                Le attività della Protezione Civile sul territorio
-                <fa-icon class="mr-1" :icon="['fab', 'font-awesome']" />
-              </div>
-              <span>
-                Attualmente il sito è in sviluppo, torna in seguito per vedere
-                le modifiche!
-              </span>
-            </div>
-          </v-card-title>
-        </v-card>
+      <v-flex xs12 md7 lg7>
+        <p>placeholder</p>
+      </v-flex>
+      <v-flex xs12 md5 lg5>
+        <WeatherAlert></WeatherAlert>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import WeatherAlert from "../components/index/WeatherAlert";
+
 export default {
   head: {
     title: "Home",
@@ -36,10 +37,14 @@ export default {
       { name: "og:title", content: "this.head.title " },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://nuxtjs.org" },
+      {
+        name: "og:url",
+        content: "https://protezionecivile-settimomilanese.it"
+      },
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
-  }
+  },
+  components: { WeatherAlert }
 };
 </script>
 

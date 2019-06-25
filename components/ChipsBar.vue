@@ -1,32 +1,20 @@
 <template>
   <v-layout align-center justify-end>
-    <v-chip v-if="author">
+    <v-chip v-if="author" title="Autore dell'articolo">
       <v-avatar>
-        <fa-icon
-          color="gray"
-          :icon="['fa', 'user']"
-          title="Autore dell'articolo"
-        ></fa-icon>
+        <fa-icon color="gray" :icon="['fa', 'user']"></fa-icon>
       </v-avatar>
       {{ author }}
     </v-chip>
-    <v-chip v-if="eventDate">
+    <v-chip v-if="eventDate" title="Data dell'attività">
       <v-avatar>
-        <fa-icon
-          color="gray"
-          :icon="['fa', 'calendar']"
-          title="Data dell'attività"
-        ></fa-icon>
+        <fa-icon color="gray" :icon="['fa', 'calendar']"></fa-icon>
       </v-avatar>
       {{ eventDate }}
     </v-chip>
-    <v-chip v-if="eventTime">
+    <v-chip v-if="eventTime" title="Ora di inizio e termine dell'attività">
       <v-avatar>
-        <fa-icon
-          color="gray"
-          :icon="['fa', 'clock']"
-          title="Ora dell'attività"
-        ></fa-icon>
+        <fa-icon color="gray" :icon="['fa', 'clock']"></fa-icon>
       </v-avatar>
       {{ eventTime }}
     </v-chip>
@@ -51,3 +39,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-chip {
+  border-radius: 0;
+  background-color: #f0ecec !important;
+}
+</style>
