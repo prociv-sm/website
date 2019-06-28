@@ -59,7 +59,8 @@ export default {
     async fetchData() {
       axios
         .get(
-          this.$axios.defaults.baseURL + '/activities.json?orderBy="eventDate"'
+          this.$axios.defaults.baseURL +
+            '/activities.json?orderBy="eventDate"&limitToFirst=3'
         )
         .then(response => {
           this.activities = response.data;
