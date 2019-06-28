@@ -1,75 +1,11 @@
 {
-  "vehicles": [
-    {
-      "title": "Mitsubishi",
-      "model": "L200",
-      "bodyType": "car",
-      "description": "",
-      "keyInformation": {
-        "year": "2000",
-        "bodyType": "car",
-        "mileage": "118,590 Km",
-        "transmission": "Manual",
-        "fuelType": "Diesel",
-        "euro": "Euro 2"
-      },
-      "performance": {
-        "enginePower": "113 hp",
-        "engineSize": "2477 cc"
-      },
-      "vehicleDescription": {
-        "seats": 5,
-        "colour": "white",
-        "fuelCapacity": "75 litres"
-      },
-      "image": "mitsu/mitsubishi3.jpg"
-    },
-    {
-      "title": "Land Rover",
-      "model": "Defender",
-      "bodyType": "car",
-      "description": "",
-      "keyInformation": {
-        "year": "2000",
-        "bodyType": "car",
-        "mileage": "118,590 Km",
-        "transmission": "Manual",
-        "fuelType": "Diesel",
-        "euro": "Euro 2"
-      },
-      "performance": {
-        "enginePower": "113 hp",
-        "engineSize": "2477 cc"
-      },
-      "vehicleDescription": {
-        "seats": 5,
-        "colour": "white",
-        "fuelCapacity": "75 litres"
-      },
-      "image": "land/land2.jpg"
-    },
-    {
-      "title": "Iveco",
-      "bodyType": "truck",
-      "model": "Daily 4x4",
-      "description": "",
-      "image": "iveco/iveco2.jpg"
-    },
-    {
-      "title": "Fiat",
-      "model": "Ducato",
-      "description": "",
-      "bodyType": "truck",
-      "image": "ducato/ducato.jpg"
-    }
-  ],
   "activities": [
     {
       "title": "Intervento a Milano per allagamenti",
       "description":
-      "A seguito dell'alletra arancione emanata dalla protezione civile, il gruppo comunale è intervenuto per quattro interventi nel territorio del comune di Milano, per aiutare le operazioni in atto dal CCV-MI e dal gruppo comunale di Milano.",
+      "A seguito dell'allerta arancione emanata dalla protezione civile, il gruppo comunale è intervenuto per quattro interventi nel territorio del comune di Milano, per aiutare le operazioni in atto dal CCV-MI e dal gruppo comunale di Milano.",
       "eventDate": "22/06/2019",
-      "eventTime": "14:00",
+      "eventTime": "14:00 / 23:30",
       "image": "https://firebasestorage.googleapis.com/v0/b/smprocivapp.appspot.com/o/IMG_0046.jpeg?alt=media&token=a81110f0-bea6-4bb5-8bb5-ac87f3c1d763",
       "author": "Andrea"
     },
@@ -78,8 +14,26 @@
       "description":
       "L'incontro, presso la sala del Consiglio Comunale, con chi ha manifestato l'interesse alla Protezione Civile si terrà lunedì 10/06/2019 alle ore 20:45. Nell'incontro si parlerà del territorio e delle sue criticità e delle attività del dipartimento sul territorio.",
       "eventDate": "10/06/2019",
-      "eventTime": "21:00",
+      "eventTime": "21:00 / 23:00",
       "image": "",
+      "author": "Andrea"
+    },
+    {
+      "title": "Alpini a Milano",
+      "description":
+      "Attività di supporto al Comune di Milano per l'arrivo degli alpini",
+      "eventDate": "12/05/2019",
+      "eventTime": "05:15 / 14:15",
+      "image": "https://www.milanoweekend.it/wp-content/uploads/2019/04/Adunata-Alpini-Milano-2019-620x340.jpg",
+      "author": "Andrea"
+    },
+    {
+      "title": "Maltempo, rimozione pianta",
+      "description":
+      "Nella giornata dell'11/05 il vento forte ha provocato il crollo di un albero sul territorio, l'associazione è intervenuta per la messa in sicurezza",
+      "eventDate": "11/05/2019",
+      "eventTime": "21:00 / 00:00",
+      "image": "https://firebasestorage.googleapis.com/v0/b/smprocivapp.appspot.com/o/WhatsApp%20Image%202019-05-11%20at%2022.08.46.jpeg?alt=media&token=1f827dba-08f0-4e61-8694-2eef79b838f1",
       "author": "Andrea"
     }
   ]

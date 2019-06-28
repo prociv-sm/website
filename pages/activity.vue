@@ -52,7 +52,7 @@ export default {
       loading: true
     };
   },
-  async mounted() {
+  async created() {
     this.fetchData();
   },
   methods: {
