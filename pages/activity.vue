@@ -52,15 +52,14 @@ export default {
       loading: true
     };
   },
-  async mounted() {
+  async created() {
     this.fetchData();
   },
   methods: {
     async fetchData() {
       axios
         .get(
-          this.$axios.defaults.baseURL +
-            '/activities.json?orderBy="eventDate"&limitToFirst=3'
+          this.$axios.defaults.baseURL + '/activities.json?orderBy="eventDate"'
         )
         .then(response => {
           this.activities = response.data;

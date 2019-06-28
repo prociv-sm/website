@@ -89,7 +89,7 @@ export default {
       return this.$store.getters.truck;
     }
   },
-  mounted() {
+  created() {
     this.fetchData();
   },
   methods: {
