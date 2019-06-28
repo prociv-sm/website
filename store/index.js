@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import vehicles from "./modules/vehicles";
-import activities from "./modules/activities";
+import equipments from "./modules/equipments";
 
 Vue.use(Vuex);
 
@@ -10,7 +10,7 @@ const createStore = () => {
     namespaced: true,
     modules: {
       vehicles,
-      activities
+      equipments
     }
   });
 };
