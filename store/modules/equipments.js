@@ -4,7 +4,7 @@ const state = {
 
 // getters
 const getters = {
-  all: state => state.items,
+  equipment: state => state.items,
   generators: state => filter(state.items, "type", "generator"),
   motorpumps: state => filter(state.items, "type", "motorpump"),
   trailers: state => filter(state.items, "type", "trailer")
