@@ -12,17 +12,14 @@
     <v-layout wrap row>
       <v-flex xs10 offset-xs1 pb-4>
         <div class="text-xs-center">
-          <v-btn-toggle
-            v-model="selectedFilter"
-            @change="checkFilter(selectedFilter)"
-          >
-            <v-btn flat value="car">
+          <v-btn-toggle>
+            <v-btn flat value="generator">
               Motopompe
             </v-btn>
             <v-btn flat value="truck">
               Generatori
             </v-btn>
-            <v-btn flat value="truck">
+            <v-btn flat value="trailer">
               Rimorchi
             </v-btn>
             <v-btn flat value="all">
