@@ -17,7 +17,9 @@
         </v-alert>
       </v-flex>
       <v-flex xs12 md7 lg7>
-        <p>placeholder</p>
+        <v-flex v-for="(activity, i) in activities" :key="i" xs12 md12 lg12>
+          <activity-card :activity="activity" :index="i"></activity-card>
+        </v-flex>
       </v-flex>
       <v-flex xs12 md5 lg5>
         <WeatherAlert></WeatherAlert>
@@ -28,6 +30,9 @@
 
 <script>
 import WeatherAlert from "../components/index/WeatherAlert";
+import ActivityCard from "../components/activity/ActivityCard";
+import Loader from "../components/Loader";
+import axios from "axios";
 
 export default {
   head: {
@@ -44,7 +49,29 @@ export default {
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   },
-  components: { WeatherAlert }
+  components: { WeatherAlert, ActivityCard },
+  data() {
+    return {
+      activities: [],
+      loading: true
+    };
+  },
+  async created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      axios
+        .get(
+          this.$axios.defaults.baseURL +
+            '/activities.json?orderBy="eventDate"&limitToFirst=3'
+        )
+        .then(response => {
+          this.activities = response.data;
+          this.loading = false;
+        });
+    }
+  }
 };
 </script>
 

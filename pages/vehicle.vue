@@ -51,7 +51,6 @@
 <script>
 import VehicleCard from "../components/vehicles/VehicleCard";
 import Loader from "../components/Loader";
-import axios from "axios";
 export default {
   head: {
     title: "Mezzi Operativi",
@@ -79,26 +78,38 @@ export default {
       loading: true
     };
   },
-  async mounted() {
-    this.fetchData("");
+  computed: {
+    all() {
+      return this.$store.getters.all;
+    },
+    car() {
+      return this.$store.getters.car;
+    },
+    truck() {
+      return this.$store.getters.truck;
+    }
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
+    fetchData() {
+      this.vehicles = this.all;
+      this.loading = false;
+    },
     checkFilter(selectedFilter) {
       this.loading = true;
       this.vehicles = [];
-      if (selectedFilter !== "all") {
-        this.fetchData('?orderBy="bodyType"&equalTo="' + selectedFilter + '"');
+      if (selectedFilter === "car") {
+        this.vehicles = this.car;
+        this.loading = false;
+      } else if (selectedFilter === "truck") {
+        this.vehicles = this.truck;
+        this.loading = false;
       } else {
-        this.fetchData("");
+        this.vehicles = this.all;
+        this.loading = false;
       }
-    },
-    async fetchData(params) {
-      axios
-        .get(this.$axios.defaults.baseURL + "/vehicles.json" + params)
-        .then(response => {
-          this.vehicles = response.data;
-          this.loading = false;
-        });
     }
   }
 };
