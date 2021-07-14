@@ -462,3 +462,7 @@ patch:
         patched: '2021-07-14T13:04:56.376Z'
     - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/helper-get-function-arity > @babel/types > lodash:
         patched: '2021-07-14T13:04:56.376Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > hard-source-webpack-plugin > lodash:
+        patched: '2021-07-14T13:06:40.903Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2021-07-14T13:06:40.903Z'
