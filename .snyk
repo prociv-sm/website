@@ -466,3 +466,49 @@ patch:
         patched: '2021-07-14T13:06:40.903Z'
     - nuxt > @nuxt/builder > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
         patched: '2021-07-14T13:06:40.903Z'
+    - '@nuxtjs/sitemap > sitemap > lodash':
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > hard-source-webpack-plugin > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > hard-source-webpack-plugin > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-proposal-unicode-property-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-proposal-unicode-property-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-model > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-on > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-proposal-unicode-property-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @babel/preset-env > @babel/preset-modules > @babel/plugin-transform-dotall-regex > @babel/helper-regex > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-model > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-on > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-model > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-on > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2021-07-14T13:34:02.962Z'
