@@ -1,8 +1,7 @@
 # Protezione civile di Settimo Milanese
+[![Maintainability](https://api.codeclimate.com/v1/badges/9cc1aa8a26d4ab076f75/maintainability)](https://codeclimate.com/github/prociv-sm/website/maintainability)
+[![Known Vulnerabilities](https://snyk.io/test/github/prociv-sm/website/badge.svg?targetFile=package.json)](https://snyk.io/test/github/prociv-sm/website?targetFile=package.json)
 
-[![Build Status](https://travis-ci.org/andreacw5/procivsm-site.svg?branch=master)](https://travis-ci.org/andreacw5/procivsm-site)
-[![Maintainability](https://api.codeclimate.com/v1/badges/dc21bf2a3e8377d0fba2/maintainability)](https://codeclimate.com/github/andreacw5/procivsm-site/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/dc21bf2a3e8377d0fba2/test_coverage)](https://codeclimate.com/github/andreacw5/procivsm-site/test_coverage)
 
 This repo houses the website, available at https://protezionecivile-settimomilanese.it.
 
