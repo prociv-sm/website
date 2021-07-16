@@ -25,7 +25,7 @@
     "qonfucius-nuxt-fontawesome": "^1.0.1",
     "sanitize-html": "^2.3.2",
     "vuetify": "^2.1.9",
-    "vuetify-loader": "^1.2.1",
+    "vuetify-loader": "^1.7.2",
     "snyk": "^1.660.0"
   },
   "devDependencies": {
