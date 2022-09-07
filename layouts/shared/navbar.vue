@@ -30,6 +30,21 @@
           </v-btn>
         </v-toolbar-items>
       </template>
+      <v-toolbar-items
+        class="hidden-sm-and-down"
+        title="Accesso intranet volontari"
+      >
+        <v-btn
+          style="padding-left: 0; padding-right: 0"
+          flat
+          href="https://intranet.protezionecivile-settimomilanese.it/login"
+        >
+          <fa-icon
+            style="font-size: 160%"
+            :icon="['fa', 'sign-in-alt']"
+          ></fa-icon>
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
 
     <v-navigation-drawer
@@ -81,7 +96,7 @@ export default {
           title: "Parco mezzi",
           link: "/vehicle",
           desc: "I nostri mezzi"
-        },
+        } /*,
         {
           title: "Attrezzatura",
           link: "/equipment",
@@ -91,7 +106,7 @@ export default {
           title: "Contatti",
           link: "/contact",
           desc: "Contattaci!"
-        }
+        }*/
       ]
     };
   }

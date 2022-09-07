@@ -60,7 +60,13 @@ module.exports = {
       },
       {
         package: "@fortawesome/free-solid-svg-icons",
-        icons: ["faCalendar", "faClock", "faUser", "faBroadcastTower"]
+        icons: [
+          "faCalendar",
+          "faClock",
+          "faUser",
+          "faBroadcastTower",
+          "faSignInAlt"
+        ]
       }
     ]
   },
