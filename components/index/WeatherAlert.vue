@@ -7,16 +7,16 @@
           class="headline"
           title="Previsioni del Dipartimento Protezione Civile - Bollettini di criticità"
         >
-          Allerte
+          Allerte attive
         </div>
       </div>
     </v-card-title>
     <v-card-text style="padding: 2px 9px;">
       <v-list>
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title>Idraulico</v-list-tile-title>
-            <v-list-tile-sub-title>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Idraulico</v-list-item-title>
+            <v-list-item-subtitle>
               <template v-if="weatherInfoLoader">
                 <v-progress-linear
                   style="height: 4px;"
@@ -26,26 +26,18 @@
               <template v-else>
                 {{ weatherInfo.hydro.info }}
               </template>
-            </v-list-tile-sub-title>
-          </v-list-tile-content>
+            </v-list-item-subtitle>
+          </v-list-item-content>
 
-          <v-list-tile-action>
-            <fa-icon
-              v-if="weatherInfoLoader"
-              color="gray"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-            <fa-icon
-              v-else
-              :color="setColor(weatherInfo.hydro.alert)"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-          </v-list-tile-action>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title>Idrogeologico</v-list-tile-title>
-            <v-list-tile-sub-title>
+          <v-list-item-action>
+            <v-icon v-if="weatherInfoLoader" color="gray">mdi-radio-tower</v-icon>
+            <v-icon v-else :color="setColor(weatherInfo.hydro.alert)">mdi-radio-tower</v-icon>
+          </v-list-item-action>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Idrogeologico</v-list-item-title>
+            <v-list-item-subtitle>
               <template v-if="weatherInfoLoader">
                 <v-progress-linear
                   style="height: 4px;"
@@ -55,26 +47,18 @@
               <template v-else>
                 {{ weatherInfo.geo.info }}
               </template>
-            </v-list-tile-sub-title>
-          </v-list-tile-content>
+            </v-list-item-subtitle>
+          </v-list-item-content>
 
-          <v-list-tile-action>
-            <fa-icon
-              v-if="weatherInfoLoader"
-              color="gray"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-            <fa-icon
-              v-else
-              :color="setColor(weatherInfo.geo.alert)"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-          </v-list-tile-action>
-        </v-list-tile>
-        <v-list-tile>
-          <v-list-tile-content>
-            <v-list-tile-title>Temporali</v-list-tile-title>
-            <v-list-tile-sub-title>
+          <v-list-item-action>
+            <v-icon v-if="weatherInfoLoader" color="gray">mdi-radio-tower</v-icon>
+            <v-icon v-else :color="setColor(weatherInfo.geo.alert)">mdi-radio-tower</v-icon>
+          </v-list-item-action>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>Temporali</v-list-item-title>
+            <v-list-item-subtitle>
               <template v-if="weatherInfoLoader">
                 <v-progress-linear
                   style="height: 4px;"
@@ -84,61 +68,46 @@
               <template v-else>
                 {{ weatherInfo.storm.info }}
               </template>
-            </v-list-tile-sub-title>
-          </v-list-tile-content>
+            </v-list-item-subtitle>
+          </v-list-item-content>
 
-          <v-list-tile-action>
-            <fa-icon
-              v-if="weatherInfoLoader"
-              color="gray"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-            <fa-icon
-              v-else
-              :color="setColor(weatherInfo.storm.alert)"
-              :icon="['fa', 'broadcast-tower']"
-            ></fa-icon>
-          </v-list-tile-action>
-        </v-list-tile>
+          <v-list-item-action>
+            <v-icon v-if="weatherInfoLoader" color="gray">mdi-radio-tower</v-icon>
+            <v-icon v-else :color="setColor(weatherInfo.storm.alert)">mdi-radio-tower</v-icon>
+          </v-list-item-action>
+        </v-list-item>
       </v-list>
     </v-card-text>
     <v-card-actions style="padding-top: 2px;">
-      <v-btn flat block color="primary" nuxt to="/weatherAlertInfo"
-        >Dettagli</v-btn
-      >
+      <v-btn flat block to="/weatherAlertInfo">
+        Canale Telegram
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
-import axios from "axios";
-
-const weatherAPI =
-  "https://cors-anywhere.herokuapp.com/http://www.protezionecivilepop.tk/allerte?citta=015211&rischio=PARAMS&formato=json";
 export default {
   data() {
     return {
-      weatherInfo: {},
-      weatherInfoLoader: true
+      weatherInfo: {
+        hydro: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        },
+        storm: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        },
+        geo: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        }
+      },
+      weatherInfoLoader: false
     };
   },
-  async mounted() {
-    this.getWeatherInfoAlert();
-  },
   methods: {
-    async getWeatherInfoAlert() {
-      let [hydro, geo, storm] = await Promise.all([
-        axios.get(weatherAPI.replace("PARAMS", "idraulico")),
-        axios.get(weatherAPI.replace("PARAMS", "idrogeologico")),
-        axios.get(weatherAPI.replace("PARAMS", "temporali"))
-      ]);
-      this.weatherInfoLoader = false;
-      return (this.weatherInfo = {
-        hydro: hydro.data.previsione,
-        geo: geo.data.previsione,
-        storm: storm.data.previsione
-      });
-    },
     setColor(color) {
       if (color === "GIALLA") {
         return "yellow";

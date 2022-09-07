@@ -1,7 +1,5 @@
 <template>
   <v-card>
-    <v-img height="130px" aspect-ratio="16/9" :src="getImages(activity.image)">
-    </v-img>
     <v-card-title primary-title>
       <div class="headline" style="line-height: 10px !important;">
         {{ activity.title }}
@@ -11,7 +9,6 @@
       <v-btn flat color="primary" @click="show = !show">Dettagli</v-btn>
       <v-spacer></v-spacer>
       <chips-bar
-        :author="activity.author"
         :event-date="activity.eventDate"
         :event-time="activity.eventTime"
       >

@@ -1,11 +1,5 @@
 <template>
   <v-layout align-center justify-end>
-    <v-chip v-if="author" title="Autore dell'articolo">
-      <v-avatar>
-        <fa-icon color="gray" :icon="['fa', 'user']"></fa-icon>
-      </v-avatar>
-      {{ author }}
-    </v-chip>
     <v-chip v-if="eventDate" title="Data dell'attività">
       <v-avatar>
         <fa-icon color="gray" :icon="['fa', 'calendar']"></fa-icon>

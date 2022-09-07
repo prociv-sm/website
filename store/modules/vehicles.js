@@ -65,6 +65,7 @@ const state = {
 const getters = {
   truck: state => filter(state.items, "bodyType", "truck"),
   car: state => filter(state.items, "bodyType", "car"),
+  trailer: state => filter(state.items, "bodyType", "trailer"),
   all: state => state.items
 };
 

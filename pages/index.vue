@@ -1,31 +1,32 @@
 <template>
-  <v-container grid-list-md>
-    <v-layout row wrap>
-      <v-toolbar style="background-color: transparent; box-shadow: none;">
-        <v-toolbar-title>Benvenuto!</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <!--<v-btn icon>
-        <v-icon>search</v-icon>
-      </v-btn>-->
-      </v-toolbar>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 md12 lg12>
-        <v-alert type="info" value="true">
-          Questo sito è attualmente in sviluppo, le informazioni riportate
-          potrebbero non essere corrette!
-        </v-alert>
-      </v-flex>
-      <v-flex xs12 md7 lg7>
-        <v-flex v-for="(activity, i) in activities" :key="i" xs12 md12 lg12>
-          <activity-card :activity="activity" :index="i"></activity-card>
-        </v-flex>
-      </v-flex>
-      <v-flex xs12 md5 lg5>
-        <WeatherAlert></WeatherAlert>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <v-container class="py-4 py-lg-8">
+      <v-row>
+        <v-col cols="12" sm="12" md="8" lg="8">
+          <activity-list :activities="activities" />
+        </v-col>
+        <v-col cols="12" sm="12" md="4" lg="4">
+          <v-card class="mb-2">
+            <v-card-title primary-title class="pb-2">
+              <div>
+                <div
+                  class="headline"
+                >
+                  In caso di emergenza
+                </div>
+              </div>
+            </v-card-title>
+            <v-card-text>
+              <div class="text-center" style="color: #d80f16">
+                <v-icon size="30" class="pb-2" color="#d80f16">mdi-phone</v-icon> <span style="font-size: 45px;" class="pr-2">112</span>
+              </div>
+            </v-card-text>
+          </v-card>
+          <WeatherAlert />
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -33,6 +34,7 @@ import WeatherAlert from "../components/index/WeatherAlert";
 import ActivityCard from "../components/activity/ActivityCard";
 import Loader from "../components/Loader";
 import axios from "axios";
+import ActivityList from "~/components/activity/ActivityList";
 
 export default {
   head: {
@@ -49,7 +51,7 @@ export default {
       { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
     ]
   },
-  components: { WeatherAlert, ActivityCard },
+  components: { ActivityList, WeatherAlert, ActivityCard },
   data() {
     return {
       activities: [],
@@ -57,14 +59,12 @@ export default {
     };
   },
   async created() {
-    this.fetchData();
+    await this.fetchData();
   },
   methods: {
     async fetchData() {
-      axios
-        .get(
-          this.$axios.defaults.baseURL + '/activities.json?orderBy="eventDate"'
-        )
+      this.$axios
+        .get('https://smprocivapp.firebaseio.com/activities.json?orderBy="eventDate"&limitToFirst=4')
         .then(response => {
           this.activities = response.data;
           this.loading = false;
