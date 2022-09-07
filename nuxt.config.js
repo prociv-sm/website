@@ -1,75 +1,75 @@
-const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
-const pkg = require("./package");
-
 module.exports = {
-  mode: "spa",
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: false,
 
-  /*
-   ** Headers of the page
-   */
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: pkg.name,
+    titleTemplate: '%s - ProCiv Settimo M.se',
+    title: 'Home' || '',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: pkg.description }
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"
-      }
-    ]
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap' },
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
+    ],
+    htmlAttrs: {
+      lang: 'it'
+    }
   },
 
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: "#fff" },
+  loadingIndicator: {
+    name: 'fading-circle',
+    color: '#0066cc',
+    background: '#ffffff'
+  },
 
-  /*
-   ** Global CSS
-   */
-  css: ["~/assets/style/app.styl"],
-
-  /*
-   ** Plugins to load before mounting the App
-   */
-  plugins: ["@/plugins/vuetify"],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios",
-    "@nuxtjs/sitemap",
-    "qonfucius-nuxt-fontawesome"
+  // Global CSS (https://go.nuxtjs.dev/config-css)
+  css: [
+    '~/assets/scss/theme.scss'
   ],
 
-  /*
-   ** Fontawesome modules
-   */
-  fontAwesome: {
-    // Doc: https://github.com/Qonfucius/nuxt-fontawesome
-    packs: [
-      {
-        package: "@fortawesome/free-brands-svg-icons",
-        icons: ["faFacebookSquare", "faInstagram"]
-      },
-      {
-        package: "@fortawesome/free-solid-svg-icons",
-        icons: [
-          "faCalendar",
-          "faClock",
-          "faUser",
-          "faBroadcastTower",
-          "faSignInAlt"
-        ]
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  plugins: ["@/plugins/vuetify"],
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    // https://go.nuxtjs.dev/vuetify
+    ['@nuxtjs/vuetify', {
+      customVariables: ['~/assets/scss/vuetify/variables/_index.scss'],
+      optionsPath: '~/configs/vuetify.js',
+      treeShake: true,
+      defaultAssets: {
+        font: false
       }
-    ]
-  },
+    }],
+    '@nuxtjs/axios',
+    '@nuxtjs/color-mode',
+    ['nuxt-i18n', {
+      detectBrowserLanguage: false,
+      locales: [{
+        code: 'en',
+        flag: 'us',
+        name: 'English',
+        file: 'en.js'
+      }, {
+        code: 'it',
+        flag: 'it',
+        name: 'Italiano',
+        file: 'it.js'
+      }],
+      lazy: true,
+      langDir: 'i18n/',
+      defaultLocale: 'it'
+    }],
+    '@nuxtjs/sitemap'
+  ],
 
   /*
    ** Sitemaps modules
@@ -131,30 +131,10 @@ module.exports = {
     baseURL: "https://smprocivapp.firebaseio.com"
   },
 
-  /*
-   ** Build configuration
-   */
+  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ["vuetify/lib"],
-    plugins: [new VuetifyLoaderPlugin()],
-    loaders: {
-      stylus: {
-        import: ["~assets/style/variables.styl"]
-      }
-    },
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: "pre",
-          test: /\.(js|vue)$/,
-          loader: "eslint-loader",
-          exclude: /(node_modules)/
-        });
-      }
+    babel: {
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]]
     }
   }
 };
