@@ -12150,7 +12150,7 @@ snyk-try-require@^2.0.0:
     lodash.clonedeep "^4.3.0"
     lru-cache "^5.1.1"
 
-snyk@1.660.0, snyk@^1.660.0:
+snyk@^1.660.0:
   version "1.660.0"
   resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.660.0.tgz#751f026cc610619fbe34d4d38a88d369f10c7edd"
   integrity sha512-6XHBUddLUjWDuC4901qeZsB3OBLVzqqUbdmcS2dpY3jYafk85J6UrXDRss43/h8ZrlPu7t3BMWbfegDb/1P++Q==
@@ -13626,10 +13626,10 @@ vuetify-loader@^1.2.1:
   dependencies:
     loader-utils "^1.1.0"
 
-vuetify@^2.1.9:
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.5.6.tgz#9cbb1eacece6c42028216312b9be23e35a7f5cf4"
-  integrity sha512-2T8ML5PYuJ/AdMVH3ZIvzHnsM0nX8t4Xzj+0HFFGfLT7jLlptCFpG+JE8+kyrgGZlbUgulyOwCUu8hJkVsReFA==
+vuetify@^2.6.9:
+  version "2.6.9"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.6.9.tgz#abd3884bee9947c4a5b1dd560ad832bc4d8fccbf"
+  integrity sha512-f4jy/DWCwyrkgbbArg0ugSX70aHfv7oO3zz2nuXqoD3W0X8AgunrakzKkt0H+BnuZgesoit9NzLoJNj1GY5DWw==
 
 vuex@^3.6.2:
   version "3.6.2"
