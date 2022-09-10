@@ -36,7 +36,11 @@ module.exports = {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ["@/plugins/vuetify"],
+  plugins: [
+    { src: "~/plugins/vuetify" },
+    // Filters
+    { src: '~/filters/formatDate.js' }
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [

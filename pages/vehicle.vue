@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex flex-column flex-grow-1">
-    <v-container class="py-2 py-lg-8">
+    <v-container class="py-2 py-lg-4">
       <page-title i18n="menu.vehicles" title='Mezzi Operativi' class="mb-2">
         <template #button>
           <v-spacer />

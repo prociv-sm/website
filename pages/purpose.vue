@@ -1,10 +1,10 @@
 <template>
   <div class="d-flex flex-column flex-grow-1">
-    <v-container class="py-2 py-lg-8">
+    <v-container class="py-2 py-lg-4">
       <page-title i18n="about.title" title='Le attività della Protezione Civile' class="mb-2" />
       <!-- About list -->
       <div class="flex-grow-1 min-w-0">
-        <v-row>
+        <v-row dense>
           <v-col cols="12">
             <v-card>
               <v-img
@@ -76,7 +76,7 @@
             </v-card>
           </v-col>
           <v-col cols="12">
-            <v-row>
+            <v-row dense>
               <v-col cols="6">
                 <v-card>
                   <v-card-title primary-title>
