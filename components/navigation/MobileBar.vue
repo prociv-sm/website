@@ -12,13 +12,13 @@
                 alt="logo"
               />
             </v-col>
-            <v-col cols="9" style="font-size: xx-large; overflow: visible !important; padding-left: 0 !important;">
+            <v-col cols="9" style="font-size: x-large; overflow: visible !important; padding-left: 0 !important;">
               {{ $t('title') }}
             </v-col>
           </v-row>
           <span class="hidden-md-and-up justify-start"  style="font-size: xx-large; overflow: visible !important;">
-              {{ $t('title') }}
-            </span>
+            {{ $t('title') }}
+          </span>
         </v-app-bar-title>
         <v-spacer />
         <!-- Access admin section -->
@@ -26,22 +26,13 @@
           <v-icon color="#ffffff">mdi-login</v-icon>
         </v-btn>
       </v-container>
-      <template v-slot:extension>
-        <v-container class="py-0 px-0 px-sm-2">
-          <v-btn text color="#ffffff" nuxt to="/">{{ $t('menu.home') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/purpose">{{ $t('menu.about') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/activity">{{ $t('menu.activity') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/headquarter">{{ $t('menu.headquarters') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/vehicle">{{ $t('menu.vehicles') }}</v-btn>
-        </v-container>
-      </template>
     </v-app-bar>
   </div>
 </template>
 
 <script>
 export default {
-  name: "LowerBar",
+  name: "MobileBar",
   data() {
     return {
       drawer: false

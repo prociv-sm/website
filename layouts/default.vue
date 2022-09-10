@@ -10,7 +10,9 @@
     <!-- Upper navigation bar with language selector -->
     <upper-bar />
     <!-- Lower navigation bar with user navigation -->
-    <lower-bar @toggleDrawer="toggleDrawer" />
+    <lower-bar @toggleDrawer="toggleDrawer" class="hidden-sm-and-down" />
+    <!-- Drawer for mobile devices -->
+    <mobile-bar @toggleDrawer="toggleDrawer" class="hidden-md-and-up" />
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -72,14 +74,17 @@
     <v-main>
       <nuxt />
     </v-main>
+    <footer-bar />
   </v-app>
 </template>
 
 <script>
 import UpperBar from "@/components/navigation/UpperBar";
 import LowerBar from "@/components/navigation/LowerBar";
+import MobileBar from "@/components/navigation/MobileBar";
+import FooterBar from "@/components/navigation/FooterBar";
 export default {
-  components: { LowerBar, UpperBar },
+  components: { FooterBar, MobileBar, LowerBar, UpperBar },
   data () {
     return {
       drawer: false,
