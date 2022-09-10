@@ -7,7 +7,7 @@ export default {
     home: 'Home',
     login: 'Login',
     logout: 'Logout',
-    activity: 'Attività',
+    activity: 'Interventi',
     about: 'Chi siamo',
     vehicles: 'Veicoli',
     headquarters: 'Sede',
@@ -43,7 +43,7 @@ export default {
     type: {
       tecnical: 'Tecnico',
       fire: 'Incendio',
-      wather: 'Idrogeologico',
+      hydrogeological: 'Idrogeologico',
       covid: 'Ausilio Covid-19',
       landslide: 'Dissesto',
       rescue: 'Soccorso',

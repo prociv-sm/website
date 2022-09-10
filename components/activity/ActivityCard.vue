@@ -1,55 +1,42 @@
 <template>
   <v-card>
-    <v-card-title primary-title>
-      <div class="headline" style="line-height: 10px !important;">
-        {{ activity.title }}
-      </div>
-    </v-card-title>
-    <v-card-actions>
-      <v-btn flat color="primary" @click="show = !show">Dettagli</v-btn>
-      <v-spacer></v-spacer>
-      <chips-bar
-        :event-date="activity.eventDate"
-        :event-time="activity.eventTime"
-      >
-      </chips-bar>
-    </v-card-actions>
-
-    <v-slide-y-transition>
-      <v-card-text v-show="show" v-html="activity.description"> </v-card-text>
-    </v-slide-y-transition>
+    <v-list-item>
+      <v-list-item-action>
+        <activity-type-icon :type="activity.type" />
+      </v-list-item-action>
+      <v-list-item-content>
+        <v-list-item-title>{{ activity.title }}</v-list-item-title>
+        <v-list-item-subtitle>
+          {{ activity.startDate | formatDate('dd/MM/yyyy') }} - {{ activity.description }}
+        </v-list-item-subtitle>
+      </v-list-item-content>
+      <v-list-item-action>
+        <v-list-item-action-text>
+          <strong>{{ $t('activity.type.' + activity.type) }}</strong>
+        </v-list-item-action-text>
+        <v-list-item-action-text>
+          {{ dateDifferences(activity.startDate, activity.endDate) }}
+        </v-list-item-action-text>
+      </v-list-item-action>
+    </v-list-item>
   </v-card>
 </template>
 
 <script>
-import ChipsBar from "../ChipsBar";
+import ActivityTypeIcon from "@/components/activity/ActivityTypeIcon";
+import { formatDistanceStrict } from "date-fns";
+import { it } from "date-fns/locale";
 export default {
-  components: {
-    ChipsBar
-  },
+  components: { ActivityTypeIcon },
   props: {
     activity: {
       type: Object,
       required: true
-    },
-    index: {
-      type: Number,
-      required: true
     }
   },
-  data() {
-    return {
-      show: false,
-      dialog: false
-    };
-  },
   methods: {
-    getImages(image) {
-      if (!image) {
-        return "https://comune.settimomilanese.mi.it/wp-content/uploads/2018/02/comune1-300x225.jpg";
-      } else {
-        return image;
-      }
+    dateDifferences (starting, ending) {
+      return formatDistanceStrict(new Date(starting), new Date(ending), {locale: it})
     }
   }
 };

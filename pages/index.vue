@@ -1,8 +1,26 @@
 <template>
   <div>
-    <v-container class="py-4 py-lg-8">
-      <v-row>
+    <v-container class="py-2 py-lg-4">
+      <v-row dense>
         <v-col cols="12" sm="12" md="8" lg="8">
+          <v-alert
+            v-if="turnationIsActive"
+            border="left"
+            colored-border
+            type="success"
+          >
+            <h3 class="text-h5">
+              Turnazione settimanale attiva
+            </h3>
+            <v-row
+              align="center"
+              no-gutters
+            >
+              <v-col class="grow">
+                Squadra in sede dal Lunedì al Venerdì dalle 21:00 alle 24:00
+              </v-col>
+            </v-row>
+          </v-alert>
           <activity-list :activities="activities" />
         </v-col>
         <v-col cols="12" sm="12" md="4" lg="4">
@@ -35,6 +53,7 @@ import ActivityCard from "../components/activity/ActivityCard";
 import Loader from "../components/Loader";
 import axios from "axios";
 import ActivityList from "~/components/activity/ActivityList";
+import { getDay, isWeekend } from "date-fns";
 
 export default {
   head: {
@@ -61,10 +80,17 @@ export default {
   async created() {
     await this.fetchData();
   },
+  computed: {
+    turnationIsActive() {
+      const weekend = isWeekend(new Date(2022, 2, 1, 12, 0));
+      return !weekend;
+
+    }
+  },
   methods: {
     async fetchData() {
       this.$axios
-        .get('https://smprocivapp.firebaseio.com/activities.json?orderBy="eventDate"&limitToFirst=4')
+        .get('http://localhost:8080/api/v1/activities?take=5')
         .then(response => {
           this.activities = response.data;
           this.loading = false;

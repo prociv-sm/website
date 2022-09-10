@@ -5,27 +5,22 @@
         <div
           class="headline"
         >
-          Attività recenti
+          Interventi recenti
         </div>
       </div>
     </v-card-title>
     <v-card-text>
-      <v-list outlined rounded>
-        <template v-for="(activity, index) in activities">
-          <v-list-item :key="index">
-            <v-list-item-action>
-              <v-icon color="gray" title="Intervento tecnico">mdi-hammer-wrench</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Tecnico - {{ activity.title }}</v-list-item-title>
-              <v-list-item-subtitle>
-                Attività del {{ activity.eventDate }} - Orari {{ activity.eventTime }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-          <v-divider v-if="index > activities.length"></v-divider>
-        </template>
-      </v-list>
+      <v-row dense>
+        <v-col
+          v-for="activity in activities"
+          :key="activity.id"
+          cols="12"
+          md="12"
+          lg="12"
+        >
+          <activity-card :activity="activity" />
+        </v-col>
+      </v-row>
     </v-card-text>
   </v-card>
 </template>
