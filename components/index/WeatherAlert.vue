@@ -79,7 +79,7 @@
       </v-list>
     </v-card-text>
     <v-card-actions style="padding-top: 2px;">
-      <v-btn flat block to="/weatherAlertInfo">
+      <v-btn block to="/weatherAlertInfo">
         Canale Telegram
       </v-btn>
     </v-card-actions>
