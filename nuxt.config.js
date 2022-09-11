@@ -82,50 +82,38 @@ module.exports = {
    */
   sitemap: {
     // Doc: https://github.com/nuxt-community/sitemap-module
-    hostname: "https://protezionecivile-settimomilanese.it/",
+    hostname: "https://procivsettimomi.it/",
     gzip: true,
     routes: [
       {
         url: "/",
-        changefreq: "weekly",
-        priority: 1.0,
-        lastmodISO: "2019-06-10"
-      },
-      {
-        url: "/activity",
-        changefreq: "monthly",
-        priority: 0.5,
-        lastmodISO: "2019-06-10"
-      },
-      {
-        url: "/contact",
-        changefreq: "monthly",
-        priority: 0.3,
-        lastmodISO: "2019-06-10"
+        changefreq: "daily",
+        priority: 1.0
       },
       {
         url: "/purpose",
         changefreq: "monthly",
-        priority: 0.3,
-        lastmodISO: "2019-06-10"
+        priority: 0.5
       },
       {
-        url: "/tools",
+        url: "/activity",
         changefreq: "monthly",
-        priority: 0.3,
-        lastmodISO: "2019-06-10"
+        priority: 0.5
+      },
+      {
+        url: "/headquarter",
+        changefreq: "monthly",
+        priority: 0.5
+      },
+      {
+        url: "/volunteer",
+        changefreq: "monthly",
+        priority: 0.5
       },
       {
         url: "/vehicle",
         changefreq: "monthly",
-        priority: 0.3,
-        lastmodISO: "2019-06-10"
-      },
-      {
-        url: "/vehicle/mitsubishi",
-        changefreq: "monthly",
-        priority: 0.3,
-        lastmodISO: "2019-06-10"
+        priority: 0.5
       }
     ]
   },
