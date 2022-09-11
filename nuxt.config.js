@@ -56,7 +56,6 @@ module.exports = {
     }],
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/color-mode',
     ['nuxt-i18n', {
       detectBrowserLanguage: false,
       locales: [{
