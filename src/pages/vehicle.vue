@@ -6,7 +6,7 @@
           <v-spacer />
           <v-btn-toggle
             v-model="selectedFilter"
-            @change="checkFilter(selectedFilter)"
+            @change="filterByType(selectedFilter)"
             borderless
           >
             <v-btn value="car">
@@ -32,7 +32,7 @@
       <div class="flex-grow-1 min-w-0">
         <template v-if="loading">
           <v-row>
-            <v-col v-for="n in 12" :key="n" cols="12" md="4" lg="4" xl="4">
+            <v-col v-for="n in 4" :key="n" cols="12" md="6" lg="6" xl="6">
               <v-skeleton-loader class="mx-auto" type="image, list-item-avatar-three-line" />
             </v-col>
           </v-row>
@@ -110,48 +110,36 @@ export default {
       showVehicle: false,
       vehicles: [],
       loading: true,
+      type: '',
       toggle_none: false,
     };
-  },
-  computed: {
-    all() {
-      return this.$store.getters.all;
-    },
-    car() {
-      return this.$store.getters.car;
-    },
-    trailer() {
-      return this.$store.getters.trailer;
-    },
-    truck() {
-      return this.$store.getters.truck;
-    }
   },
   created() {
     this.fetchData();
   },
   methods: {
-    fetchData() {
-      this.vehicles = this.all;
-      this.loading = false;
+    async fetchData() {
+      this.$axios
+        .get('http://localhost:8080/api/v1/vehicles')
+        .then(response => {
+          this.vehicles = response.data;
+          this.loading = false;
+        });
     },
-    checkFilter(selectedFilter) {
+    async filterByType(type) {
       this.loading = true;
-      this.vehicles = [];
-      if (selectedFilter === "car") {
-        this.vehicles = this.car;
-        this.loading = false;
-      } else if (selectedFilter === "truck") {
-        this.vehicles = this.truck;
-        this.loading = false;
-      } else if (selectedFilter === "trailer") {
-        this.vehicles = this.trailer;
-        this.loading = false;
+      this.type = type;
+      if(type === 'all') {
+        await this.fetchData();
       } else {
-        this.vehicles = this.all;
-        this.loading = false;
+        this.$axios
+          .get('http://localhost:8080/api/v1/vehicles?type=' + this.type)
+          .then(response => {
+            this.vehicles = response.data;
+            this.loading = false;
+          });
       }
-    }
+    },
   }
 };
 </script>

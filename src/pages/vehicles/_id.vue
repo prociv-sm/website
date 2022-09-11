@@ -76,7 +76,7 @@ export default {
   methods: {
     getImgUrl(image) {
       if (!image) {
-        return require("~/assets/img/activity.jpg");
+        return require("@/assets/img/activity.jpg");
       } else {
         return require("~/assets/img/" + image);
       }
