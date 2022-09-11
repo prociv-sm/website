@@ -4,6 +4,10 @@
   "description": "Sito della protezione civile di settimo milanese",
   "author": "Andrea Tombolato <andreacw96@gmail.com> (https://github.com/andreacw5)",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prociv-sm/website.git"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -13,6 +17,7 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
@@ -29,7 +34,8 @@
     "eslint-plugin-vue": "^7.14.0",
     "firebase": "^9.9.0",
     "nuxt": "^2.15.8",
-    "nuxt-i18n": "^6.28.1"
+    "nuxt-i18n": "^6.28.1",
+    "cookie-universal-nuxt": "^2.1.5"
   },
   "devDependencies": {
     "@nuxt/types": "~2.15.8",

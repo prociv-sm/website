@@ -1,7 +1,7 @@
 module.exports = {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  srcDir: 'src/',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - ProCiv Settimo M.se',
@@ -38,6 +38,7 @@ module.exports = {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: "~/plugins/vuetify" },
+    { src: '~/plugins/notifier.js' },
     // Filters
     { src: '~/filters/formatDate.js' }
   ],
@@ -54,6 +55,7 @@ module.exports = {
       }
     }],
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/color-mode',
     ['nuxt-i18n', {
       detectBrowserLanguage: false,
@@ -72,7 +74,8 @@ module.exports = {
       langDir: 'i18n/',
       defaultLocale: 'it'
     }],
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    ['cookie-universal-nuxt', { parseJSON: false }]
   ],
 
   /*
@@ -127,13 +130,52 @@ module.exports = {
       }
     ]
   },
-  /*
-   ** Axios module configuration
+
+  /**
+   * auth modules conf
+   * See https://dev.auth.nuxtjs.org/api/auth/
+   */
+  auth: {
+    baseUrl: 'http://localhost:8080',
+    redirect: {
+      login: '/auth/login',
+      logout: '/',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        scheme: 'token',
+        endpoints: {
+          login: { url: 'http://localhost:8080/api/v1/auth/login', method: 'post' },
+          user: false,
+          logout: false
+        },
+        user: {
+          property: false,
+          autoFetch: false
+        },
+        token: {
+          property: 'access_token',
+          global: true,
+          type: 'Bearer'
+        }
+      }
+    }
+  },
+
+  /**
+   * Axios module configuration
+   * See https://axios.nuxtjs.org/options
    */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    baseURL: "https://smprocivapp.firebaseio.com"
+    https: process.env.NODE_ENV === 'production',
+    credentials: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    }
   },
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
