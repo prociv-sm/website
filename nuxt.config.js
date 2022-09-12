@@ -12,7 +12,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', href: '/index.png' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
     ],
@@ -91,12 +91,12 @@ module.exports = {
         priority: 1.0
       },
       {
-        url: "/purpose",
+        url: "/about",
         changefreq: "monthly",
         priority: 0.5
       },
       {
-        url: "/activity",
+        url: "/operations",
         changefreq: "monthly",
         priority: 0.5
       },

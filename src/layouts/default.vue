@@ -41,7 +41,7 @@
           v-model="group"
           active-class="deep-blue--text text--accent-4"
         >
-          <v-list-item nuxt :to="menu.path" v-for="(menu,i) in sidebar" :key="i">
+          <v-list-item nuxt :to="{ path: localePath(menu.path)}" v-for="(menu,i) in sidebar" :key="i">
             <v-list-item-icon>
               <v-icon>mdi-{{ menu.icon }}</v-icon>
             </v-list-item-icon>
@@ -77,7 +77,7 @@ export default {
       group: null,
       sidebar: [
         { icon: 'home', i18n: 'menu.home', path: '/'},
-        { icon: 'account-group', i18n: 'menu.about', path: '/purpose'},
+        { icon: 'account-group', i18n: 'menu.about', path: '/about'},
         { icon: 'shield-alert-outline', i18n: 'menu.activity', path: '/activity'},
         { icon: 'office-building', i18n: 'menu.headquarters', path: '/headquarters'},
         { icon: 'account-group', i18n: 'menu.volunteer', path: '/volunteer'},
@@ -92,9 +92,12 @@ export default {
     const token = this.$auth.$storage.getCookie('access_token')
     const user = this.$auth.$storage.getCookie('user')
     if(token && user) {
+      // Set $auth props
       this.$auth.setStrategy('local')
       this.$auth.setUserToken(token)
       this.$auth.setUser(user)
+      // Set axios token
+      this.$axios.setToken(token, 'Bearer')
       console.log('auth done!')
     } else {
       this.$auth.logout()

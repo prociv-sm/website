@@ -29,12 +29,12 @@
       </v-container>
       <template v-slot:extension>
         <v-container class="py-0 px-0 px-sm-2">
-          <v-btn text color="#ffffff" nuxt to="/">{{ $t('menu.home') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/purpose">{{ $t('menu.about') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/activity">{{ $t('menu.activity') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/headquarter">{{ $t('menu.headquarters') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/volunteer">{{ $t('menu.volunteer') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt to="/vehicle">{{ $t('menu.vehicles') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/')}">{{ $t('menu.home') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/about')}">{{ $t('menu.about') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/operations')}">{{ $t('menu.activity') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/headquarter')}">{{ $t('menu.headquarters') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/volunteer')}">{{ $t('menu.volunteer') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/vehicle')}">{{ $t('menu.vehicles') }}</v-btn>
         </v-container>
       </template>
     </v-app-bar>

@@ -8,6 +8,7 @@
           <v-col cols="12" md="6" lg="6">
             <v-card>
               <v-img
+                :lazy-src="require('@/assets/img/lazy.webp')"
                 :src="require('@/assets/img/hq.png')"
                 max-height="300"
               ></v-img>

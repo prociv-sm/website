@@ -8,7 +8,10 @@ export default {
     password: 'Password',
     back: 'Indietro',
     noResults: 'Nessun risultato',
-    all: 'Tutti'
+    all: 'Tutti',
+    required: 'Campo obbligatorio',
+    cancel: 'Annulla',
+    save: 'Salva',
   },
   menu: {
     home: 'Home',
@@ -41,15 +44,28 @@ export default {
       all: 'Tutti'
     }
   },
+  operations: {
+    title: 'Interventi',
+    noData: 'Nessun intervento disponibile',
+    add: 'Crea un\'intervento',
+  },
   activity: {
     title: 'Interventi',
     subtitle: 'Elenco degli interventi',
-    new: 'Nuovo intervento',
+    new: 'Aggiungi un\'intervento',
     edit: 'Modifica intervento',
     delete: 'Elimina intervento',
     noData: 'Nessun intervento disponibile',
     save: 'Salva intervento',
     cancel: 'Annulla',
+    fields: {
+      title: 'Titolo',
+      description: 'Descrizione',
+      location: 'Luogo',
+      type: 'Tipologia di intervento',
+      startDate: 'Data di inizio',
+      endDate: 'Data di fine',
+    },
     type: {
       tecnical: 'Tecnico',
       fire: 'Incendio',

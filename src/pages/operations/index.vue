@@ -69,8 +69,8 @@
 </template>
 
 <script>
-import Loader from "../components/Loader";
-import ActivityCard from "../components/activity/ActivityCard";
+import Loader from "@/components/Loader";
+import ActivityCard from "@/components/activity/ActivityCard";
 import PageTitle from "@/components/common/PageTitle";
 import StatsCard from "@/components/activity/StatsCard";
 export default {

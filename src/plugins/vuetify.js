@@ -12,7 +12,7 @@ export default {
     dark: true,
     themes: {
       dark: {
-        primary: '#175db8',
+        primary: '#0066cc',
         accent: colors.grey.darken3,
         secondary: colors.amber.darken3,
         info: colors.teal.lighten1,

@@ -1,6 +1,6 @@
 <template>
   <v-card class="card" outlined>
-    <v-img height="250" :src="getImgUrl(vehicle.image)" />
+    <v-img height="240" :lazy-src="require('@/assets/img/lazy.webp')" :src="getImgUrl(vehicle.image)" />
     <v-card-actions>
       {{ vehicle.brand }} {{ vehicle.model }}
       <v-spacer />
