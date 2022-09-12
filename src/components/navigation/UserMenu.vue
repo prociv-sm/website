@@ -26,6 +26,13 @@
          </v-list-item-content>
         </v-list-item>
         <v-divider />
+        <!-- Intervention add -->
+        <v-list-item class="my-1" nuxt :to="{ path: localePath('/operations/new')}" >
+          <v-list-item-icon>
+            <v-icon>mdi-plus</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ $t('operations.add') }}</v-list-item-title>
+        </v-list-item>
         <!-- user logout -->
         <v-list-item @click.prevent="logout">
           <v-list-item-icon>

@@ -39,6 +39,7 @@ module.exports = {
   plugins: [
     { src: "~/plugins/vuetify" },
     { src: '~/plugins/notifier.js' },
+    { src: '~/plugins/calendar.js' },
     // Filters
     { src: '~/filters/formatDate.js' }
   ],
