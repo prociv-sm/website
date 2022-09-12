@@ -8,7 +8,6 @@
       <v-card-title class="justify-center display-1 mb-1">{{ $t('auth.login.title') }}</v-card-title>
       <!-- sign in form -->
       <v-card-text>
-        <div v-if="errorProvider" class="error--text">{{ errorProviderMessages }}</div>
         <v-alert
           v-if="firstAccess"
           border="left"
@@ -102,15 +101,12 @@ export default {
 
     // form
     isFormValid: true,
-    username: 'andreat',
-    password: 'password',
+    username: '',
+    password: '',
 
     // form error
     error: false,
     errorMessages: '',
-
-    errorProvider: false,
-    errorProviderMessages: '',
 
     // show password field
     showPassword: false,
@@ -157,11 +153,17 @@ export default {
               this.$auth.$storage.removeCookie('access_token')
               this.$auth.$storage.removeCookie('user')
               // Write new cookies
-              this.$auth.$storage.setCookie('access_token', resp.data.access_token)
-              this.$auth.$storage.setCookie('user', resp.data.user, true)
+              this.$auth.$storage.setCookie('access_token', resp.data.access_token, {
+                maxAge: 60 * 60 * 24 * 7 // 7 days
+              })
+              this.$auth.$storage.setCookie('user', resp.data.user, {
+                maxAge: 60 * 60 * 24 * 7 // 7 days
+              })
               // Set $auth props
               this.$auth.setUserToken(resp.data.access_token)
               this.$auth.setUser(resp.data.user)
+              // Set axios token
+              this.$axios.setToken(resp.data.access_token, 'Bearer')
             })
           await this.$router.push({ path: '/' })
         } catch (err) {
@@ -179,7 +181,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>
