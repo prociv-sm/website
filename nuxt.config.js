@@ -1,3 +1,4 @@
+require('dotenv').config()
 module.exports = {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -124,7 +125,7 @@ module.exports = {
    * See https://dev.auth.nuxtjs.org/api/auth/
    */
   auth: {
-    baseUrl: 'http://localhost:8080',
+    baseUrl: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
     redirect: {
       login: '/auth/login',
       logout: '/',
@@ -134,7 +135,7 @@ module.exports = {
       local: {
         scheme: 'token',
         endpoints: {
-          login: { url: 'http://localhost:8080/api/v1/auth/login', method: 'post' },
+          login: { url: '/api/v1/auth/login', method: 'post' },
           user: false,
           logout: false
         },
@@ -157,6 +158,7 @@ module.exports = {
    */
   axios: {
     https: process.env.NODE_ENV === 'production',
+    baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
     credentials: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
