@@ -21,7 +21,7 @@
               </v-col>
             </v-row>
           </v-alert>
-          <activity-list :activities="activities" />
+          <activity-list :activities="activities" :loading="loading" />
         </v-col>
         <v-col cols="12" sm="12" md="4" lg="4">
           <v-card class="mb-2">
@@ -40,7 +40,7 @@
               </div>
             </v-card-text>
           </v-card>
-          <WeatherAlert />
+          <WeatherAlert :weather-info="weatherInfo" />
         </v-col>
       </v-row>
     </v-container>
@@ -50,31 +50,40 @@
 <script>
 import WeatherAlert from "../components/index/WeatherAlert";
 import ActivityCard from "../components/activity/ActivityCard";
-import Loader from "../components/Loader";
-import axios from "axios";
 import ActivityList from "@/components/activity/ActivityList";
-import { getDay, isWeekend } from "date-fns";
+import { isWeekend } from "date-fns";
 
 export default {
   head: {
     title: "Home",
     meta: [
       // Open Graph
-      { name: "og:title", content: "this.head.title " },
+      { name: "og:title", content: "Home" },
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      {
-        name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it"
-      },
-      { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
     ]
   },
   components: { ActivityList, WeatherAlert, ActivityCard },
   data() {
     return {
       activities: [],
-      loading: true
+      loading: true,
+      weatherInfo: {
+        hydro: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        },
+        storm: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        },
+        geo: {
+          alert: "green",
+          info: "Nessuna allerta attiva"
+        }
+      }
     };
   },
   async created() {
@@ -90,7 +99,15 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('http://localhost:8080/api/v1/activities?take=5')
+        .get('/api/v1/activities?take=5')
+        .then(response => {
+          this.activities = response.data;
+          this.loading = false;
+        });
+    },
+    async requestAlerts() {
+      this.$axios
+        .get('/api/v1/activities?take=5')
         .then(response => {
           this.activities = response.data;
           this.loading = false;

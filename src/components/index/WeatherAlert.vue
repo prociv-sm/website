@@ -78,11 +78,6 @@
         </v-list-item>
       </v-list>
     </v-card-text>
-    <v-card-actions style="padding-top: 2px;">
-      <v-btn block to="/alerts">
-        Canale Telegram
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -90,22 +85,29 @@
 export default {
   data() {
     return {
-      weatherInfo: {
-        hydro: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        },
-        storm: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        },
-        geo: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        }
-      },
       weatherInfoLoader: false
     };
+  },
+  props: {
+    weatherInfo: {
+      type: Object,
+      default: () => {
+        return {
+          hydro: {
+            alert: "gray",
+            info: "Nessuna informazione"
+          },
+          geo: {
+            alert: "gray",
+            info: "Nessuna informazione"
+          },
+          storm: {
+            alert: "gray",
+            info: "Nessuna informazione"
+          }
+        };
+      }
+    }
   },
   methods: {
     setColor(color) {

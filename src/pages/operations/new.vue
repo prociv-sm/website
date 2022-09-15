@@ -101,6 +101,17 @@ export default {
   name: "AddOperation",
   components: { PageTitle },
   middleware: 'auth',
+  head: {
+    title: "Create Operation",
+    meta: [
+      // Open Graph
+      { name: "og:title", content: "Create Operation" },
+      { name: "og:description", content: "" },
+      { name: "og:type", content: "website" },
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
+    ]
+  },
   data() {
     return {
       types: [

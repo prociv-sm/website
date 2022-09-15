@@ -18,7 +18,7 @@
           </v-col>
         </v-row>
         <v-row dense>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -32,7 +32,7 @@
               </v-card-title>
             </v-card>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -46,7 +46,7 @@
               </v-card-title>
             </v-card>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -60,7 +60,7 @@
               </v-card-title>
             </v-card>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -74,7 +74,7 @@
               </v-card-title>
             </v-card>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -88,7 +88,7 @@
               </v-card-title>
             </v-card>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" sm="6" md="4" lg="4">
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
@@ -113,21 +113,14 @@ import PageTitle from "@/components/common/PageTitle";
 export default {
   components: { PageTitle },
   head: {
-    title: "Attività",
+    title: "Chi siamo",
     meta: [
       // Open Graph
-      { name: "og:title", content: "Lo scopo del dipartimento" },
-      {
-        name: "og:description",
-        content:
-          "Il soccorso alla popolazione in emergenza è l’attività che identifica la funzione principale della protezione civile, anche se negli anni le competenze del sistema si sono estese allo sviluppo della conoscenza dei rischi e alle azioni per evitare o ridurre al minimo i danni delle calamità."
-      },
+      { name: "og:title", content: "Chi siamo" },
+      { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      {
-        name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it/about"
-      },
-      { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
     ]
   }
 };

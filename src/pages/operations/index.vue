@@ -20,6 +20,7 @@
               v-for="stat in stats"
               :key="stat.type"
               cols="12"
+              sm="6"
               md="3"
               lg="3"
             >
@@ -77,18 +78,12 @@ export default {
   head: {
     title: "Interventi",
     meta: [
-      { name: "og:title", content: "Lista delle attività" },
-      {
-        name: "og:description",
-        content:
-          "La lista delle attività svolte dal gruppo di protezione civile"
-      },
+      // Open Graph
+      { name: "og:title", content: "Interventi" },
+      { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
-      {
-        name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it/activity"
-      },
-      { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
     ]
   },
   components: {

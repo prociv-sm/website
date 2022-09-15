@@ -85,6 +85,17 @@ export default {
     return {
       loading: false
     }
+  },
+  head: {
+    title: "Sede",
+    meta: [
+      // Open Graph
+      { name: "og:title", content: "Sede" },
+      { name: "og:description", content: "" },
+      { name: "og:type", content: "website" },
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
+    ]
   }
 };
 </script>

@@ -64,6 +64,7 @@
                 v-for="item in props.items"
                 :key="item.id"
                 cols="12"
+                sm="6"
                 md="6"
                 lg="6"
                 xl="6"
@@ -83,24 +84,21 @@ import VehicleCard from "../components/vehicles/VehicleCard";
 import Loader from "../components/Loader";
 import PageTitle from "@/components/common/PageTitle";
 export default {
-  head: {
-    title: "Mezzi Operativi",
-    meta: [
-      // Open Graph
-      { name: "og:title", content: "this.head.title " },
-      { name: "og:description", content: "" },
-      { name: "og:type", content: "website" },
-      {
-        name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it/vehicles"
-      },
-      { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
-    ]
-  },
   components: {
     PageTitle,
     VehicleCard,
     Loader
+  },
+  head: {
+    title: "Veicoli",
+    meta: [
+      // Open Graph
+      { name: "og:title", content: "Veicoli" },
+      { name: "og:description", content: "" },
+      { name: "og:type", content: "website" },
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
+    ]
   },
   data() {
     return {

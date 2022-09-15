@@ -56,7 +56,18 @@
 import PageTitle from "@/components/common/PageTitle";
 export default {
   name: "volunteer",
-  components: { PageTitle }
+  components: { PageTitle },
+  head: {
+    title: "Volontari",
+    meta: [
+      // Open Graph
+      { name: "og:title", content: "Volontari" },
+      { name: "og:description", content: "" },
+      { name: "og:type", content: "website" },
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/assets/img/activity.jpg" },
+    ]
+  }
 };
 </script>
 
