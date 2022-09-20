@@ -81,13 +81,11 @@
 
 <script>
 import VehicleCard from "../components/vehicles/VehicleCard";
-import Loader from "../components/Loader";
 import PageTitle from "@/components/common/PageTitle";
 export default {
   components: {
     PageTitle,
-    VehicleCard,
-    Loader
+    VehicleCard
   },
   head: {
     title: "Veicoli",

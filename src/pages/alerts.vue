@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import Loader from "../components/Loader";
 import PageTitle from "@/components/common/PageTitle";
 export default {
   head: {
@@ -31,8 +30,7 @@ export default {
     ]
   },
   components: {
-    PageTitle,
-    Loader
+    PageTitle
   },
   data() {
     return {

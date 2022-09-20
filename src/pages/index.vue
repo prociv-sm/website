@@ -40,7 +40,7 @@
               </div>
             </v-card-text>
           </v-card>
-          <WeatherAlert :weather-info="weatherInfo" />
+          <WeatherAlert :alerts="alerts" :loading="loading" />
         </v-col>
       </v-row>
     </v-container>
@@ -70,24 +70,18 @@ export default {
     return {
       activities: [],
       loading: true,
-      weatherInfo: {
-        hydro: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        },
-        storm: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        },
-        geo: {
-          alert: "green",
-          info: "Nessuna allerta attiva"
-        }
+      alerts: {
+        hydro: {},
+        storm: {},
+        geo: {}
       }
     };
   },
   async created() {
     await this.fetchData();
+    await this.requestStormAlert();
+    await this.requestHydroAlert();
+    await this.requestGeoAlert();
   },
   computed: {
     turnationIsActive() {
@@ -105,11 +99,27 @@ export default {
           this.loading = false;
         });
     },
-    async requestAlerts() {
+    async requestStormAlert() {
       this.$axios
-        .get('/api/v1/activities?take=5')
+        .get('/api/v1/alerts/Lomb-1/storm')
         .then(response => {
-          this.activities = response.data;
+          this.alerts.storm = response.data;
+          this.loading = false;
+        });
+    },
+    async requestHydroAlert() {
+      this.$axios
+        .get('/api/v1/alerts/Lomb-1/hydro')
+        .then(response => {
+          this.alerts.hydro = response.data;
+          this.loading = false;
+        });
+    },
+    async requestGeoAlert() {
+      this.$axios
+        .get('/api/v1/alerts/Lomb-1/geo')
+        .then(response => {
+          this.alerts.geo = response.data;
           this.loading = false;
         });
     }

@@ -70,7 +70,6 @@
 </template>
 
 <script>
-import Loader from "@/components/Loader";
 import ActivityCard from "@/components/activity/ActivityCard";
 import PageTitle from "@/components/common/PageTitle";
 import StatsCard from "@/components/activity/StatsCard";
@@ -89,8 +88,7 @@ export default {
   components: {
     StatsCard,
     PageTitle,
-    ActivityCard,
-    Loader
+    ActivityCard
   },
   data() {
     return {

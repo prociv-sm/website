@@ -113,5 +113,19 @@ export default {
       supervisor: 'Referente di turno',
       chief: 'Coordinatore'
     }
+  },
+  alerts: {
+    title: 'Allerte',
+    active: 'Allerte attive',
+    type: {
+      hydro: 'Idraulico',
+      storm: 'Temporali',
+      geo: 'Idrogeologico'
+    },
+    severity: {
+      none: 'Nessuna allerta attiva',
+      moderate: 'Allerta gialla attiva',
+      severe: 'Allerta rossa attiva'
+    }
   }
 }
