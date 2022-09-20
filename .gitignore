@@ -6,8 +6,8 @@ dist/*
 node_modules/*
 coverage/*
 # Sw file
-static/sw.js
+src/static/sw.js
 sitemap.xml
-assets/img/.DS_Store
-assets/.DS_Store
-assets/img/vehicles/.DS_Store
+src/assets/img/.DS_Store
+src/assets/.DS_Store
+src/assets/img/vehicles/.DS_Store

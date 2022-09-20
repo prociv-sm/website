@@ -1,0 +1,13 @@
+stages:
+  - build
+
+build-image:
+  image: docker:20.10.10
+  services:
+    - docker:20.10.10-dind
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER $CI_REGISTRY --password-stdin
+    - docker build -t registry.gitlab.com/prociv-sm/website .
+    - docker push registry.gitlab.com/prociv-sm/website
