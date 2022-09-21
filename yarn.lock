@@ -2198,6 +2198,11 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
+"@snyk/protect@^1.1008.0":
+  version "1.1008.0"
+  resolved "https://registry.yarnpkg.com/@snyk/protect/-/protect-1.1008.0.tgz#d6ad53d26c6c2b7ecd4fbf07afbb74649961c907"
+  integrity sha512-3lYjPrT6XO/ptMJ42st/L6xCGV7zUeLP6mYxwQLSFd4rIZejFqR3HouUd05TmAAQWXShrWRHD2FB+gyHlMLZcA==
+
 "@types/anymatch@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-3.0.0.tgz#c95ff14401dbb2869913afac3935af4ad0d37f1a"
