@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     saveIntervention() {
-      this.$axios.$post('http://localhost:8080/api/v1/activities', {
+      this.$axios.$post('/api/v1/activities', {
         title: this.intervention.title,
         description: this.intervention.description,
         type: this.intervention.type,

@@ -55,7 +55,14 @@
       <!-- Messages and cookie -->
       <snakbar-message />
       <client-only>
-        <cookie-message />
+        <!-- Cookie preferences modal -->
+        <v-dialog
+          v-model="cookieModal"
+          max-width="800"
+          persistent
+        >
+          <cookie-preference-modal @acceptAll="acceptAllCookies" @denyAll="denyAllCookies" />
+        </v-dialog>
       </client-only>
     </v-main>
     <footer-bar />
@@ -68,13 +75,14 @@ import LowerBar from "@/components/navigation/LowerBar";
 import MobileBar from "@/components/navigation/MobileBar";
 import FooterBar from "@/components/navigation/FooterBar";
 import SnakbarMessage from "@/components/common/SnakbarMessage";
-import CookieMessage from "@/components/common/Cookie";
+import CookiePreferenceModal from "@/components/common/CookiePreferenceModal";
 export default {
-  components: { CookieMessage, SnakbarMessage, FooterBar, MobileBar, LowerBar, UpperBar },
+  components: { CookiePreferenceModal, SnakbarMessage, FooterBar, MobileBar, LowerBar, UpperBar },
   data () {
     return {
       drawer: false,
       group: null,
+      cookieModal: false,
       sidebar: [
         { icon: 'home', i18n: 'menu.home', path: '/'},
         { icon: 'account-group', i18n: 'menu.about', path: '/about'},
@@ -103,9 +111,28 @@ export default {
       this.$auth.logout()
     }
   },
+  created () {
+    if (!this.$auth.$storage.getCookie('GDPR:accepted') || this.$auth.$storage.getCookie('GDPR:accepted') === "false") {
+      this.cookieModal = true
+    }
+  },
   methods: {
     toggleDrawer () {
       this.drawer = !this.drawer
+    },
+    acceptAllCookies () {
+      this.cookieModal = false
+      this.$auth.$storage.setCookie('GDPR:accepted', "true", {
+        maxAge: 60 * 60 * 24 * 14
+      })
+    },
+    denyAllCookies () {
+      this.cookieModal = false
+      this.$auth.$storage.removeCookie('access_token')
+      this.$auth.$storage.removeCookie('user')
+      this.$auth.$storage.setCookie('GDPR:accepted', "false", {
+        maxAge: 60 * 60 * 24 * 14
+      })
     }
   },
   computed: {

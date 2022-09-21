@@ -106,7 +106,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('http://localhost:8080/api/v1/activities')
+        .get('/api/v1/activities')
         .then(response => {
           this.activities = response.data;
           this.loading = false;
@@ -114,7 +114,7 @@ export default {
     },
     async getStats() {
       this.$axios
-        .get('http://localhost:8080/api/v1/activities/statistics')
+        .get('/api/v1/activities/statistics')
         .then(response => {
           this.stats = response.data;
         });

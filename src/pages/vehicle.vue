@@ -116,7 +116,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('http://localhost:8080/api/v1/vehicles')
+        .get('/api/v1/vehicles')
         .then(response => {
           this.vehicles = response.data;
           this.loading = false;
@@ -129,7 +129,7 @@ export default {
         await this.fetchData();
       } else {
         this.$axios
-          .get('http://localhost:8080/api/v1/vehicles?type=' + this.type)
+          .get('/api/v1/vehicles?type=' + this.type)
           .then(response => {
             this.vehicles = response.data;
             this.loading = false;

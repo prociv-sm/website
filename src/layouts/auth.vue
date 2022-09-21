@@ -14,9 +14,6 @@
           <snakbar-message />
           <nuxt />
         </div>
-        <client-only>
-          <cookie-message />
-        </client-only>
       </div>
     </div>
   </v-app>
@@ -24,10 +21,9 @@
 
 <script>
 import SnakbarMessage from "@/components/common/SnakbarMessage";
-import CookieMessage from "@/components/common/Cookie";
 export default {
   name: "auth",
-  components: { CookieMessage, SnakbarMessage }
+  components: { SnakbarMessage }
 };
 </script>
 
