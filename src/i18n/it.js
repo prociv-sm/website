@@ -127,5 +127,17 @@ export default {
       moderate: 'Allerta gialla attiva',
       severe: 'Allerta rossa attiva'
     }
+  },
+  cookies: {
+    title: 'Oh no! Utilizziamo i cookie su questo sito!',
+    description: 'Utilizziamo cookie e strumenti simili (collettivamente "cookie") ai fini descritti in basso e applicheremo le tue preferenze relative ai cookie su questo dispositivo. Se dovessi utilizzare un altro dispositivo, potrebbe esserti chiesto di fornire nuovamente il tuo consenso.',
+    accept: 'Accetta tutti i cookie',
+    deny: 'Rifiuta tutti i cookie',
+    type: {
+      operative: {
+        title: 'Cookie operativi e utilizzo dei dati',
+        description: 'I cookie operativi sono utilizzati per fornire i nostri servizi e non possono essere disabilitati.'
+      }
+    }
   }
 }

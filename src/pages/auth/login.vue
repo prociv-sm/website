@@ -5,6 +5,9 @@
       <v-card-title class="justify-center display-1" style="color: #0066cc">Protezione Civile</v-card-title>
       <v-card-subtitle style="color: #0066cc">Comune di Settimo Milanese</v-card-subtitle>
       <v-divider />
+      <v-alert v-if="cookieActive" outlined type="info" icon="mdi-cookie" colored-border border="left" prominent>
+        I cookie sono attualmente disattivati senza non è possibile accedere al sito. <a :href="localePath('/')">Torna alla home e attiva i cookie.</a>
+      </v-alert>
       <v-card-title class="justify-center display-1 mb-1">{{ $t('auth.login.title') }}</v-card-title>
       <!-- sign in form -->
       <v-card-text>
@@ -36,7 +39,7 @@
             name="username"
             outlined
             dense
-            :disabled="basicAuthEnabled"
+            :disabled="basicAuthEnabled || cookieActive"
             @keyup.enter="authenticate"
             @change="resetErrors"
           ></v-text-field>
@@ -46,7 +49,7 @@
             :rules="[rules.required]"
             :type="showPassword ? 'text' : 'password'"
             :error="error"
-            :disabled="basicAuthEnabled"
+            :disabled="basicAuthEnabled || cookieActive"
             :error-messages="errorMessages"
             :label="$t('common.password') + ' *'"
             name="password"
@@ -134,6 +137,9 @@ export default {
     },
     passwordChanged () {
       return this.$route.query.password_changed
+    },
+    cookieActive() {
+      return !this.$auth.$storage.getCookie('GDPR:accepted') || this.$auth.$storage.getCookie('GDPR:accepted') === "false"
     }
   },
   mounted () {
@@ -181,3 +187,9 @@ export default {
   }
 };
 </script>
+
+<style lang='scss' scoped>
+a {
+  text-decoration: none;
+}
+</style>

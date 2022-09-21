@@ -152,6 +152,10 @@ module.exports = {
     }
   },
 
+  env: {
+    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it'
+  },
+
   /**
    * Axios module configuration
    * See https://axios.nuxtjs.org/options
