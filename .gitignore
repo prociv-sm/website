@@ -11,3 +11,4 @@ sitemap.xml
 src/assets/img/.DS_Store
 src/assets/.DS_Store
 src/assets/img/vehicles/.DS_Store
+.env

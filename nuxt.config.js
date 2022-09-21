@@ -163,9 +163,9 @@ module.exports = {
   axios: {
     https: process.env.NODE_ENV === 'production',
     baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
-    credentials: true,
+    credentials: false,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'api.procivsettimomi.it',
       'Content-Type': 'application/json'
     }
   },
