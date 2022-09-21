@@ -36,7 +36,7 @@
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
-                :src="require('@/assets/img/emergency/emesanitaria-coronavirus.jpg')"
+                :src="require('@/assets/img/emergency/covid.jpg')"
                 max-height="180"
               ></v-img>
               <v-card-title>
@@ -64,7 +64,7 @@
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
-                :src="require('@/assets/img/emergency/pms9755.jpg')"
+                :src="require('@/assets/img/emergency/disasters.jpg')"
                 max-height="180"
               ></v-img>
               <v-card-title>
@@ -78,7 +78,7 @@
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
-                :src="require('@/assets/img/emergency/volontariato-dsc-0074-1.jpg')"
+                :src="require('@/assets/img/emergency/fire-hazards.jpg')"
                 max-height="180"
               ></v-img>
               <v-card-title>
@@ -92,7 +92,7 @@
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
-                :src="require('@/assets/img/emergency/976279_705075359515236_2086908150_o.jpg')"
+                :src="require('@/assets/img/emergency/logistics.jpg')"
                 max-height="180"
               ></v-img>
               <v-card-title>

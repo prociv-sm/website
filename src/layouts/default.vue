@@ -86,8 +86,8 @@ export default {
       sidebar: [
         { icon: 'home', i18n: 'menu.home', path: '/'},
         { icon: 'account-group', i18n: 'menu.about', path: '/about'},
-        { icon: 'shield-alert-outline', i18n: 'menu.activity', path: '/activity'},
-        { icon: 'office-building', i18n: 'menu.headquarters', path: '/headquarters'},
+        { icon: 'shield-alert-outline', i18n: 'menu.activity', path: '/operations'},
+        { icon: 'office-building', i18n: 'menu.headquarters', path: '/headquarter'},
         { icon: 'account-group', i18n: 'menu.volunteer', path: '/volunteer'},
         { icon: 'car-settings', i18n: 'menu.vehicles', path: '/vehicle'},
       ]
