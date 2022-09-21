@@ -78,8 +78,8 @@
         </v-list-item>
       </v-list>
     </v-card-text>
-    <v-card-actions class="text-center" v-if="bullettinCode">
-      <small>Codice allerta regionale attiva {{ bullettinCode }}</small>
+    <v-card-actions v-if="bullettinCode" class="text-center">
+      <small>Codice allerta regionale attiva: {{ bullettinCode }}</small>
     </v-card-actions>
   </v-card>
 </template>

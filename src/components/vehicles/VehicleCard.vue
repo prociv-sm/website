@@ -41,7 +41,7 @@ export default {
   methods: {
     getImgUrl(name) {
       if (!name) {
-        return require("@/assets/img/activity.jpg");
+        return require("@/assets/img/lazy.webp");
       } else {
         return require("~/assets/img/vehicles/" + name);
       }
