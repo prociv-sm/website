@@ -9,7 +9,7 @@
             <v-form>
               <v-text-field
                 v-model="intervention.title"
-                :label="$t('activity.fields.title')"
+                :label="$t('operations.fields.title')"
                 placeholder="Rimozione albero in via Roma"
                 persistent-placeholder
                 :rules="[v => !!v || $t('common.required')]"
@@ -19,7 +19,7 @@
               />
               <v-text-field
                 v-model="intervention.description"
-                :label="$t('activity.fields.description')"
+                :label="$t('operations.fields.description')"
                 placeholder="Rimozione albero in via Roma in ausilio alla polizia locale"
                 persistent-placeholder
                 :rules="[v => !!v || $t('common.required')]"
@@ -35,7 +35,7 @@
                         dense
                         class="mb-1"
                         outlined
-                        :label="$t('activity.fields.startDate')"
+                        :label="$t('operations.fields.startDate')"
                         :class="isDragging ? 'text-gray-600' : 'text-gray-900'"
                         :value="inputValue.start"
                         :rules="[v => !!v || $t('common.required')]"
@@ -46,7 +46,7 @@
                       <v-text-field
                         dense
                         outlined
-                        :label="$t('activity.fields.endDate')"
+                        :label="$t('operations.fields.endDate')"
                         :class="isDragging ? 'text-gray-600' : 'text-gray-900'"
                         :value="inputValue.end"
                         :rules="[v => !!v || $t('common.required')]"
@@ -61,7 +61,7 @@
                 :items="types"
                 item-text="text"
                 item-value="value"
-                :label="$t('activity.fields.type')"
+                :label="$t('operations.fields.type')"
                 :rules="[v => !!v || $t('common.required')]"
                 required
                 dense
@@ -69,7 +69,7 @@
               />
               <v-text-field
                 v-model="intervention.location"
-                :label="$t('activity.fields.location')"
+                :label="$t('operations.fields.location')"
                 placeholder="Via Roma 1, Settimo Milanese (MI)"
                 persistent-placeholder
                 required
@@ -109,7 +109,7 @@ export default {
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/activity.jpg" },
+      { name: "og:image", content: "/assets/img/lazy.webp" },
     ]
   },
   data() {

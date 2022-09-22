@@ -1,11 +1,11 @@
 <template>
-  <v-card :title="'Totale interventi di ' + $t('activity.type.' + activity.type)">
+  <v-card :title="'Totale interventi di ' + $t('operations.type.' + activity.type)">
     <v-list-item>
       <v-list-item-action>
-        <activity-type-icon :type="activity.type" />
+        <operation-type-icon :type="activity.type" />
       </v-list-item-action>
       <v-list-item-content>
-        <v-list-item-title>{{ $t('activity.type.' + activity.type) }}</v-list-item-title>
+        <v-list-item-title>{{ $t('operations.type.' + activity.type) }}</v-list-item-title>
       </v-list-item-content>
       <v-list-item-action>
         <v-list-item-action-text>
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import ActivityTypeIcon from "@/components/activity/ActivityTypeIcon";
+import OperationTypeIcon from "@/components/operations/OperationTypeIcon";
 export default {
-  name: "StatsCard",
-  components: { ActivityTypeIcon },
+  name: "OperationStatsCard",
+  components: { OperationTypeIcon },
   props: {
     activity: {
       type: Object,
