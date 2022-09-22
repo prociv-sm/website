@@ -107,7 +107,7 @@ export default {
       return this.alerts.hydro.identifier || this.alerts.storm.identifier || this.alerts.geo.identifier;
     },
     alertPresent() {
-      return this.alerts.hydro.severity || this.alerts.storm.severity || this.alerts.geo.severity;
+      return this.alerts.hydro.active || this.alerts.storm.active || this.alerts.geo.active;
     }
   },
   methods: {
