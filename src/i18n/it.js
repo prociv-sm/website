@@ -17,10 +17,8 @@ export default {
     home: 'Home',
     login: 'Login',
     logout: 'Logout',
-    activity: 'Interventi',
     about: 'Chi siamo',
     vehicles: 'Veicoli',
-    headquarters: 'Sede',
     volunteer: 'Volontari',
     alerts: 'Allerte',
   },
@@ -48,14 +46,10 @@ export default {
     title: 'Interventi',
     noData: 'Nessun intervento disponibile',
     add: 'Crea un\'intervento',
-  },
-  activity: {
-    title: 'Interventi',
     subtitle: 'Elenco degli interventi',
     new: 'Aggiungi un\'intervento',
     edit: 'Modifica intervento',
     delete: 'Elimina intervento',
-    noData: 'Nessun intervento disponibile',
     save: 'Salva intervento',
     cancel: 'Annulla',
     fields: {
@@ -139,5 +133,27 @@ export default {
         description: 'I cookie operativi sono utilizzati per fornire i nostri servizi e non possono essere disabilitati.'
       }
     }
+  },
+  headquarters: {
+    title: 'Sede',
+    description: 'La sede della Protezione Civile di Settimo Milanese',
+    address: 'Indirizzo',
+    maps: 'Apri in Google Maps',
+    contacts: 'Contatti utili',
+    phone: {
+      title: 'Telefono',
+      call: 'Chiama',
+      description: 'Numero per informazioni o non emergenze'
+    },
+    emergency: {
+      title: 'Telefono',
+      description: 'Numero per le emergenze'
+    },
+    email: 'Email',
+    sendMail: 'Invia una mail'
+  },
+  error: {
+    title: 'Forse non è qui!',
+    description: 'Sembra che la pagina che stavi cercando non esista più o sia stata spostata!',
   }
 }

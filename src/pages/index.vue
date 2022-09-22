@@ -21,7 +21,7 @@
               </v-col>
             </v-row>
           </v-alert>
-          <activity-list :activities="activities" :loading="loading" />
+          <operations-list :operations="operations" :loading="loading" />
         </v-col>
         <v-col cols="12" sm="12" md="4" lg="4">
           <v-card class="mb-2">
@@ -49,8 +49,7 @@
 
 <script>
 import WeatherAlert from "../components/index/WeatherAlert";
-import ActivityCard from "../components/activity/ActivityCard";
-import ActivityList from "@/components/activity/ActivityList";
+import OperationsList from "@/components/operations/OperationsList";
 import { isWeekend } from "date-fns";
 
 export default {
@@ -62,13 +61,13 @@ export default {
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/activity.jpg" },
+      { name: "og:image", content: "/assets/img/lazy.webp" },
     ]
   },
-  components: { ActivityList, WeatherAlert, ActivityCard },
+  components: { OperationsList, WeatherAlert },
   data() {
     return {
-      activities: [],
+      operations: [],
       loading: true,
       alerts: {
         hydro: {},
@@ -95,7 +94,7 @@ export default {
       this.$axios
         .get('/api/v1/activities?take=5')
         .then(response => {
-          this.activities = response.data;
+          this.operations = response.data;
           this.loading = false;
         });
     },

@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-column flex-grow-1">
     <v-container class="py-2 py-lg-4">
-      <page-title i18n="menu.activity" title='Attività' class="mb-2" />
+      <page-title i18n="operations.title" title='Attività' class="mb-2" />
       <!-- Activities list -->
       <div class="flex-grow-1 min-w-0">
         <template v-if="loading">
@@ -20,11 +20,12 @@
               v-for="stat in stats"
               :key="stat.type"
               cols="12"
+              xs="3"
               sm="6"
               md="3"
               lg="3"
             >
-              <stats-card :activity="stat" />
+              <operation-stat-card :activity="stat" />
             </v-col>
           </v-row>
           <v-divider class="mt-2" />
@@ -46,7 +47,7 @@
                 colored-border
                 type="info"
               >
-                {{ $t('activity.noData') }}
+                {{ $t('operations.noData') }}
               </v-alert>
             </template>
             <template v-slot:default="{ items }">
@@ -58,7 +59,7 @@
                   md="12"
                   lg="12"
                 >
-                  <activity-card :activity="activity" />
+                  <operation-card :activity="activity" />
                 </v-col>
               </v-row>
             </template>
@@ -70,9 +71,9 @@
 </template>
 
 <script>
-import ActivityCard from "@/components/activity/ActivityCard";
+import OperationCard from "@/components/operations/OperationCard";
 import PageTitle from "@/components/common/PageTitle";
-import StatsCard from "@/components/activity/StatsCard";
+import OperationStatCard from "@/components/operations/OperationStatCard";
 export default {
   head: {
     title: "Interventi",
@@ -82,13 +83,13 @@ export default {
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/activity.jpg" },
+      { name: "og:image", content: "/assets/img/lazy.webp" },
     ]
   },
   components: {
-    StatsCard,
+    OperationStatCard,
     PageTitle,
-    ActivityCard
+    OperationCard
   },
   data() {
     return {

@@ -18,13 +18,13 @@
         </template>
         <v-col
           v-else
-          v-for="activity in activities"
-          :key="activity.id"
+          v-for="operation in operations"
+          :key="operation.id"
           cols="12"
           md="12"
           lg="12"
         >
-          <activity-card :activity="activity" />
+          <operation-card :activity="operation" />
         </v-col>
       </v-row>
     </v-card-text>
@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import ActivityCard from "@/components/activity/ActivityCard";
+import OperationCard from "@/components/operations/OperationCard";
 export default {
-  components: { ActivityCard },
+  components: { OperationCard },
   props: {
-    activities: {
+    operations: {
       type: Array,
       required: true
     },
