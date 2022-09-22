@@ -31,8 +31,8 @@
         <v-container class="py-0 px-0 px-sm-2">
           <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/')}">{{ $t('menu.home') }}</v-btn>
           <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/about')}">{{ $t('menu.about') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/operations')}">{{ $t('menu.activity') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/headquarter')}">{{ $t('menu.headquarters') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/operations')}">{{ $t('operations.title') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/headquarter')}">{{ $t('headquarters.title') }}</v-btn>
           <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/volunteer')}">{{ $t('menu.volunteer') }}</v-btn>
           <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/vehicle')}">{{ $t('menu.vehicles') }}</v-btn>
         </v-container>

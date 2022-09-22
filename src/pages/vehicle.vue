@@ -95,7 +95,7 @@ export default {
       { name: "og:description", content: "" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/activity.jpg" },
+      { name: "og:image", content: "/assets/img/lazy.webp" },
     ]
   },
   data() {
