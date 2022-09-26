@@ -80,10 +80,10 @@ export default {
     meta: [
       // Open Graph
       { name: "og:title", content: "Interventi" },
-      { name: "og:description", content: "" },
+      { name: "og:description", content: "Gli interventi della protezione civile di Settimo Milanese" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/lazy.webp" },
+      { name: "og:image", content: "/images/snow.jpg" },
     ]
   },
   components: {

@@ -131,18 +131,12 @@ export default {
   head: {
     title: "Allerte",
     meta: [
-      { name: "og:title", content: "Lista delle attività" },
-      {
-        name: "og:description",
-        content:
-          "La lista delle attività svolte dal gruppo di protezione civile"
-      },
+      // Open Graph
+      { name: "og:title", content: "Allerte" },
+      { name: "og:description", content: "Le allerte sul territorio di Settimo Milanese" },
       { name: "og:type", content: "website" },
-      {
-        name: "og:url",
-        content: "https://protezionecivile-settimomilanese.it/activity"
-      },
-      { name: "og:image", content: "https://nuxtjs.org/meta_640.png" }
+      { name: "og:url", content: "https://procivsettimomi.it" },
+      { name: "og:image", content: "/images/snow.jpg" },
     ]
   },
   components: {

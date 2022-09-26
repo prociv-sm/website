@@ -128,11 +128,11 @@ export default {
     title: "Sede",
     meta: [
       // Open Graph
-      { name: "og:title", content: "Sede" },
-      { name: "og:description", content: "" },
+      { name: "og:title", content: "La nostra sede" },
+      { name: "og:description", content: "La sede e i contatti utili della Protezione civile di Settimo Milanese" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/lazy.webp" },
+      { name: "og:image", content: "/images/snow.jpg" },
     ]
   }
 };

@@ -39,6 +39,7 @@
             name="username"
             outlined
             dense
+            aria-label="Inserisci il tuo username"
             :disabled="basicAuthEnabled || cookieActive"
             @keyup.enter="authenticate"
             @change="resetErrors"
@@ -53,6 +54,7 @@
             :error-messages="errorMessages"
             :label="$t('common.password') + ' *'"
             name="password"
+            aria-label="Inserisci la tua password"
             outlined
             dense
             @change="resetErrors"
@@ -86,7 +88,7 @@
       </v-card-actions>
       <v-divider />
       <div class="text-center mt-1">
-        Developed by <a class="text-decoration-none" href="https://andreacw.dev/" target="_blank" style="color: #0066cc">Andrea Tombolato</a>
+        Developed by <a class="text-decoration-none" href="https://andreatombolato.dev/" target="_blank" style="color: #0066cc">Andrea Tombolato</a>
       </div>
     </v-card>
   </div>
@@ -123,11 +125,12 @@ export default {
     return {
       title: this.$i18n.t('auth.login.title'),
       meta: [
-        {
-          hid: 'loginPage',
-          name: this.$i18n.t('auth.login.title'),
-          content: 'My custom description'
-        }
+        // Open Graph
+        { name: "og:title", content: "Accedi" },
+        { name: "og:description", content: "Sito web della protezione civile di Settimo Milanese" },
+        { name: "og:type", content: "website" },
+        { name: "og:url", content: "https://procivsettimomi.it" },
+        { name: "og:image", content: "/images/snow.jpg" },
       ]
     }
   },

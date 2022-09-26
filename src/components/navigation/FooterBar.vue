@@ -4,7 +4,7 @@
       <div class="overline" style="color: white">
         Built with
         <v-icon small color="pink">mdi-heart</v-icon> by
-        <a class="text-decoration-none" href="https://andreacw.dev/" target="_blank" style="color: white">Andrea Tombolato</a>
+        <a class="text-decoration-none" href="https://andreatombolato.dev/" target="_blank" style="color: white">Andrea Tombolato</a>
       </div>
     </v-container>
   </v-footer>

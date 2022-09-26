@@ -92,10 +92,10 @@ export default {
     meta: [
       // Open Graph
       { name: "og:title", content: "Veicoli" },
-      { name: "og:description", content: "" },
+      { name: "og:description", content: "I veicoli della protezione civile di Settimo Milanese" },
       { name: "og:type", content: "website" },
       { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/lazy.webp" },
+      { name: "og:image", content: "/images/snow.jpg" },
     ]
   },
   data() {
