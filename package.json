@@ -1,6 +1,6 @@
 {
   "name": "prociv-website",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Sito della protezione civile di settimo milanese",
   "author": "Andrea Tombolato <andreacw96@gmail.com> (https://github.com/andreacw5)",
   "private": true,
@@ -23,7 +23,9 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/eslint-config": "^6.0.1",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/sitemap": "^2.4.0",
+    "@snyk/protect": "^1.1012.0",
     "axios": "^0.27.2",
     "babel-eslint": "^10.1.0",
     "cookie-universal-nuxt": "^2.1.5",
@@ -39,8 +41,7 @@
     "firebase": "^9.9.0",
     "nuxt": "^2.15.8",
     "nuxt-i18n": "^6.28.1",
-    "v-calendar": "^2.4.1",
-    "@snyk/protect": "latest"
+    "v-calendar": "^2.4.1"
   },
   "devDependencies": {
     "@nuxt/types": "~2.15.8",

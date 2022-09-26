@@ -6,7 +6,6 @@ module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - ProCiv Settimo M.se',
-    title: 'Home' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
@@ -39,7 +38,7 @@ module.exports = {
   plugins: [
     { src: "~/plugins/vuetify" },
     { src: '~/plugins/notifier.js' },
-    { src: '~/plugins/calendar.js' },
+    { src: '~/plugins/calendar.js', ssr: false },
     // Filters
     { src: '~/filters/formatDate.js' }
   ],
@@ -57,6 +56,7 @@ module.exports = {
     }],
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/pwa',
     ['nuxt-i18n', {
       detectBrowserLanguage: false,
       locales: [{
@@ -85,9 +85,18 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/sitemap-module
     hostname: "https://procivsettimomi.it/",
     gzip: true,
+    exclude: [
+      'operations/**',
+      'en/operations/**'
+    ],
     routes: [
       {
         url: "/",
+        changefreq: "daily",
+        priority: 1.0
+      },
+      {
+        url: "/en",
         changefreq: "daily",
         priority: 1.0
       },
@@ -98,8 +107,13 @@ module.exports = {
       },
       {
         url: "/operations",
-        changefreq: "monthly",
-        priority: 0.5
+        changefreq: "daily",
+        priority: 1.0
+      },
+      {
+        url: "en/operations",
+        changefreq: "daily",
+        priority: 1.0
       },
       {
         url: "/headquarter",
@@ -112,11 +126,22 @@ module.exports = {
         priority: 0.5
       },
       {
-        url: "/vehicle",
+        url: "/vehicles",
         changefreq: "monthly",
         priority: 0.5
       }
     ]
+  },
+
+  /**
+   * PWA module configuration
+   * See https://pwa.nuxtjs.org
+   */
+  pwa: {
+    icon: {
+      source: 'static/index.png',
+      filename: 'index.png'
+    }
   },
 
   /**
@@ -152,7 +177,8 @@ module.exports = {
   },
 
   env: {
-    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it'
+    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
+    BASE_URL: process.env.BASE_URL || 'https://procivsettimomi.it'
   },
 
   /**
