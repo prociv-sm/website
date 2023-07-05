@@ -8,11 +8,47 @@ module.exports = {
     titleTemplate: '%s - ProCiv Settimo M.se',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'msapplication-TileColor',
+        content: '#da532c'
+      },
+      {
+        name: 'theme-color',
+        content: '#ffffff'
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/index.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon/favicon-16x16.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon/favicon-32x32.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicon/apple-touch-icon.png'
+      },
+      {
+        rel: 'mask-icon',
+        href: '/favicon/safari-pinned-tab.svg',
+        color: '#5a5a5a'
+      },
+      {
+        rel: 'manifest',
+        href: '/favicon/site.webmanifest'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap'
+      },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
     ],
     htmlAttrs: {
@@ -56,7 +92,6 @@ module.exports = {
     }],
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/pwa',
     ['nuxt-i18n', {
       detectBrowserLanguage: false,
       locales: [{
@@ -96,14 +131,13 @@ module.exports = {
   },
 
   /**
-   * PWA module configuration
-   * See https://pwa.nuxtjs.org
+   * Robots modules configuration
+   * See https://github.com/nuxt-modules/robots
    */
-  pwa: {
-    icon: {
-      source: 'static/index.png',
-      filename: 'index.png'
-    }
+  robots: {
+    UserAgent: '*',
+    Disallow: ['/user', '/admin'],
+    Sitemap: 'https://procivsettimomi.it/sitemap.xml'
   },
 
   /**

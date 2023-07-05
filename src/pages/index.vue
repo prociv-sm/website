@@ -50,42 +50,28 @@
 <script>
 import WeatherAlert from "../components/index/WeatherAlert";
 import OperationsList from "@/components/operations/OperationsList";
+import SEO from '@/mixins/SEO'
 import { isWeekend } from "date-fns";
 
 export default {
-  head() {
-    return {
-      title: "Homepage",
-      meta:[
-        { hid: 'og:title', name: "og:title", content: "Homepage" },
-        { hid: 'og:description', name: "og:description", content: "Sito web della protezione civile di Settimo Milanese" },
-        { hid: 'og:type', name: "og:type", content: "website" },
-        { hid: 'og:url', name: "og:url", content: process.env.BASE_URL },
-        { hid: 'og:image', name: "og:image", content: process.env.BASE_URL + "/meta/homepage.jpg" },
-
-        // twitter card
-        { hid: "twitter:title", name: "twitter:title", content: process.env.BASE_URL + "/meta/homepage.jpg"},
-        { hid: "twitter:url", name: "twitter:url", content: process.env.BASE_URL },
-        { hid: 'twitter:description', name: 'twitter:description', content: "Sito web della protezione civile di Settimo Milanese" },
-        { hid: "twitter:image", name: "twitter:image", content: process.env.BASE_URL + "/meta/homepage.jpg"},
-      ],
-      link: [
-        { hid: "canonical", rel: "canonical", href: process.env.BASE_URL },
-      ]
-    }
-  },
+  mixins: [SEO],
+  data: () => ({
+    operations: [],
+    loading: true,
+    alerts: {
+      hydro: {},
+      storm: {},
+      geo: {}
+    },
+    seo: {
+      title: 'Homepage',
+      type: 'website',
+      image: process.env.BASE_URL + "/meta/homepage.jpg",
+      published: '2023-03-01T10:00:00Z',
+      modified: '2023-03-01T10:00:00Z',
+    },
+  }),
   components: { OperationsList, WeatherAlert },
-  data() {
-    return {
-      operations: [],
-      loading: true,
-      alerts: {
-        hydro: {},
-        storm: {},
-        geo: {}
-      }
-    };
-  },
   async created() {
     await this.fetchData();
     await this.requestStormAlert();
