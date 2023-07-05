@@ -84,52 +84,14 @@ module.exports = {
   sitemap: {
     // Doc: https://github.com/nuxt-community/sitemap-module
     hostname: "https://procivsettimomi.it/",
+    path: '/sitemap.xml',
+    i18n: true,
     gzip: true,
     exclude: [
-      'operations/**',
-      'en/operations/**'
-    ],
-    routes: [
-      {
-        url: "/",
-        changefreq: "daily",
-        priority: 1.0
-      },
-      {
-        url: "/en",
-        changefreq: "daily",
-        priority: 1.0
-      },
-      {
-        url: "/about",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/operations",
-        changefreq: "daily",
-        priority: 1.0
-      },
-      {
-        url: "en/operations",
-        changefreq: "daily",
-        priority: 1.0
-      },
-      {
-        url: "/headquarter",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/volunteer",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/vehicles",
-        changefreq: "monthly",
-        priority: 0.5
-      }
+      '/user',
+      '/en/user',
+      '/auth',
+      '/en/auth'
     ]
   },
 
@@ -190,8 +152,9 @@ module.exports = {
     baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
     credentials: false,
     headers: {
-      'Access-Control-Allow-Origin': 'api.procivsettimomi.it',
-      'Content-Type': 'application/json'
+      common: {
+        'Accept': 'application/json, text/plain, */*'
+      }
     }
   },
 
