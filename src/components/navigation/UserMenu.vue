@@ -27,7 +27,7 @@
         </v-list-item>
         <v-divider />
         <!-- Intervention add -->
-        <v-list-item class="my-1" nuxt :to="{ path: localePath('/operations/new')}" aria-label="Fai clic per aggiungere un'intervento" >
+        <v-list-item v-if="userIsAdmin" class="my-1" nuxt :to="{ path: localePath('/operations/new')}" aria-label="Fai clic per aggiungere un'intervento" >
           <v-list-item-icon>
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>

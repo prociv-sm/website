@@ -23,7 +23,7 @@
         <v-spacer />
         <!-- Access admin section -->
         <user-menu v-if="isLoggedIn" />
-        <v-btn v-else icon nuxt to="/auth/login">
+        <v-btn v-else icon nuxt :to="{ path: localePath('/auth/login')}">
           <v-icon color="#ffffff">mdi-login</v-icon>
         </v-btn>
       </v-container>
