@@ -2,8 +2,8 @@
   <div>
     <v-card class="text-center pa-1">
       <!-- Replace it with asset logo -->
-      <v-card-title class="justify-center display-1" style="color: #0066cc">Protezione Civile</v-card-title>
-      <v-card-subtitle style="color: #0066cc">Comune di Settimo Milanese</v-card-subtitle>
+      <v-card-title class="justify-center display-1" style="color: #0066cc">{{ $t('title') }}</v-card-title>
+      <v-card-subtitle style="color: #0066cc">{{ $t('zone') }}</v-card-subtitle>
       <v-divider />
       <v-alert v-if="cookieActive" outlined type="info" icon="mdi-cookie" colored-border border="left" prominent>
         I cookie sono attualmente disattivati senza non è possibile accedere al sito. <a :href="localePath('/')">Torna alla home e attiva i cookie.</a>
