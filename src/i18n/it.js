@@ -107,12 +107,23 @@ export default {
     }
   },
   users: {
-    list: 'Elenco volontari',
+    fields: {
+      name: 'Nome',
+      surname: 'Cognome',
+      username: 'Nome utente',
+      email: 'Email',
+      phone: 'Telefono',
+      role: 'Ruolo',
+      actions: 'Azioni'
+    },
+    list: 'Elenco utenti',
     internal: {
       volunteer: 'Volontario',
       supervisor: 'Referente di turno',
       chief: 'Coordinatore'
-    }
+    },
+    delete: 'Elimina utente',
+    edit: 'Modifica utente',
   },
   alerts: {
     title: 'Allerte',

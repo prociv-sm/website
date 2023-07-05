@@ -33,6 +33,13 @@
           </v-list-item-icon>
           <v-list-item-title>{{ $t('operations.add') }}</v-list-item-title>
         </v-list-item>
+        <!-- User list -->
+        <v-list-item v-if="userIsAdmin" class="my-1" nuxt exact :to="{ path: localePath('/users')}" aria-label="Fai clic per visualizzare la lista degli utenti" >
+          <v-list-item-icon>
+            <v-icon>mdi-table</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>{{ $t('users.list') }}</v-list-item-title>
+        </v-list-item>
         <!-- user logout -->
         <v-list-item @click.prevent="logout" aria-label="Fai clic per disconneterti dall'account">
           <v-list-item-icon>
@@ -53,6 +60,9 @@ export default {
   computed: {
     user () {
       return this.$auth.user
+    },
+    userIsAdmin () {
+      return this.user.internal === 'supervisor' || this.user.internal === 'chief'
     }
   },
   methods: {
