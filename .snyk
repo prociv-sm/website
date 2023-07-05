@@ -6,3 +6,5 @@ patch:
   SNYK-JS-LODASH-567746:
     - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-on > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
         patched: '2022-09-21T05:56:13.948Z'
+    - nuxt > @nuxt/builder > @nuxt/webpack > @nuxt/babel-preset-app > @vue/babel-preset-jsx > @vue/babel-sugar-v-model > @vue/babel-plugin-transform-vue-jsx > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2022-09-23T06:31:56.215Z'

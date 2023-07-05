@@ -10,14 +10,14 @@
             type="success"
           >
             <h3 class="text-h5">
-              Turnazione settimanale attiva
+              {{ $t('operations.turnation.active') }}
             </h3>
             <v-row
               align="center"
               no-gutters
             >
               <v-col class="grow">
-                Squadra in sede dal Lunedì al Venerdì dalle 21:00 alle 24:00
+                {{ $t('operations.turnation.description') }}
               </v-col>
             </v-row>
           </v-alert>
@@ -50,32 +50,28 @@
 <script>
 import WeatherAlert from "../components/index/WeatherAlert";
 import OperationsList from "@/components/operations/OperationsList";
+import SEO from '@/mixins/SEO'
 import { isWeekend } from "date-fns";
 
 export default {
-  head: {
-    title: "Home",
-    meta: [
-      // Open Graph
-      { name: "og:title", content: "Home" },
-      { name: "og:description", content: "" },
-      { name: "og:type", content: "website" },
-      { name: "og:url", content: "https://procivsettimomi.it" },
-      { name: "og:image", content: "/assets/img/lazy.webp" },
-    ]
-  },
+  mixins: [SEO],
+  data: () => ({
+    operations: [],
+    loading: true,
+    alerts: {
+      hydro: {},
+      storm: {},
+      geo: {}
+    },
+    seo: {
+      title: 'Homepage',
+      type: 'website',
+      image: process.env.BASE_URL + "/meta/homepage.jpg",
+      published: '2023-03-01T10:00:00Z',
+      modified: '2023-03-01T10:00:00Z',
+    },
+  }),
   components: { OperationsList, WeatherAlert },
-  data() {
-    return {
-      operations: [],
-      loading: true,
-      alerts: {
-        hydro: {},
-        storm: {},
-        geo: {}
-      }
-    };
-  },
   async created() {
     await this.fetchData();
     await this.requestStormAlert();

@@ -60,6 +60,11 @@ export default {
       startDate: 'Data di inizio',
       endDate: 'Data di fine',
     },
+    turnation: {
+      active:'Turnazione settimanale attiva',
+      inactive: 'Turnazione settimanale non attiva',
+      description: 'Squadra in sede dal Lunedì al Venerdì dalle 21:00 alle 24:00'
+    },
     type: {
       tecnical: 'Tecnico',
       fire: 'Incendio',
@@ -102,6 +107,7 @@ export default {
     }
   },
   users: {
+    list: 'Elenco volontari',
     internal: {
       volunteer: 'Volontario',
       supervisor: 'Referente di turno',
@@ -124,7 +130,7 @@ export default {
   },
   cookies: {
     title: 'Oh no! Utilizziamo i cookie su questo sito!',
-    description: 'Utilizziamo cookie e strumenti simili (collettivamente "cookie") ai fini descritti in basso e applicheremo le tue preferenze relative ai cookie su questo dispositivo. Se dovessi utilizzare un altro dispositivo, potrebbe esserti chiesto di fornire nuovamente il tuo consenso.',
+    description: 'Utilizziamo cookie e strumenti simili (collettivamente "cookie") ai fini descritti in basso e applicheremo le tue preferenze relative ai cookie su questo dispositivo.',
     accept: 'Accetta tutti i cookie',
     deny: 'Rifiuta tutti i cookie',
     type: {

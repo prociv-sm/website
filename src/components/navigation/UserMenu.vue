@@ -1,7 +1,7 @@
 <template>
   <v-menu offset-y left transition="slide-y-transition" close-delay='700'>
     <template #activator="{ on }">
-      <v-btn icon class="elevation-2" v-on="on">
+      <v-btn icon class="elevation-2" v-on="on" aria-label="Fai clic per visualizzare il menù utente">
         <v-avatar
           size="35px"
           color="grey lighten-4"
@@ -27,14 +27,14 @@
         </v-list-item>
         <v-divider />
         <!-- Intervention add -->
-        <v-list-item class="my-1" nuxt :to="{ path: localePath('/operations/new')}" >
+        <v-list-item v-if="userIsAdmin" class="my-1" nuxt :to="{ path: localePath('/operations/new')}" aria-label="Fai clic per aggiungere un'intervento" >
           <v-list-item-icon>
             <v-icon>mdi-plus</v-icon>
           </v-list-item-icon>
           <v-list-item-title>{{ $t('operations.add') }}</v-list-item-title>
         </v-list-item>
         <!-- user logout -->
-        <v-list-item @click.prevent="logout">
+        <v-list-item @click.prevent="logout" aria-label="Fai clic per disconneterti dall'account">
           <v-list-item-icon>
             <v-icon>mdi-exit-run</v-icon>
           </v-list-item-icon>

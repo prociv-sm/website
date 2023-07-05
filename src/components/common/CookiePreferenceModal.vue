@@ -10,13 +10,20 @@
         disabled
         label="Cookie operativi (Necessari al funzionamento del sito)"
       />
-      <p style="margin-bottom: 5px !important;">I cookie operativi sono utilizzati per fornire i nostri servizi, in caso di rifiuto il sito non funzionerà correttamente.</p>
-      <p style="margin-bottom: 5px !important;">Di seguito i cookie utilizzati nel sito:</p>
-      <ul>
-        <li><strong>GDPR:accepted</strong>: Utilizzato per salvare la tua preferenza sui cookie (Persiste 14 giorni)</li>
-        <li><strong>access_token</strong>: Utilizzato per salvare il tuo token di accesso (Persiste 7 giorni, non presente se non autenticato)</li>
-        <li><strong>user</strong>: Informazioni sull'utente connesso (Persiste 7 giorni, non presente se non autenticato)</li>
-      </ul>
+      <p style="margin-bottom: 5px !important;">I cookie operativi sono utilizzati per fornire i nostri servizi, in caso di rifiuto non potrai accedere a tutte le funzionalità del sito.</p>
+      <v-expansion-panels class='my-2'>
+        <v-expansion-panel>
+          <v-expansion-panel-header><strong>Cookie presenti sul sito</strong></v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <p style="margin-bottom: 5px !important;">Di seguito i cookie presenti sul sito:</p>
+            <ul>
+              <li><strong>GDPR:accepted</strong>: Utilizzato per salvare la tua preferenza sui cookie (Persiste 14 giorni)</li>
+              <li><strong>access_token</strong>: Utilizzato per salvare il tuo token di accesso (Persiste 7 giorni, non presente se non autenticato)</li>
+              <li><strong>user</strong>: Informazioni sull'utente connesso (Persiste 7 giorni, non presente se non autenticato)</li>
+            </ul>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
       <v-expansion-panels class='my-2'>
         <v-expansion-panel>
           <v-expansion-panel-header><strong>Ulteriori informazioni sui cookie operativi</strong></v-expansion-panel-header>

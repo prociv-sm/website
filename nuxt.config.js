@@ -6,14 +6,49 @@ module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - ProCiv Settimo M.se',
-    title: 'Home' || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'msapplication-TileColor',
+        content: '#da532c'
+      },
+      {
+        name: 'theme-color',
+        content: '#ffffff'
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/index.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap' },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon/favicon-16x16.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon/favicon-32x32.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicon/apple-touch-icon.png'
+      },
+      {
+        rel: 'mask-icon',
+        href: '/favicon/safari-pinned-tab.svg',
+        color: '#5a5a5a'
+      },
+      {
+        rel: 'manifest',
+        href: '/favicon/site.webmanifest'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Titillium%20Web:wght@300;400;500;600;700&display=swap'
+      },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css' }
     ],
     htmlAttrs: {
@@ -39,7 +74,7 @@ module.exports = {
   plugins: [
     { src: "~/plugins/vuetify" },
     { src: '~/plugins/notifier.js' },
-    { src: '~/plugins/calendar.js' },
+    { src: '~/plugins/calendar.js', ssr: false },
     // Filters
     { src: '~/filters/formatDate.js' }
   ],
@@ -84,39 +119,25 @@ module.exports = {
   sitemap: {
     // Doc: https://github.com/nuxt-community/sitemap-module
     hostname: "https://procivsettimomi.it/",
+    path: '/sitemap.xml',
+    i18n: true,
     gzip: true,
-    routes: [
-      {
-        url: "/",
-        changefreq: "daily",
-        priority: 1.0
-      },
-      {
-        url: "/about",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/operations",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/headquarter",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/volunteer",
-        changefreq: "monthly",
-        priority: 0.5
-      },
-      {
-        url: "/vehicle",
-        changefreq: "monthly",
-        priority: 0.5
-      }
+    exclude: [
+      '/user',
+      '/en/user',
+      '/auth',
+      '/en/auth'
     ]
+  },
+
+  /**
+   * Robots modules configuration
+   * See https://github.com/nuxt-modules/robots
+   */
+  robots: {
+    UserAgent: '*',
+    Disallow: ['/user', '/admin'],
+    Sitemap: 'https://procivsettimomi.it/sitemap.xml'
   },
 
   /**
@@ -152,7 +173,8 @@ module.exports = {
   },
 
   env: {
-    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it'
+    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
+    BASE_URL: process.env.BASE_URL || 'https://procivsettimomi.it'
   },
 
   /**
@@ -164,8 +186,9 @@ module.exports = {
     baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
     credentials: false,
     headers: {
-      'Access-Control-Allow-Origin': 'api.procivsettimomi.it',
-      'Content-Type': 'application/json'
+      common: {
+        'Accept': 'application/json, text/plain, */*'
+      }
     }
   },
 

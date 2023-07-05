@@ -2,7 +2,13 @@
   <div>
     <v-app-bar color="#0066cc">
       <v-container class="py-0 px-0 px-sm-2 fill-height">
-        <v-app-bar-nav-icon class='hidden-md-and-up' @click="toggleDrawer()" style="color: white; font-size: larger"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          class='hidden-md-and-up'
+          @click="toggleDrawer()"
+          data-baseweb="button"
+          style="color: white; font-size: larger"
+          aria-label="Fai clic per visualizzare altre opzioni del menù"
+        ></v-app-bar-nav-icon>
         <v-app-bar-title style="color: white; font-weight: bold; line-height: 1.2;">
           <v-row class="hidden-sm-and-down">
             <v-col cols="3" style="padding-right: 0 !important;">
@@ -23,18 +29,18 @@
         <v-spacer />
         <!-- Access admin section -->
         <user-menu v-if="isLoggedIn" />
-        <v-btn v-else icon nuxt to="/auth/login">
+        <v-btn v-else icon nuxt :to="{ path: localePath('/auth/login')}" aria-label="Fai clic per accedere">
           <v-icon color="#ffffff">mdi-login</v-icon>
         </v-btn>
       </v-container>
       <template v-slot:extension>
         <v-container class="py-0 px-0 px-sm-2">
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/')}">{{ $t('menu.home') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/about')}">{{ $t('menu.about') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/operations')}">{{ $t('operations.title') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/headquarter')}">{{ $t('headquarters.title') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/volunteer')}">{{ $t('menu.volunteer') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/vehicle')}">{{ $t('menu.vehicles') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/')}" aria-label="Fai clic per andare alla home">{{ $t('menu.home') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/about')}" aria-label="Fai clic per scoprire di più sul gruppo">{{ $t('menu.about') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/operations')}" aria-label="Fai clic per andare alla lista interventi">{{ $t('operations.title') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/headquarter')}" aria-label="Fai clic per visualizzare la sede">{{ $t('headquarters.title') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/volunteer')}" aria-label="Fai clic per scoprire i nostri volontari">{{ $t('menu.volunteer') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/vehicles')}" aria-label="Fai clic per visualizzare i nostri veicoli">{{ $t('menu.vehicles') }}</v-btn>
         </v-container>
       </template>
     </v-app-bar>
