@@ -1,6 +1,6 @@
 <template>
   <v-card class="card" outlined>
-    <v-img height="240" :lazy-src="require('@/assets/img/lazy.webp')" :src="getImgUrl(vehicle.image)" />
+    <v-img height="240" :lazy-src="require('@/assets/img/lazy.webp')" :src="vehicle.image" />
     <v-card-actions>
       {{ vehicle.brand }} {{ vehicle.model }}
       <v-spacer />
@@ -36,15 +36,6 @@ export default {
     vehicle: {
       type: Object,
       required: true
-    }
-  },
-  methods: {
-    getImgUrl(name) {
-      if (!name) {
-        return require("@/assets/img/lazy.webp");
-      } else {
-        return require("~/assets/img/vehicles/" + name);
-      }
     }
   }
 };
