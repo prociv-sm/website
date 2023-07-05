@@ -35,12 +35,12 @@
       </v-container>
       <template v-slot:extension>
         <v-container class="py-0 px-0 px-sm-2">
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/')}" aria-label="Fai clic per andare alla home">{{ $t('menu.home') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/about')}" aria-label="Fai clic per scoprire di più sul gruppo">{{ $t('menu.about') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/operations')}" aria-label="Fai clic per andare alla lista interventi">{{ $t('operations.title') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/headquarter')}" aria-label="Fai clic per visualizzare la sede">{{ $t('headquarters.title') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/volunteer')}" aria-label="Fai clic per scoprire i nostri volontari">{{ $t('menu.volunteer') }}</v-btn>
-          <v-btn text color="#ffffff" nuxt :to="{ path: localePath('/vehicles')}" aria-label="Fai clic per visualizzare i nostri veicoli">{{ $t('menu.vehicles') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/')}" aria-label="Fai clic per andare alla home">{{ $t('menu.home') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/about')}" aria-label="Fai clic per scoprire di più sul gruppo">{{ $t('menu.about') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/operations')}" aria-label="Fai clic per andare alla lista interventi">{{ $t('operations.title') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/headquarter')}" aria-label="Fai clic per visualizzare la sede">{{ $t('headquarters.title') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/volunteer')}" aria-label="Fai clic per scoprire i nostri volontari">{{ $t('menu.volunteer') }}</v-btn>
+          <v-btn text color="#ffffff" nuxt exact :to="{ path: localePath('/vehicles')}" aria-label="Fai clic per visualizzare i nostri veicoli">{{ $t('menu.vehicles') }}</v-btn>
         </v-container>
       </template>
     </v-app-bar>
