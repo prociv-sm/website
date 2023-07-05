@@ -4450,7 +4450,7 @@ convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-cookie-universal-nuxt@^2.1.5:
+cookie-universal-nuxt@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/cookie-universal-nuxt/-/cookie-universal-nuxt-2.2.2.tgz#107815f03f5b769de7018670d6370368205387bb"
   integrity sha512-Pr6P5UCzl1EAvPh7z7jFkknBw0KTdykm6gFmPHrH4LV9s3flVmAH0ZP/ZqUXcp6b0SKZfizkn+XR1cO+QinGhQ==
@@ -4837,7 +4837,7 @@ date-fns-tz@^1.1.4:
   resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.7.tgz#e8e9d2aaceba5f1cc0e677631563081fdcb0e69a"
   integrity sha512-1t1b8zyJo+UI8aR+g3iqr5fkUHWpd58VBx8J/ZSQ+w7YrGlw80Ag4sA86qkfCXRBLmMc4I2US+aPMd4uKvwj5g==
 
-date-fns-tz@^1.3.6:
+date-fns-tz@^1.3.8:
   version "1.3.8"
   resolved "https://registry.yarnpkg.com/date-fns-tz/-/date-fns-tz-1.3.8.tgz#083e3a4e1f19b7857fa0c18deea6c2bc46ded7b9"
   integrity sha512-qwNXUFtMHTTU6CFSFjoJ80W8Fzzp24LntbjFFBgL/faqds4e5mo9mftoRLgr3Vi1trISsg4awSpYVsOQCRnapQ==
@@ -4847,7 +4847,7 @@ date-fns@^2.22.1:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.2.tgz#0d4b3d0f3dff0f920820a070920f0d9662c51931"
   integrity sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==
 
-date-fns@^2.29.2:
+date-fns@^2.30.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.30.0.tgz#f367e644839ff57894ec6ac480de40cae4b0f4d0"
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
@@ -5933,7 +5933,7 @@ find-up@^4.0.0, find-up@^4.1.0:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
 
-firebase@^9.9.0:
+firebase@^9.23.0:
   version "9.23.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.23.0.tgz#71fea60d704bfed8e92162911544fd6564a04d0e"
   integrity sha512-/4lUVY0lUvBDIaeY1q6dUYhS8Sd18Qb9CgWkPZICUo9IXpJNCEagfNZXBBFCkMTTN5L5gx2Hjr27y21a9NzUcA==
@@ -8149,7 +8149,7 @@ nuxt-i18n@^6.28.1:
     ufo "^0.7.7"
     vue-i18n "^8.25.0"
 
-nuxt@^2.15.8:
+nuxt@2.17.0:
   version "2.17.0"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-2.17.0.tgz#419de827175d36e206a6f0e9b70b02bebec1cbd4"
   integrity sha512-+xEB8VReXqvSVvizBQ2mpV4nW8U3o2r4fctJ1XIzxgvYszrUSXeQf2mfF/1kKpJJTdReNMspaF6UCB7qz2bkYw==
