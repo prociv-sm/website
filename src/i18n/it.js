@@ -60,6 +60,11 @@ export default {
       startDate: 'Data di inizio',
       endDate: 'Data di fine',
     },
+    turnation: {
+      active:'Turnazione settimanale attiva',
+      inactive: 'Turnazione settimanale non attiva',
+      description: 'Squadra in sede dal Lunedì al Venerdì dalle 21:00 alle 24:00'
+    },
     type: {
       tecnical: 'Tecnico',
       fire: 'Incendio',
@@ -102,6 +107,7 @@ export default {
     }
   },
   users: {
+    list: 'Elenco volontari',
     internal: {
       volunteer: 'Volontario',
       supervisor: 'Referente di turno',

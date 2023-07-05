@@ -10,14 +10,14 @@
             type="success"
           >
             <h3 class="text-h5">
-              Turnazione settimanale attiva
+              {{ $t('operations.turnation.active') }}
             </h3>
             <v-row
               align="center"
               no-gutters
             >
               <v-col class="grow">
-                Squadra in sede dal Lunedì al Venerdì dalle 21:00 alle 24:00
+                {{ $t('operations.turnation.description') }}
               </v-col>
             </v-row>
           </v-alert>
