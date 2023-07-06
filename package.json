@@ -25,7 +25,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@snyk/protect": "^1.1187.0",
+    "@snyk/protect": "latest",
     "babel-eslint": "^10.1.0",
     "cookie-universal-nuxt": "^2.2.2",
     "core-js": "^3.23.5",
