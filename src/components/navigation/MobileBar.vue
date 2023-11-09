@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return this.$auth.loggedIn
+      return this.$store.getters['auth/isLoggedIn']
     }
   }
 };

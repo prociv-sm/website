@@ -91,7 +91,6 @@ module.exports = {
       }
     }],
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
     ['nuxt-i18n', {
       detectBrowserLanguage: false,
       locales: [{
@@ -140,38 +139,6 @@ module.exports = {
     Sitemap: 'https://procivsettimomi.it/sitemap.xml'
   },
 
-  /**
-   * auth modules conf
-   * See https://dev.auth.nuxtjs.org/api/auth/
-   */
-  auth: {
-    baseUrl: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
-    redirect: {
-      login: '/auth/login',
-      logout: '/',
-      home: '/'
-    },
-    strategies: {
-      local: {
-        scheme: 'token',
-        endpoints: {
-          login: { url: '/api/v1/auth/login', method: 'post' },
-          user: false,
-          logout: false
-        },
-        user: {
-          property: false,
-          autoFetch: false
-        },
-        token: {
-          property: 'access_token',
-          global: true,
-          type: 'Bearer'
-        }
-      }
-    }
-  },
-
   env: {
     API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
     BASE_URL: process.env.BASE_URL || 'https://procivsettimomi.it'
@@ -184,7 +151,7 @@ module.exports = {
   axios: {
     https: process.env.NODE_ENV === 'production',
     baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
-    credentials: false,
+    credentials: 'include',
     headers: {
       common: {
         'Accept': 'application/json, text/plain, */*'

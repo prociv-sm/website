@@ -35,7 +35,7 @@ import UsersActions from "~/components/users/UserActions.vue";
 export default {
   name: "AddOperation",
   components: { UsersActions, PageTitle },
-  middleware: 'auth',
+  middleware: 'isAuthenticated',
   head: {
     title: "Users",
     meta: [
@@ -67,11 +67,6 @@ export default {
       ],
       loading: true,
       users: []
-    }
-  },
-  computed: {
-    loggedIn () {
-      return this.$auth.loggedIn
     }
   },
   methods: {

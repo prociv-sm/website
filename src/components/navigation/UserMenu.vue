@@ -59,7 +59,7 @@ export default {
   name: "UserMenu",
   computed: {
     user () {
-      return this.$auth.user
+      return this.$store.getters['auth/user']
     },
     userIsAdmin () {
       return this.user.internal === 'supervisor' || this.user.internal === 'chief'
@@ -67,11 +67,7 @@ export default {
   },
   methods: {
     async logout () {
-      // Clean cookies
-      this.$auth.$storage.removeCookie('access_token')
-      this.$auth.$storage.removeCookie('user')
-      // Execute logout
-      await this.$auth.logout()
+      await this.$store.dispatch('auth/logout')
     }
   }
 }

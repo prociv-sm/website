@@ -5,66 +5,28 @@
       <v-card-title class="justify-center display-1" style="color: #0066cc">{{ $t('title') }}</v-card-title>
       <v-card-subtitle style="color: #0066cc">{{ $t('zone') }}</v-card-subtitle>
       <v-divider />
-      <v-card-title class="justify-center display-1 mb-1">{{ $t('auth.login.title') }}</v-card-title>
+      <v-card-title class="justify-center display-1 mb-1">
+        Insert the code you received on the mobile authentication app
+      </v-card-title>
       <!-- sign in form -->
       <v-card-text>
-        <v-alert
-          v-if="firstAccess"
-          border="left"
-          colored-border
-          dense
-          type="success"
-        >
-          Sei registrato! Ora puoi effettuare il login.
-        </v-alert>
-        <v-alert
-          v-if="passwordChanged"
-          border="left"
-          colored-border
-          dense
-          type="success"
-        >
-          Password cambiata! Accedi con la nuova password.
-        </v-alert>
         <v-form ref="form" v-model="isFormValid" lazy-validation>
-          <v-text-field
-            v-model="username"
-            :rules="[rules.required]"
-            :validate-on-blur="false"
-            :error="error"
-            :label="$t('common.username') + ' *'"
-            name="username"
-            outlined
-            dense
-            aria-label="Inserisci il tuo username"
-            :disabled="basicAuthEnabled"
-            @keyup.enter="authenticate"
-            @change="resetErrors"
-          ></v-text-field>
-          <v-text-field
-            v-model="password"
-            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required]"
-            :type="showPassword ? 'text' : 'password'"
-            :error="error"
-            :disabled="basicAuthEnabled"
-            :error-messages="errorMessages"
-            :label="$t('common.password') + ' *'"
-            name="password"
-            aria-label="Inserisci la tua password"
-            outlined
-            dense
-            @change="resetErrors"
-            @keyup.enter="authenticate"
-            @click:append="showPassword = !showPassword"
-          ></v-text-field>
+          <v-row dense>
+            <v-col cols="12">
+              <v-otp-input
+                v-model="otp"
+                :length="6"
+              ></v-otp-input>
+            </v-col>
+          </v-row>
           <v-btn
             :loading="isLoading"
-            :disabled="isSignInDisabled || basicAuthEnabled || (!username || !password)"
+            :disabled="!otp"
             block
             large
             color="primary"
             style="color: white"
+            class="mt-2"
             @click="authenticate"
           >
             {{ $t('auth.login.button') }}
@@ -103,8 +65,7 @@ export default {
 
     // form
     isFormValid: true,
-    username: '',
-    password: '',
+    otp: '',
 
     // form error
     error: false,
@@ -131,12 +92,6 @@ export default {
       ]
     }
   },
-  beforeMount() {
-    const cookie = this.$cookies.get('Authentication')
-    if(cookie) {
-      this.$store.dispatch('auth/getUser')
-    }
-  },
   computed: {
     firstAccess () {
       return this.$route.query.first_login
@@ -154,28 +109,6 @@ export default {
     async authenticate () {
       this.isLoading = true
       this.isSignInDisabled = true
-      if (this.$refs.form.validate()) {
-        this.$axios.$post('/api/v1/auth/login', {
-          username: this.username,
-          password: this.password
-        }).then((response) => {
-          if(response.twoFactorEnabled) {
-            this.$store.commit('auth/setTwoFactorAuth', true)
-            this.$router.push({ path: '/auth/two-factor' })
-          } else {
-            this.$store.commit('auth/setUser', response.user)
-            this.$store.commit('auth/setLoggedIn', true)
-            this.$store.commit('auth/setTwoFactorAuth', false)
-            this.$notifier.showMessage({ content: 'Accesso riuscito!', type: 'success' })
-            this.$router.push({ path: '/' })
-          }
-        }).catch((error) => {
-          this.isLoading = false
-          this.isSignInDisabled = false
-          this.$notifier.showMessage({ content: 'Accesso non riuscito!', type: 'error' })
-          console.log(error)
-        })
-      }
     },
     resetErrors () {
       this.error = false

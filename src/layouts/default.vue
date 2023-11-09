@@ -97,23 +97,13 @@ export default {
     titleTemplate: '%s - ProCiv Settimo M.se'
   },
   beforeMount() {
-    const token = this.$auth.$storage.getCookie('access_token')
-    const user = this.$auth.$storage.getCookie('user')
-    if(token && user) {
-      // Set $auth props
-      this.$auth.setStrategy('local')
-      this.$auth.setUserToken(token)
-      this.$auth.setUser(user)
-      // Set axios token
-      this.$axios.setToken(token, 'Bearer')
-    } else {
-      this.$auth.logout()
+    const cookie = this.$cookies.get('Authentication')
+    if(cookie) {
+      this.$store.dispatch('auth/getUser')
     }
   },
   created () {
-    if (!this.$auth.$storage.getCookie('GDPR:accepted') || this.$auth.$storage.getCookie('GDPR:accepted') === "false") {
-      this.cookieModal = true
-    }
+    this.cookieModal = false
   },
   methods: {
     toggleDrawer () {
@@ -121,22 +111,14 @@ export default {
     },
     acceptAllCookies () {
       this.cookieModal = false
-      this.$auth.$storage.setCookie('GDPR:accepted', "true", {
-        maxAge: 60 * 60 * 24 * 14
-      })
     },
     denyAllCookies () {
       this.cookieModal = false
-      this.$auth.$storage.removeCookie('access_token')
-      this.$auth.$storage.removeCookie('user')
-      this.$auth.$storage.setCookie('GDPR:accepted', "false", {
-        maxAge: 60 * 60 * 24 * 14
-      })
     }
   },
   computed: {
     isLoggedIn() {
-      return this.$auth.loggedIn
+      return this.$store.getters['auth/isLoggedIn']
     }
   }
 }

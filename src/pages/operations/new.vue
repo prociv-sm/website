@@ -83,7 +83,6 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
-              v-if="loggedIn"
               color="primary"
               style="color: white"
               @click="saveIntervention"
@@ -102,7 +101,7 @@ import PageTitle from "@/components/common/PageTitle";
 export default {
   name: "AddOperation",
   components: { PageTitle },
-  middleware: 'auth',
+  middleware: 'isAuthenticated',
   head: {
     title: "Create Operation",
     meta: [
@@ -139,11 +138,6 @@ export default {
       masks: {
         input: 'YYYY-MM-DD h:mm A'
       }
-    }
-  },
-  computed: {
-    loggedIn () {
-      return this.$auth.loggedIn
     }
   },
   methods: {
