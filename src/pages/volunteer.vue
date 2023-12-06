@@ -9,15 +9,15 @@
             <v-card>
               <v-img
                 :lazy-src="require('@/assets/img/lazy.webp')"
-                :src="require('@/assets/img/volunteers/groups.webp')"
-                max-height="250"
+                :src="require('@/assets/img/volunteers/group-2.webp')"
+                max-height="270"
               ></v-img>
             </v-card>
           </v-col>
           <v-col cols="12" md="12">
             <v-card>
               <v-card-text>
-                Attualmente il gruppo conta <strong>37</strong> volontari attivi, suddivisi in <strong>5 squadre</strong> in rotazione serale. <br>
+                Attualmente il gruppo conta <strong>25</strong> volontari attivi, suddivisi in <strong>5 squadre</strong> in rotazione serale. <br>
                 Le squadre effettuano un turno serale settimanale, in orario <strong>tra le 21:00 e le 23:00</strong>, dove vengono effettuate attività di addestramento, simulazioni, formazione teorica e attività di prevenzione sul territorio. <br>
                 Ogni squadra è seguita da <strong>due capi turno o referenti</strong> che si occupano di coordinare le attività e di assicurare il funzionamento del gruppo. <br>
                 Tutti i volontari possono partecipare a <strong>corsi di formazione e addestramento regionali o locali</strong>, per migliorare le proprie competenze ed ottenere abilitazioni per operazioni specialistiche. <br>
