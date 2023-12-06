@@ -7,6 +7,7 @@
           <v-btn-toggle
             v-model="selectedFilter"
             @change="filterByType(selectedFilter)"
+            mandatory
             borderless
           >
             <v-btn value="car">
