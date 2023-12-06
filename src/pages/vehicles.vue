@@ -7,6 +7,7 @@
           <v-btn-toggle
             v-model="selectedFilter"
             @change="filterByType(selectedFilter)"
+            mandatory
             borderless
           >
             <v-btn value="car">
@@ -16,10 +17,6 @@
             <v-btn value="truck">
               <span class="hidden-sm-and-down mr-1">{{ $t('vehicles.type.truck') }}</span>
               <v-icon>mdi-truck</v-icon>
-            </v-btn>
-            <v-btn value="trailer">
-              <span class="hidden-sm-and-down mr-1">{{ $t('vehicles.type.trailer') }}</span>
-              <v-icon>mdi-truck-trailer</v-icon>
             </v-btn>
             <v-btn value="all">
               <span class="hidden-sm-and-down mr-1">{{ $t('vehicles.type.all') }}</span>
