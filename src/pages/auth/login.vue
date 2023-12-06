@@ -163,7 +163,7 @@ export default {
             this.$store.commit('auth/setTwoFactorAuth', true)
             this.$router.push({ path: '/auth/two-factor' })
           } else {
-            this.$store.commit('auth/setUser', response.user)
+            this.$store.commit('auth/setUser', response)
             this.$store.commit('auth/setLoggedIn', true)
             this.$store.commit('auth/setTwoFactorAuth', false)
             this.$notifier.showMessage({ content: 'Accesso riuscito!', type: 'success' })

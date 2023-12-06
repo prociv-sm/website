@@ -75,6 +75,7 @@ module.exports = {
     { src: "~/plugins/vuetify" },
     { src: '~/plugins/notifier.js' },
     { src: '~/plugins/calendar.js', ssr: false },
+    { src: '~/plugins/axios.js', ssr: false },
     // Filters
     { src: '~/filters/formatDate.js' }
   ],

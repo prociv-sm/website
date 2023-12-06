@@ -1,5 +1,14 @@
 export const state = () => ({
-  user: null,
+  user: {
+    id: null,
+    name: null,
+    surname: null,
+    verified: false,
+    email: null,
+    initials: 'PC',
+    roles: [],
+    internal: 'user',
+  },
   isLoggedIn: false,
   twoFactorAuthEnabled: false,
 })
@@ -14,6 +23,14 @@ export const mutations = {
   setTwoFactorAuth(state, payload) {
     state.twoFactorAuthEnabled = payload
   },
+  setPersistence(state) {
+    this.$cookies.set('isLoggedIn', state.isLoggedIn)
+    this.$cookies.set('connected', state.user)
+  },
+  deletePersistence() {
+    this.$cookies.remove('isLoggedIn')
+    this.$cookies.remove('connected')
+  }
 }
 
 export const getters = {
@@ -33,17 +50,18 @@ export const actions = {
     this.$axios.$post('/api/v1/auth/two-factor/authenticate', { ...payload }).then((res) => {
       commit('setUser', res)
       commit('setLoggedIn', true)
+      commit('setPersistence')
     })
   },
   getUser({ commit }) {
     this.$axios.$get('/api/v1/auth').then((res) => {
       commit('setUser', res)
       commit('setLoggedIn', true)
+      commit('setPersistence')
     })
   },
-  refresh({ commit }, payload) {
+  refresh({ commit }) {
     this.$axios.$get('/api/v1/auth/refresh').then((res) => {
-      commit('setUser', res)
       commit('setLoggedIn', true)
     })
   },
@@ -51,6 +69,7 @@ export const actions = {
     this.$axios.$post('/api/v1/auth/logout').then(() => {
       commit('setUser', null)
       commit('setLoggedIn', false)
+      commit('deletePersistence')
     })
   },
 }

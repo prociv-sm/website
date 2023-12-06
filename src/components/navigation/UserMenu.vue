@@ -7,7 +7,7 @@
           color="grey lighten-4"
           class="online"
         >
-          <span class="text-h6">{{ user.name.slice(0,1).toUpperCase() }}{{ user.surname.slice(0,1).toUpperCase() }}</span>
+          <span class="text-h6">{{ user.initials }}</span>
         </v-avatar>
       </v-btn>
     </template>
@@ -17,7 +17,7 @@
       <v-list dense>
         <v-list-item>
           <v-list-item-avatar color="grey lighten-4">
-            <span class="text-h6">{{ user.name.slice(0,1).toUpperCase() }}{{ user.surname.slice(0,1).toUpperCase() }}</span>
+            <span class="text-h6">{{ user.initials }}</span>
           </v-list-item-avatar>
 
           <v-list-item-content>
@@ -57,13 +57,16 @@
 <script>
 export default {
   name: "UserMenu",
+  props: {
+    user: {
+      type: Object,
+      default: () => {}
+    }
+  },
   computed: {
-    user () {
-      return this.$store.getters['auth/user']
-    },
     userIsAdmin () {
       return this.user.internal === 'supervisor' || this.user.internal === 'chief'
-    }
+    },
   },
   methods: {
     async logout () {

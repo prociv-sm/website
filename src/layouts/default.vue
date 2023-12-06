@@ -10,9 +10,19 @@
     <!-- Upper navigation bar with language selector -->
     <upper-bar />
     <!-- Lower navigation bar with user navigation -->
-    <lower-bar @toggleDrawer="toggleDrawer" class="hidden-sm-and-down" />
+    <lower-bar
+      @toggleDrawer="toggleDrawer"
+      class="hidden-sm-and-down"
+      :is-logged-in="isLoggedIn"
+      :user="user"
+    />
     <!-- Drawer for mobile devices -->
-    <mobile-bar @toggleDrawer="toggleDrawer" class="hidden-md-and-up" />
+    <mobile-bar
+      @toggleDrawer="toggleDrawer"
+      class="hidden-md-and-up"
+      :is-logged-in="isLoggedIn"
+      :user="user"
+    />
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -117,6 +127,16 @@ export default {
     }
   },
   computed: {
+    user () {
+      if (this.isLoggedIn) {
+        let user = this.$store.getters['auth/user']
+        if (!user) {
+          user = JSON.parse(this.$cookies.get('connected'))
+        }
+        return user
+      }
+      return {}
+    },
     isLoggedIn() {
       return this.$store.getters['auth/isLoggedIn']
     }

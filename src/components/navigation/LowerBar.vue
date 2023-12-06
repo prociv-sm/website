@@ -23,12 +23,12 @@
             </v-col>
           </v-row>
           <span class="hidden-md-and-up justify-start"  style="font-size: xx-large; overflow: visible !important;">
-              {{ $t('title') }}
-            </span>
+            {{ $t('title') }}
+          </span>
         </v-app-bar-title>
         <v-spacer />
         <!-- Access admin section -->
-        <user-menu v-if="isLoggedIn" />
+        <user-menu v-if="isLoggedIn" :user="user" />
         <v-btn v-else icon nuxt :to="{ path: localePath('/auth/login')}" aria-label="Fai clic per accedere">
           <v-icon color="#ffffff">mdi-login</v-icon>
         </v-btn>
@@ -52,6 +52,16 @@ import UserMenu from "@/components/navigation/UserMenu";
 export default {
   name: "LowerBar",
   components: { UserMenu },
+  props: {
+    user: {
+      type: Object,
+      default: () => {}
+    },
+    isLoggedIn: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       drawer: false
@@ -62,11 +72,6 @@ export default {
       this.$emit("toggleDrawer", !this.drawer);
     }
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters['auth/isLoggedIn']
-    }
-  }
 };
 </script>
 

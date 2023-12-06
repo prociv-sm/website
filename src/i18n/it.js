@@ -108,18 +108,39 @@ export default {
   },
   users: {
     fields: {
+      id: 'ID',
       name: 'Nome',
       surname: 'Cognome',
       username: 'Nome utente',
       email: 'Email',
       phone: 'Telefono',
       role: 'Ruolo',
+      courses: 'Specializzazioni',
       actions: 'Azioni'
     },
     list: 'Elenco utenti',
+    courses: {
+      basic: 'Base',
+      security: 'Sicurezza',
+      telecommunications: 'Telecomunicazioni',
+      'hydrogeology-first-level': 'Idrogeologico I livello',
+      'hydrogeology-second-level': 'Idrogeologico II livello',
+      'forest-fire': 'Antincendio boschivo',
+      speleology: 'Soccorso speleologico',
+      psychologist: 'Psicologia',
+      topography: 'Topografia',
+      'team-leader': 'Capo squadra',
+      'search-and-rescue': 'Ricerca persone disperse',
+    },
+    roles: {
+      User: 'Volontario',
+      Supervisor: 'Referente',
+      Chief: 'Coordinatore',
+      Admin: 'Amministratore'
+    },
     internal: {
       volunteer: 'Volontario',
-      supervisor: 'Referente di turno',
+      supervisor: 'Referente',
       chief: 'Coordinatore'
     },
     delete: 'Elimina utente',

@@ -17,12 +17,12 @@
             </v-col>
           </v-row>
           <span class="hidden-md-and-up justify-start"  style="font-size: xx-large; overflow: visible !important;">
-            {{ $t('title') }}
+            ProCiv
           </span>
         </v-app-bar-title>
         <v-spacer />
         <!-- Access admin section -->
-        <user-menu v-if="isLoggedIn" />
+        <user-menu v-if="isLoggedIn" :user="user" />
         <v-btn v-else icon nuxt :to="{ path: localePath('/auth/login')}">
           <v-icon color="#ffffff">mdi-login</v-icon>
         </v-btn>
@@ -41,16 +41,21 @@ export default {
       drawer: false
     };
   },
+  props: {
+    user: {
+      type: Object,
+      default: () => {}
+    },
+    isLoggedIn: {
+      type: Boolean,
+      default: false
+    }
+  },
   methods: {
     toggleDrawer() {
       this.$emit("toggleDrawer", !this.drawer);
     }
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters['auth/isLoggedIn']
-    }
-  }
 };
 </script>
 

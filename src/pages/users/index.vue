@@ -16,8 +16,11 @@
             }"
             :items-per-page="20"
           >
-            <template v-slot:item.internal="{ item }">
-              {{ $t('users.internal.' + item.internal) }}
+            <template v-slot:item.roles="{ item }">
+              {{ item.roles.map(role => $t('users.roles.' + role)).join(', ') }}
+            </template>
+            <template v-slot:item.courses="{ item }">
+              {{ item.courses.map(course => $t('users.courses.' + course)).join(', ') }}
             </template>
             <template v-slot:item.actions="{ item }">
               <users-actions :item="item" />
@@ -54,15 +57,13 @@ export default {
     return {
       headers: [
         {
-          text: this.$t('users.fields.username'),
-          align: 'start',
-          sortable: false,
-          value: 'username',
+          text: this.$t('users.fields.id'),
+          value: 'id',
         },
         { text: this.$t('users.fields.name'), value: 'name' },
         { text: this.$t('users.fields.surname'), value: 'surname' },
-        { text: this.$t('users.fields.email'), value: 'email' },
-        { text: this.$t('users.fields.role'), value: 'internal' }
+        { text: this.$t('users.fields.role'), value: 'roles' },
+        { text: this.$t('users.fields.courses'), value: 'courses' }
 /*        { text: this.$t('users.fields.actions'), value: 'actions', sortable: false },*/
       ],
       loading: true,
