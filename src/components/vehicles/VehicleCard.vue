@@ -18,7 +18,6 @@
           <span><strong>{{ $t('vehicles.details.brand') }}:</strong> {{ vehicle.brand }} </span> <br>
           <span><strong>{{ $t('vehicles.details.model') }}:</strong> {{ vehicle.model }} </span> <br>
           <span><strong>{{ $t('vehicles.details.productionYear') }}:</strong> {{ vehicle ? vehicle.year : 'Non noto' }} </span> <br>
-          <span><strong>{{ $t('vehicles.details.mileage') }}:</strong> {{ vehicle ? vehicle.mileage : 'Non noto' }} </span> <br>
         </v-card-text>
       </div>
     </v-expand-transition>
