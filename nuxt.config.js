@@ -155,7 +155,7 @@ module.exports = {
       local: {
         scheme: 'token',
         endpoints: {
-          login: { url: '/api/v1/auth/login', method: 'post' },
+          login: { url: '/v1/auth/login', method: 'post' },
           user: false,
           logout: false
         },

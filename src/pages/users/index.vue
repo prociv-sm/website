@@ -77,7 +77,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('/api/v1/users')
+        .get('/v1/users')
         .then(response => {
           this.users = response.data;
           this.loading = false;

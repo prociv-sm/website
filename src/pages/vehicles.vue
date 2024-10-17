@@ -113,7 +113,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('/api/v1/vehicles')
+        .get('/v1/vehicles')
         .then(response => {
           this.vehicles = response.data;
           this.loading = false;
@@ -126,7 +126,7 @@ export default {
         await this.fetchData();
       } else {
         this.$axios
-          .get('/api/v1/vehicles?type=' + this.type)
+          .get('/v1/vehicles?type=' + this.type)
           .then(response => {
             this.vehicles = response.data;
             this.loading = false;
