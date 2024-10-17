@@ -145,7 +145,7 @@ module.exports = {
    * See https://dev.auth.nuxtjs.org/api/auth/
    */
   auth: {
-    baseUrl: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
+    baseUrl: process.env.API_BASE_URL || 'https://procivsettimomi.it/api',
     redirect: {
       login: '/auth/login',
       logout: '/',
@@ -173,7 +173,7 @@ module.exports = {
   },
 
   env: {
-    API_BASE_URL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
+    API_BASE_URL: process.env.API_BASE_URL || 'https://procivsettimomi.it/api',
     BASE_URL: process.env.BASE_URL || 'https://procivsettimomi.it'
   },
 
@@ -183,7 +183,7 @@ module.exports = {
    */
   axios: {
     https: process.env.NODE_ENV === 'production',
-    baseURL: process.env.API_BASE_URL || 'https://api.procivsettimomi.it',
+    baseURL: process.env.API_BASE_URL || 'https://procivsettimomi.it/api',
     credentials: false,
     headers: {
       common: {
