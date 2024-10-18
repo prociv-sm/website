@@ -107,7 +107,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('/api/v1/activities')
+        .get('/v1/activities')
         .then(response => {
           this.activities = response.data;
           this.loading = false;
@@ -115,7 +115,7 @@ export default {
     },
     async getStats() {
       this.$axios
-        .get('/api/v1/activities/statistics')
+        .get('/v1/activities/statistics')
         .then(response => {
           this.stats = response.data;
         });

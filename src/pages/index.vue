@@ -88,7 +88,7 @@ export default {
   methods: {
     async fetchData() {
       this.$axios
-        .get('/api/v1/activities?take=5')
+        .get('/v1/activities?take=5')
         .then(response => {
           this.operations = response.data;
           this.loading = false;
@@ -96,7 +96,7 @@ export default {
     },
     async requestStormAlert() {
       this.$axios
-        .get('/api/v1/alerts/Lomb-1/storm')
+        .get('/v1/alerts/Lomb-1/storm')
         .then(response => {
           this.alerts.storm = response.data;
           this.loading = false;
@@ -104,7 +104,7 @@ export default {
     },
     async requestHydroAlert() {
       this.$axios
-        .get('/api/v1/alerts/Lomb-1/hydro')
+        .get('/v1/alerts/Lomb-1/hydro')
         .then(response => {
           this.alerts.hydro = response.data;
           this.loading = false;
@@ -112,7 +112,7 @@ export default {
     },
     async requestGeoAlert() {
       this.$axios
-        .get('/api/v1/alerts/Lomb-1/geo')
+        .get('/v1/alerts/Lomb-1/geo')
         .then(response => {
           this.alerts.geo = response.data;
           this.loading = false;
