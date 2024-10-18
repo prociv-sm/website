@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "nuxt"
+        update-types: ["version-update:semver-major"]
